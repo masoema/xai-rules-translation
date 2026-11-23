@@ -103,8 +103,6 @@ removed rules simply never fire.
   1.54% (proposed) and 15.94% -> 1.89% (Anomaly2Sign), with the same paired differences and confidence intervals.
   On the 794 files, which contain no Syn or UDP-lag flows, the paper reports macro F1 over the classes present
   (`macro_f1_present_classes`).
-- The two densest PCAP files (`SAT-01-12-2018_0618`, `_0619`) were processed in six flow-based partitions;
-  `score_suricata.py` combines partitions stored as `<pcap>/part<i>of<k>/alerts_agg.parquet`.
 
 ## Licence and citation
 
