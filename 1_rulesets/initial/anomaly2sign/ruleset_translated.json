@@ -1,0 +1,2293 @@
+[
+ {
+  "rule_id": "COS-0001-tcp",
+  "method": "anomaly2sign",
+  "target_class": "DrDoS_NTP",
+  "conditions": [
+   {
+    "feature": "avg_fwd_segment_size",
+    "op": "<=",
+    "threshold": 295.6607208251953,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "empty dsize interval (flow with packets of different sizes)"
+    }
+   },
+   {
+    "feature": "ack_flag_count",
+    "op": "<=",
+    "threshold": 0.5,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "flags:!S",
+     "note": "bit S not set"
+    }
+   },
+   {
+    "feature": "min_packet_length",
+    "op": "<=",
+    "threshold": 153.0,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "empty dsize interval (flow with packets of different sizes)"
+    }
+   },
+   {
+    "feature": "flow_bytes/s",
+    "op": "<=",
+    "threshold": 31071429.0,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "CICFlowMeter definition, running statistic"
+    }
+   },
+   {
+    "feature": "fwd_packet_length_mean",
+    "op": ">",
+    "threshold": 259.75,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "empty dsize interval (flow with packets of different sizes)"
+    }
+   }
+  ],
+  "suricata": "alert tcp any any <> any any (msg:\"RQ1 anomaly2sign DrDoS_NTP COS-0001-tcp\"; lua:COS-0001-tcp.lua; flow:to_server; flags:!S; metadata:rq1_rule COS-0001-tcp, rq1_class DrDoS_NTP, rq1_method anomaly2sign; sid:2000002; rev:1;)",
+  "meta": {
+   "leaf_node": 6,
+   "train_samples": 254,
+   "max_depth": 5,
+   "criterion": "entropy"
+  },
+  "translation": {
+   "header_protocol": "tcp",
+   "protocol_source": "split",
+   "protocol_share": null,
+   "extra_conditions": [
+    {
+     "feature": "protocol",
+     "op": ">",
+     "threshold": 5.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert tcp",
+      "note": "tcp variant of a rule with an ip header"
+     }
+    },
+    {
+     "feature": "protocol",
+     "op": "<=",
+     "threshold": 6.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert tcp",
+      "note": "tcp variant of a rule with an ip header"
+     }
+    }
+   ],
+   "direction": "to_server",
+   "lua_file": "COS-0001-tcp.lua",
+   "sid": 2000002,
+   "deployable": true,
+   "split_from": "COS-0001"
+  }
+ },
+ {
+  "rule_id": "COS-0001-udp",
+  "method": "anomaly2sign",
+  "target_class": "DrDoS_NTP",
+  "conditions": [
+   {
+    "feature": "avg_fwd_segment_size",
+    "op": "<=",
+    "threshold": 295.6607208251953,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "empty dsize interval (flow with packets of different sizes)"
+    }
+   },
+   {
+    "feature": "ack_flag_count",
+    "op": "<=",
+    "threshold": 0.5,
+    "translated": true,
+    "translation": {
+     "kind": "implied",
+     "keyword": "",
+     "note": "flag is always 0 on UDP flows"
+    }
+   },
+   {
+    "feature": "min_packet_length",
+    "op": "<=",
+    "threshold": 153.0,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "empty dsize interval (flow with packets of different sizes)"
+    }
+   },
+   {
+    "feature": "flow_bytes/s",
+    "op": "<=",
+    "threshold": 31071429.0,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "CICFlowMeter definition, running statistic"
+    }
+   },
+   {
+    "feature": "fwd_packet_length_mean",
+    "op": ">",
+    "threshold": 259.75,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "empty dsize interval (flow with packets of different sizes)"
+    }
+   }
+  ],
+  "suricata": "alert udp any any <> any any (msg:\"RQ1 anomaly2sign DrDoS_NTP COS-0001-udp\"; lua:COS-0001-udp.lua; flow:to_server; metadata:rq1_rule COS-0001-udp, rq1_class DrDoS_NTP, rq1_method anomaly2sign; sid:2000003; rev:1;)",
+  "meta": {
+   "leaf_node": 6,
+   "train_samples": 254,
+   "max_depth": 5,
+   "criterion": "entropy"
+  },
+  "translation": {
+   "header_protocol": "udp",
+   "protocol_source": "split",
+   "protocol_share": null,
+   "extra_conditions": [
+    {
+     "feature": "protocol",
+     "op": ">",
+     "threshold": 16.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert udp",
+      "note": "udp variant of a rule with an ip header"
+     }
+    },
+    {
+     "feature": "protocol",
+     "op": "<=",
+     "threshold": 17.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert udp",
+      "note": "udp variant of a rule with an ip header"
+     }
+    }
+   ],
+   "direction": "to_server",
+   "lua_file": "COS-0001-udp.lua",
+   "sid": 2000003,
+   "deployable": true,
+   "split_from": "COS-0001"
+  }
+ },
+ {
+  "rule_id": "COS-0002",
+  "method": "anomaly2sign",
+  "target_class": "DrDoS_NTP",
+  "conditions": [
+   {
+    "feature": "avg_fwd_segment_size",
+    "op": "<=",
+    "threshold": 295.6607208251953,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:79<>154",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "ack_flag_count",
+    "op": "<=",
+    "threshold": 0.5,
+    "translated": true,
+    "translation": {
+     "kind": "implied",
+     "keyword": "",
+     "note": "flag is always 0 on UDP flows"
+    }
+   },
+   {
+    "feature": "min_packet_length",
+    "op": "<=",
+    "threshold": 153.0,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:79<>154",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "flow_bytes/s",
+    "op": ">",
+    "threshold": 31071429.0,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "CICFlowMeter definition, running statistic"
+    }
+   },
+   {
+    "feature": "fwd_packet_length_min",
+    "op": ">",
+    "threshold": 79.5,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:79<>154",
+     "note": "merged payload size interval per packet"
+    }
+   }
+  ],
+  "suricata": "alert udp any any <> any any (msg:\"RQ1 anomaly2sign DrDoS_NTP COS-0002\"; lua:COS-0002.lua; flow:to_server; dsize:79<>154; metadata:rq1_rule COS-0002, rq1_class DrDoS_NTP, rq1_method anomaly2sign; sid:2000004; rev:1;)",
+  "meta": {
+   "leaf_node": 9,
+   "train_samples": 881,
+   "max_depth": 5,
+   "criterion": "entropy"
+  },
+  "translation": {
+   "header_protocol": "udp",
+   "protocol_source": "data",
+   "protocol_share": 1.0,
+   "extra_conditions": [
+    {
+     "feature": "protocol",
+     "op": ">",
+     "threshold": 16.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert udp",
+      "note": "udp header from the training flows"
+     }
+    },
+    {
+     "feature": "protocol",
+     "op": "<=",
+     "threshold": 17.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert udp",
+      "note": "udp header from the training flows"
+     }
+    }
+   ],
+   "direction": "to_server",
+   "lua_file": "COS-0002.lua",
+   "sid": 2000004,
+   "deployable": true
+  }
+ },
+ {
+  "rule_id": "COS-0003",
+  "method": "anomaly2sign",
+  "target_class": "DrDoS_NetBIOS",
+  "conditions": [
+   {
+    "feature": "avg_fwd_segment_size",
+    "op": "<=",
+    "threshold": 295.6607208251953,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:153<>296",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "ack_flag_count",
+    "op": "<=",
+    "threshold": 0.5,
+    "translated": true,
+    "translation": {
+     "kind": "implied",
+     "keyword": "",
+     "note": "flag is always 0 on UDP flows"
+    }
+   },
+   {
+    "feature": "min_packet_length",
+    "op": ">",
+    "threshold": 153.0,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:153<>296",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "average_packet_size",
+    "op": "<=",
+    "threshold": 285.875,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "CICFlowMeter definition, running statistic"
+    }
+   },
+   {
+    "feature": "destination_port",
+    "op": ">",
+    "threshold": 146.0,
+    "translated": true,
+    "translation": {
+     "kind": "header",
+     "keyword": "port 147:65535",
+     "note": ""
+    }
+   }
+  ],
+  "suricata": "alert udp any any <> any 147:65535 (msg:\"RQ1 anomaly2sign DrDoS_NetBIOS COS-0003\"; lua:COS-0003.lua; flow:to_server; dsize:153<>296; metadata:rq1_rule COS-0003, rq1_class DrDoS_NetBIOS, rq1_method anomaly2sign; sid:2000005; rev:1;)",
+  "meta": {
+   "leaf_node": 13,
+   "train_samples": 786,
+   "max_depth": 5,
+   "criterion": "entropy"
+  },
+  "translation": {
+   "header_protocol": "udp",
+   "protocol_source": "data",
+   "protocol_share": 1.0,
+   "extra_conditions": [
+    {
+     "feature": "protocol",
+     "op": ">",
+     "threshold": 16.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert udp",
+      "note": "udp header from the training flows"
+     }
+    },
+    {
+     "feature": "protocol",
+     "op": "<=",
+     "threshold": 17.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert udp",
+      "note": "udp header from the training flows"
+     }
+    }
+   ],
+   "direction": "to_server",
+   "lua_file": "COS-0003.lua",
+   "sid": 2000005,
+   "deployable": true
+  }
+ },
+ {
+  "rule_id": "COS-0004",
+  "method": "anomaly2sign",
+  "target_class": "DrDoS_NetBIOS",
+  "conditions": [
+   {
+    "feature": "avg_fwd_segment_size",
+    "op": "<=",
+    "threshold": 295.6607208251953,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:153<>284",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "ack_flag_count",
+    "op": "<=",
+    "threshold": 0.5,
+    "translated": true,
+    "translation": {
+     "kind": "implied",
+     "keyword": "",
+     "note": "flag is always 0 on UDP flows"
+    }
+   },
+   {
+    "feature": "min_packet_length",
+    "op": ">",
+    "threshold": 153.0,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:153<>284",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "average_packet_size",
+    "op": ">",
+    "threshold": 285.875,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "CICFlowMeter definition, running statistic"
+    }
+   },
+   {
+    "feature": "max_packet_length",
+    "op": "<=",
+    "threshold": 283.5,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:153<>284",
+     "note": "merged payload size interval per packet"
+    }
+   }
+  ],
+  "suricata": "alert udp any any <> any any (msg:\"RQ1 anomaly2sign DrDoS_NetBIOS COS-0004\"; lua:COS-0004.lua; flow:to_server; dsize:153<>284; metadata:rq1_rule COS-0004, rq1_class DrDoS_NetBIOS, rq1_method anomaly2sign; sid:2000006; rev:1;)",
+  "meta": {
+   "leaf_node": 15,
+   "train_samples": 100155,
+   "max_depth": 5,
+   "criterion": "entropy"
+  },
+  "translation": {
+   "header_protocol": "udp",
+   "protocol_source": "data",
+   "protocol_share": 1.0,
+   "extra_conditions": [
+    {
+     "feature": "protocol",
+     "op": ">",
+     "threshold": 16.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert udp",
+      "note": "udp header from the training flows"
+     }
+    },
+    {
+     "feature": "protocol",
+     "op": "<=",
+     "threshold": 17.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert udp",
+      "note": "udp header from the training flows"
+     }
+    }
+   ],
+   "direction": "to_server",
+   "lua_file": "COS-0004.lua",
+   "sid": 2000006,
+   "deployable": true
+  }
+ },
+ {
+  "rule_id": "COS-0005",
+  "method": "anomaly2sign",
+  "target_class": "UDP_Reflection_Attack",
+  "conditions": [
+   {
+    "feature": "avg_fwd_segment_size",
+    "op": "<=",
+    "threshold": 295.6607208251953,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:283<>296",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "ack_flag_count",
+    "op": "<=",
+    "threshold": 0.5,
+    "translated": true,
+    "translation": {
+     "kind": "implied",
+     "keyword": "",
+     "note": "flag is always 0 on UDP flows"
+    }
+   },
+   {
+    "feature": "min_packet_length",
+    "op": ">",
+    "threshold": 153.0,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:283<>296",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "average_packet_size",
+    "op": ">",
+    "threshold": 285.875,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "CICFlowMeter definition, running statistic"
+    }
+   },
+   {
+    "feature": "max_packet_length",
+    "op": ">",
+    "threshold": 283.5,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:283<>296",
+     "note": "merged payload size interval per packet"
+    }
+   }
+  ],
+  "suricata": "alert udp any any <> any any (msg:\"RQ1 anomaly2sign UDP_Reflection_Attack COS-0005\"; lua:COS-0005.lua; flow:to_server; dsize:283<>296; metadata:rq1_rule COS-0005, rq1_class UDP_Reflection_Attack, rq1_method anomaly2sign; sid:2000007; rev:1;)",
+  "meta": {
+   "leaf_node": 16,
+   "train_samples": 194,
+   "max_depth": 5,
+   "criterion": "entropy"
+  },
+  "translation": {
+   "header_protocol": "udp",
+   "protocol_source": "data",
+   "protocol_share": 1.0,
+   "extra_conditions": [
+    {
+     "feature": "protocol",
+     "op": ">",
+     "threshold": 16.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert udp",
+      "note": "udp header from the training flows"
+     }
+    },
+    {
+     "feature": "protocol",
+     "op": "<=",
+     "threshold": 17.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert udp",
+      "note": "udp header from the training flows"
+     }
+    }
+   ],
+   "direction": "to_server",
+   "lua_file": "COS-0005.lua",
+   "sid": 2000007,
+   "deployable": true
+  }
+ },
+ {
+  "rule_id": "COS-0006",
+  "method": "anomaly2sign",
+  "target_class": "UDP-lag",
+  "conditions": [
+   {
+    "feature": "avg_fwd_segment_size",
+    "op": "<=",
+    "threshold": 295.6607208251953,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:<296",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "ack_flag_count",
+    "op": ">",
+    "threshold": 0.5,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "flags:S+",
+     "note": "bit S set in the packet"
+    }
+   },
+   {
+    "feature": "inbound",
+    "op": "<=",
+    "threshold": 0.5,
+    "translated": true,
+    "translation": {
+     "kind": "header",
+     "keyword": "-> !$HOME_NET",
+     "note": "column meaning checked against the PCAP files"
+    }
+   },
+   {
+    "feature": "destination_port",
+    "op": ">",
+    "threshold": 8766.5,
+    "translated": true,
+    "translation": {
+     "kind": "header",
+     "keyword": "port 8767:65535",
+     "note": ""
+    }
+   }
+  ],
+  "suricata": "alert tcp any any -> !$HOME_NET 8767:65535 (msg:\"RQ1 anomaly2sign UDP-lag COS-0006\"; flow:to_server; dsize:<296; flags:S+; metadata:rq1_rule COS-0006, rq1_class UDP-lag, rq1_method anomaly2sign; sid:2000008; rev:1;)",
+  "meta": {
+   "leaf_node": 20,
+   "train_samples": 1,
+   "max_depth": 5,
+   "criterion": "entropy"
+  },
+  "translation": {
+   "header_protocol": "tcp",
+   "protocol_source": "conditions",
+   "protocol_share": null,
+   "extra_conditions": [],
+   "direction": "to_server",
+   "lua_file": null,
+   "sid": 2000008,
+   "deployable": true
+  }
+ },
+ {
+  "rule_id": "COS-0007",
+  "method": "anomaly2sign",
+  "target_class": "UDP-lag",
+  "conditions": [
+   {
+    "feature": "avg_fwd_segment_size",
+    "op": "<=",
+    "threshold": 295.6607208251953,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:<296",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "ack_flag_count",
+    "op": ">",
+    "threshold": 0.5,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "flags:S+",
+     "note": "bit S set in the packet"
+    }
+   },
+   {
+    "feature": "inbound",
+    "op": ">",
+    "threshold": 0.5,
+    "translated": true,
+    "translation": {
+     "kind": "header",
+     "keyword": "-> $HOME_NET",
+     "note": "column meaning checked against the PCAP files"
+    }
+   },
+   {
+    "feature": "total_fwd_packets",
+    "op": "<=",
+    "threshold": 11.0,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "native_flow_pkts = false"
+    }
+   },
+   {
+    "feature": "fwd_packets/s",
+    "op": "<=",
+    "threshold": 0.6711791455745697,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "CICFlowMeter definition, running statistic"
+    }
+   }
+  ],
+  "suricata": "alert tcp any any <> $HOME_NET any (msg:\"RQ1 anomaly2sign UDP-lag COS-0007\"; lua:COS-0007.lua; flow:to_server; dsize:<296; flags:S+; metadata:rq1_rule COS-0007, rq1_class UDP-lag, rq1_method anomaly2sign; sid:2000009; rev:1;)",
+  "meta": {
+   "leaf_node": 23,
+   "train_samples": 18691,
+   "max_depth": 5,
+   "criterion": "entropy"
+  },
+  "translation": {
+   "header_protocol": "tcp",
+   "protocol_source": "conditions",
+   "protocol_share": null,
+   "extra_conditions": [],
+   "direction": "to_server",
+   "lua_file": "COS-0007.lua",
+   "sid": 2000009,
+   "deployable": true
+  }
+ },
+ {
+  "rule_id": "COS-0008",
+  "method": "anomaly2sign",
+  "target_class": "Syn",
+  "conditions": [
+   {
+    "feature": "avg_fwd_segment_size",
+    "op": "<=",
+    "threshold": 295.6607208251953,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:<296",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "ack_flag_count",
+    "op": ">",
+    "threshold": 0.5,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "flags:S+",
+     "note": "bit S set in the packet"
+    }
+   },
+   {
+    "feature": "inbound",
+    "op": ">",
+    "threshold": 0.5,
+    "translated": true,
+    "translation": {
+     "kind": "header",
+     "keyword": "-> $HOME_NET",
+     "note": "column meaning checked against the PCAP files"
+    }
+   },
+   {
+    "feature": "total_fwd_packets",
+    "op": "<=",
+    "threshold": 11.0,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "native_flow_pkts = false"
+    }
+   },
+   {
+    "feature": "fwd_packets/s",
+    "op": ">",
+    "threshold": 0.6711791455745697,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "CICFlowMeter definition, running statistic"
+    }
+   }
+  ],
+  "suricata": "alert tcp any any <> $HOME_NET any (msg:\"RQ1 anomaly2sign Syn COS-0008\"; lua:COS-0008.lua; flow:to_server; dsize:<296; flags:S+; metadata:rq1_rule COS-0008, rq1_class Syn, rq1_method anomaly2sign; sid:2000010; rev:1;)",
+  "meta": {
+   "leaf_node": 24,
+   "train_samples": 139449,
+   "max_depth": 5,
+   "criterion": "entropy"
+  },
+  "translation": {
+   "header_protocol": "tcp",
+   "protocol_source": "conditions",
+   "protocol_share": null,
+   "extra_conditions": [],
+   "direction": "to_server",
+   "lua_file": "COS-0008.lua",
+   "sid": 2000010,
+   "deployable": true
+  }
+ },
+ {
+  "rule_id": "COS-0009",
+  "method": "anomaly2sign",
+  "target_class": "Syn",
+  "conditions": [
+   {
+    "feature": "avg_fwd_segment_size",
+    "op": "<=",
+    "threshold": 295.6607208251953,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:<296",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "ack_flag_count",
+    "op": ">",
+    "threshold": 0.5,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "flags:S+",
+     "note": "bit S set in the packet"
+    }
+   },
+   {
+    "feature": "inbound",
+    "op": ">",
+    "threshold": 0.5,
+    "translated": true,
+    "translation": {
+     "kind": "header",
+     "keyword": "-> $HOME_NET",
+     "note": "column meaning checked against the PCAP files"
+    }
+   },
+   {
+    "feature": "total_fwd_packets",
+    "op": ">",
+    "threshold": 11.0,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "native_flow_pkts = false"
+    }
+   },
+   {
+    "feature": "fwd_packets/s",
+    "op": "<=",
+    "threshold": 0.23637515306472778,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "CICFlowMeter definition, running statistic"
+    }
+   }
+  ],
+  "suricata": "alert tcp any any <> $HOME_NET any (msg:\"RQ1 anomaly2sign Syn COS-0009\"; lua:COS-0009.lua; flow:to_server; dsize:<296; flags:S+; metadata:rq1_rule COS-0009, rq1_class Syn, rq1_method anomaly2sign; sid:2000011; rev:1;)",
+  "meta": {
+   "leaf_node": 26,
+   "train_samples": 6982,
+   "max_depth": 5,
+   "criterion": "entropy"
+  },
+  "translation": {
+   "header_protocol": "tcp",
+   "protocol_source": "conditions",
+   "protocol_share": null,
+   "extra_conditions": [],
+   "direction": "to_server",
+   "lua_file": "COS-0009.lua",
+   "sid": 2000011,
+   "deployable": true
+  }
+ },
+ {
+  "rule_id": "COS-0010",
+  "method": "anomaly2sign",
+  "target_class": "DrDoS_NTP",
+  "conditions": [
+   {
+    "feature": "avg_fwd_segment_size",
+    "op": "<=",
+    "threshold": 295.6607208251953,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:<296",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "ack_flag_count",
+    "op": ">",
+    "threshold": 0.5,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "flags:S+",
+     "note": "bit S set in the packet"
+    }
+   },
+   {
+    "feature": "inbound",
+    "op": ">",
+    "threshold": 0.5,
+    "translated": true,
+    "translation": {
+     "kind": "header",
+     "keyword": "-> $HOME_NET",
+     "note": "column meaning checked against the PCAP files"
+    }
+   },
+   {
+    "feature": "total_fwd_packets",
+    "op": ">",
+    "threshold": 11.0,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "native_flow_pkts = false"
+    }
+   },
+   {
+    "feature": "fwd_packets/s",
+    "op": ">",
+    "threshold": 0.23637515306472778,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "CICFlowMeter definition, running statistic"
+    }
+   }
+  ],
+  "suricata": "alert tcp any any <> $HOME_NET any (msg:\"RQ1 anomaly2sign DrDoS_NTP COS-0010\"; lua:COS-0010.lua; flow:to_server; dsize:<296; flags:S+; metadata:rq1_rule COS-0010, rq1_class DrDoS_NTP, rq1_method anomaly2sign; sid:2000012; rev:1;)",
+  "meta": {
+   "leaf_node": 27,
+   "train_samples": 96,
+   "max_depth": 5,
+   "criterion": "entropy"
+  },
+  "translation": {
+   "header_protocol": "tcp",
+   "protocol_source": "conditions",
+   "protocol_share": null,
+   "extra_conditions": [],
+   "direction": "to_server",
+   "lua_file": "COS-0010.lua",
+   "sid": 2000012,
+   "deployable": true
+  }
+ },
+ {
+  "rule_id": "COS-0011",
+  "method": "anomaly2sign",
+  "target_class": "DrDoS_NetBIOS",
+  "conditions": [
+   {
+    "feature": "avg_fwd_segment_size",
+    "op": ">",
+    "threshold": 295.6607208251953,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:295<>320",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "average_packet_size",
+    "op": "<=",
+    "threshold": 552.125,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "CICFlowMeter definition, running statistic"
+    }
+   },
+   {
+    "feature": "max_packet_length",
+    "op": "<=",
+    "threshold": 439.5,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:295<>320",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "fwd_packet_length_max",
+    "op": "<=",
+    "threshold": 319.5,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:295<>320",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "flow_bytes/s",
+    "op": ">",
+    "threshold": 319778.609375,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "CICFlowMeter definition, running statistic"
+    }
+   }
+  ],
+  "suricata": "alert udp any any <> any any (msg:\"RQ1 anomaly2sign DrDoS_NetBIOS COS-0011\"; lua:COS-0011.lua; flow:to_server; dsize:295<>320; metadata:rq1_rule COS-0011, rq1_class DrDoS_NetBIOS, rq1_method anomaly2sign; sid:2000013; rev:1;)",
+  "meta": {
+   "leaf_node": 33,
+   "train_samples": 698,
+   "max_depth": 5,
+   "criterion": "entropy"
+  },
+  "translation": {
+   "header_protocol": "udp",
+   "protocol_source": "data",
+   "protocol_share": 1.0,
+   "extra_conditions": [
+    {
+     "feature": "protocol",
+     "op": ">",
+     "threshold": 16.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert udp",
+      "note": "udp header from the training flows"
+     }
+    },
+    {
+     "feature": "protocol",
+     "op": "<=",
+     "threshold": 17.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert udp",
+      "note": "udp header from the training flows"
+     }
+    }
+   ],
+   "direction": "to_server",
+   "lua_file": "COS-0011.lua",
+   "sid": 2000013,
+   "deployable": true
+  }
+ },
+ {
+  "rule_id": "COS-0012",
+  "method": "anomaly2sign",
+  "target_class": "UDP_Reflection_Attack",
+  "conditions": [
+   {
+    "feature": "avg_fwd_segment_size",
+    "op": ">",
+    "threshold": 295.6607208251953,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:319<>440",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "average_packet_size",
+    "op": "<=",
+    "threshold": 501.5,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "CICFlowMeter definition, running statistic"
+    }
+   },
+   {
+    "feature": "max_packet_length",
+    "op": "<=",
+    "threshold": 439.5,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:319<>440",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "fwd_packet_length_max",
+    "op": ">",
+    "threshold": 319.5,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:319<>440",
+     "note": "merged payload size interval per packet"
+    }
+   }
+  ],
+  "suricata": "alert udp any any <> any any (msg:\"RQ1 anomaly2sign UDP_Reflection_Attack COS-0012\"; lua:COS-0012.lua; flow:to_server; dsize:319<>440; metadata:rq1_rule COS-0012, rq1_class UDP_Reflection_Attack, rq1_method anomaly2sign; sid:2000014; rev:1;)",
+  "meta": {
+   "leaf_node": 35,
+   "train_samples": 103692,
+   "max_depth": 5,
+   "criterion": "entropy"
+  },
+  "translation": {
+   "header_protocol": "udp",
+   "protocol_source": "data",
+   "protocol_share": 1.0,
+   "extra_conditions": [
+    {
+     "feature": "protocol",
+     "op": ">",
+     "threshold": 16.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert udp",
+      "note": "udp header from the training flows"
+     }
+    },
+    {
+     "feature": "protocol",
+     "op": "<=",
+     "threshold": 17.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert udp",
+      "note": "udp header from the training flows"
+     }
+    }
+   ],
+   "direction": "to_server",
+   "lua_file": "COS-0012.lua",
+   "sid": 2000014,
+   "deployable": true
+  }
+ },
+ {
+  "rule_id": "COS-0013",
+  "method": "anomaly2sign",
+  "target_class": "UDP_Reflection_Attack",
+  "conditions": [
+   {
+    "feature": "avg_fwd_segment_size",
+    "op": ">",
+    "threshold": 295.6607208251953,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:319<>440",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "average_packet_size",
+    "op": ">",
+    "threshold": 501.5,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "CICFlowMeter definition, running statistic"
+    }
+   },
+   {
+    "feature": "average_packet_size",
+    "op": "<=",
+    "threshold": 552.125,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "CICFlowMeter definition, running statistic"
+    }
+   },
+   {
+    "feature": "max_packet_length",
+    "op": "<=",
+    "threshold": 439.5,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:319<>440",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "fwd_packet_length_max",
+    "op": ">",
+    "threshold": 319.5,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:319<>440",
+     "note": "merged payload size interval per packet"
+    }
+   }
+  ],
+  "suricata": "alert udp any any <> any any (msg:\"RQ1 anomaly2sign UDP_Reflection_Attack COS-0013\"; lua:COS-0013.lua; flow:to_server; dsize:319<>440; metadata:rq1_rule COS-0013, rq1_class UDP_Reflection_Attack, rq1_method anomaly2sign; sid:2000015; rev:1;)",
+  "meta": {
+   "leaf_node": 36,
+   "train_samples": 1203,
+   "max_depth": 5,
+   "criterion": "entropy"
+  },
+  "translation": {
+   "header_protocol": "udp",
+   "protocol_source": "data",
+   "protocol_share": 1.0,
+   "extra_conditions": [
+    {
+     "feature": "protocol",
+     "op": ">",
+     "threshold": 16.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert udp",
+      "note": "udp header from the training flows"
+     }
+    },
+    {
+     "feature": "protocol",
+     "op": "<=",
+     "threshold": 17.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert udp",
+      "note": "udp header from the training flows"
+     }
+    }
+   ],
+   "direction": "to_server",
+   "lua_file": "COS-0013.lua",
+   "sid": 2000015,
+   "deployable": true
+  }
+ },
+ {
+  "rule_id": "COS-0014",
+  "method": "anomaly2sign",
+  "target_class": "DrDoS_NTP",
+  "conditions": [
+   {
+    "feature": "avg_fwd_segment_size",
+    "op": ">",
+    "threshold": 295.6607208251953,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:439<>442",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "average_packet_size",
+    "op": "<=",
+    "threshold": 552.125,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "CICFlowMeter definition, running statistic"
+    }
+   },
+   {
+    "feature": "max_packet_length",
+    "op": ">",
+    "threshold": 439.5,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:439<>442",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "max_packet_length",
+    "op": "<=",
+    "threshold": 441.0,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:439<>442",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "total_fwd_packets",
+    "op": "<=",
+    "threshold": 147.5,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "native_flow_pkts = false"
+    }
+   }
+  ],
+  "suricata": "alert udp any any <> any any (msg:\"RQ1 anomaly2sign DrDoS_NTP COS-0014\"; lua:COS-0014.lua; flow:to_server; dsize:439<>442; metadata:rq1_rule COS-0014, rq1_class DrDoS_NTP, rq1_method anomaly2sign; sid:2000016; rev:1;)",
+  "meta": {
+   "leaf_node": 39,
+   "train_samples": 78985,
+   "max_depth": 5,
+   "criterion": "entropy"
+  },
+  "translation": {
+   "header_protocol": "udp",
+   "protocol_source": "data",
+   "protocol_share": 1.0,
+   "extra_conditions": [
+    {
+     "feature": "protocol",
+     "op": ">",
+     "threshold": 16.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert udp",
+      "note": "udp header from the training flows"
+     }
+    },
+    {
+     "feature": "protocol",
+     "op": "<=",
+     "threshold": 17.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert udp",
+      "note": "udp header from the training flows"
+     }
+    }
+   ],
+   "direction": "to_server",
+   "lua_file": "COS-0014.lua",
+   "sid": 2000016,
+   "deployable": true
+  }
+ },
+ {
+  "rule_id": "COS-0015",
+  "method": "anomaly2sign",
+  "target_class": "DrDoS_NTP",
+  "conditions": [
+   {
+    "feature": "avg_fwd_segment_size",
+    "op": ">",
+    "threshold": 295.6607208251953,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:439<>442",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "average_packet_size",
+    "op": "<=",
+    "threshold": 552.125,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "CICFlowMeter definition, running statistic"
+    }
+   },
+   {
+    "feature": "max_packet_length",
+    "op": ">",
+    "threshold": 439.5,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:439<>442",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "max_packet_length",
+    "op": "<=",
+    "threshold": 441.0,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:439<>442",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "total_fwd_packets",
+    "op": ">",
+    "threshold": 147.5,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "native_flow_pkts = false"
+    }
+   }
+  ],
+  "suricata": "alert udp any any <> any any (msg:\"RQ1 anomaly2sign DrDoS_NTP COS-0015\"; lua:COS-0015.lua; flow:to_server; dsize:439<>442; metadata:rq1_rule COS-0015, rq1_class DrDoS_NTP, rq1_method anomaly2sign; sid:2000017; rev:1;)",
+  "meta": {
+   "leaf_node": 40,
+   "train_samples": 15512,
+   "max_depth": 5,
+   "criterion": "entropy"
+  },
+  "translation": {
+   "header_protocol": "udp",
+   "protocol_source": "data",
+   "protocol_share": 1.0,
+   "extra_conditions": [
+    {
+     "feature": "protocol",
+     "op": ">",
+     "threshold": 16.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert udp",
+      "note": "udp header from the training flows"
+     }
+    },
+    {
+     "feature": "protocol",
+     "op": "<=",
+     "threshold": 17.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert udp",
+      "note": "udp header from the training flows"
+     }
+    }
+   ],
+   "direction": "to_server",
+   "lua_file": "COS-0015.lua",
+   "sid": 2000017,
+   "deployable": true
+  }
+ },
+ {
+  "rule_id": "COS-0016",
+  "method": "anomaly2sign",
+  "target_class": "TFTP",
+  "conditions": [
+   {
+    "feature": "avg_fwd_segment_size",
+    "op": ">",
+    "threshold": 295.6607208251953,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:>441",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "average_packet_size",
+    "op": "<=",
+    "threshold": 552.125,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "CICFlowMeter definition, running statistic"
+    }
+   },
+   {
+    "feature": "max_packet_length",
+    "op": ">",
+    "threshold": 441.0,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:>441",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "min_packet_length",
+    "op": ">",
+    "threshold": 7.5,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:>441",
+     "note": "merged payload size interval per packet"
+    }
+   }
+  ],
+  "suricata": "alert udp any any <> any any (msg:\"RQ1 anomaly2sign TFTP COS-0016\"; lua:COS-0016.lua; flow:to_server; dsize:>441; metadata:rq1_rule COS-0016, rq1_class TFTP, rq1_method anomaly2sign; sid:2000018; rev:1;)",
+  "meta": {
+   "leaf_node": 43,
+   "train_samples": 1861,
+   "max_depth": 5,
+   "criterion": "entropy"
+  },
+  "translation": {
+   "header_protocol": "udp",
+   "protocol_source": "data",
+   "protocol_share": 1.0,
+   "extra_conditions": [
+    {
+     "feature": "protocol",
+     "op": ">",
+     "threshold": 16.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert udp",
+      "note": "udp header from the training flows"
+     }
+    },
+    {
+     "feature": "protocol",
+     "op": "<=",
+     "threshold": 17.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert udp",
+      "note": "udp header from the training flows"
+     }
+    }
+   ],
+   "direction": "to_server",
+   "lua_file": "COS-0016.lua",
+   "sid": 2000018,
+   "deployable": true
+  }
+ },
+ {
+  "rule_id": "COS-0017",
+  "method": "anomaly2sign",
+  "target_class": "UDP_Reflection_Attack",
+  "conditions": [
+   {
+    "feature": "avg_fwd_segment_size",
+    "op": ">",
+    "threshold": 295.6607208251953,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:295<>516",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "average_packet_size",
+    "op": ">",
+    "threshold": 552.125,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "CICFlowMeter definition, running statistic"
+    }
+   },
+   {
+    "feature": "average_packet_size",
+    "op": "<=",
+    "threshold": 602.25,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "CICFlowMeter definition, running statistic"
+    }
+   },
+   {
+    "feature": "max_packet_length",
+    "op": "<=",
+    "threshold": 1298.5,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:295<>516",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "min_packet_length",
+    "op": "<=",
+    "threshold": 515.5,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:295<>516",
+     "note": "merged payload size interval per packet"
+    }
+   }
+  ],
+  "suricata": "alert udp any any <> any any (msg:\"RQ1 anomaly2sign UDP_Reflection_Attack COS-0017\"; lua:COS-0017.lua; flow:to_server; dsize:295<>516; metadata:rq1_rule COS-0017, rq1_class UDP_Reflection_Attack, rq1_method anomaly2sign; sid:2000019; rev:1;)",
+  "meta": {
+   "leaf_node": 47,
+   "train_samples": 98270,
+   "max_depth": 5,
+   "criterion": "entropy"
+  },
+  "translation": {
+   "header_protocol": "udp",
+   "protocol_source": "data",
+   "protocol_share": 0.9999,
+   "extra_conditions": [
+    {
+     "feature": "protocol",
+     "op": ">",
+     "threshold": 16.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert udp",
+      "note": "udp header from the training flows"
+     }
+    },
+    {
+     "feature": "protocol",
+     "op": "<=",
+     "threshold": 17.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert udp",
+      "note": "udp header from the training flows"
+     }
+    }
+   ],
+   "direction": "to_server",
+   "lua_file": "COS-0017.lua",
+   "sid": 2000019,
+   "deployable": true
+  }
+ },
+ {
+  "rule_id": "COS-0018",
+  "method": "anomaly2sign",
+  "target_class": "DrDoS_MSSQL",
+  "conditions": [
+   {
+    "feature": "avg_fwd_segment_size",
+    "op": ">",
+    "threshold": 295.6607208251953,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:295<>516",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "average_packet_size",
+    "op": ">",
+    "threshold": 602.25,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "CICFlowMeter definition, running statistic"
+    }
+   },
+   {
+    "feature": "max_packet_length",
+    "op": "<=",
+    "threshold": 1298.5,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:295<>516",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "min_packet_length",
+    "op": "<=",
+    "threshold": 515.5,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:295<>516",
+     "note": "merged payload size interval per packet"
+    }
+   }
+  ],
+  "suricata": "alert udp any any <> any any (msg:\"RQ1 anomaly2sign DrDoS_MSSQL COS-0018\"; lua:COS-0018.lua; flow:to_server; dsize:295<>516; metadata:rq1_rule COS-0018, rq1_class DrDoS_MSSQL, rq1_method anomaly2sign; sid:2000020; rev:1;)",
+  "meta": {
+   "leaf_node": 48,
+   "train_samples": 62459,
+   "max_depth": 5,
+   "criterion": "entropy"
+  },
+  "translation": {
+   "header_protocol": "udp",
+   "protocol_source": "data",
+   "protocol_share": 0.9979,
+   "extra_conditions": [
+    {
+     "feature": "protocol",
+     "op": ">",
+     "threshold": 16.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert udp",
+      "note": "udp header from the training flows"
+     }
+    },
+    {
+     "feature": "protocol",
+     "op": "<=",
+     "threshold": 17.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert udp",
+      "note": "udp header from the training flows"
+     }
+    }
+   ],
+   "direction": "to_server",
+   "lua_file": "COS-0018.lua",
+   "sid": 2000020,
+   "deployable": true
+  }
+ },
+ {
+  "rule_id": "COS-0019",
+  "method": "anomaly2sign",
+  "target_class": "TFTP",
+  "conditions": [
+   {
+    "feature": "avg_fwd_segment_size",
+    "op": ">",
+    "threshold": 295.6607208251953,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:516",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "average_packet_size",
+    "op": ">",
+    "threshold": 552.125,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "CICFlowMeter definition, running statistic"
+    }
+   },
+   {
+    "feature": "max_packet_length",
+    "op": "<=",
+    "threshold": 1298.5,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:516",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "min_packet_length",
+    "op": ">",
+    "threshold": 515.5,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:516",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "packet_length_mean",
+    "op": "<=",
+    "threshold": 516.5,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:516",
+     "note": "merged payload size interval per packet"
+    }
+   }
+  ],
+  "suricata": "alert udp any any <> any any (msg:\"RQ1 anomaly2sign TFTP COS-0019\"; lua:COS-0019.lua; flow:to_server; dsize:516; metadata:rq1_rule COS-0019, rq1_class TFTP, rq1_method anomaly2sign; sid:2000021; rev:1;)",
+  "meta": {
+   "leaf_node": 50,
+   "train_samples": 96225,
+   "max_depth": 5,
+   "criterion": "entropy"
+  },
+  "translation": {
+   "header_protocol": "udp",
+   "protocol_source": "data",
+   "protocol_share": 1.0,
+   "extra_conditions": [
+    {
+     "feature": "protocol",
+     "op": ">",
+     "threshold": 16.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert udp",
+      "note": "udp header from the training flows"
+     }
+    },
+    {
+     "feature": "protocol",
+     "op": "<=",
+     "threshold": 17.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert udp",
+      "note": "udp header from the training flows"
+     }
+    }
+   ],
+   "direction": "to_server",
+   "lua_file": "COS-0019.lua",
+   "sid": 2000021,
+   "deployable": true
+  }
+ },
+ {
+  "rule_id": "COS-0020",
+  "method": "anomaly2sign",
+  "target_class": "DrDoS_MSSQL",
+  "conditions": [
+   {
+    "feature": "avg_fwd_segment_size",
+    "op": ">",
+    "threshold": 295.6607208251953,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:516<>1299",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "average_packet_size",
+    "op": ">",
+    "threshold": 552.125,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "CICFlowMeter definition, running statistic"
+    }
+   },
+   {
+    "feature": "max_packet_length",
+    "op": "<=",
+    "threshold": 1298.5,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:516<>1299",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "min_packet_length",
+    "op": ">",
+    "threshold": 515.5,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:516<>1299",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "packet_length_mean",
+    "op": ">",
+    "threshold": 516.5,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:516<>1299",
+     "note": "merged payload size interval per packet"
+    }
+   }
+  ],
+  "suricata": "alert udp any any <> any any (msg:\"RQ1 anomaly2sign DrDoS_MSSQL COS-0020\"; lua:COS-0020.lua; flow:to_server; dsize:516<>1299; metadata:rq1_rule COS-0020, rq1_class DrDoS_MSSQL, rq1_method anomaly2sign; sid:2000022; rev:1;)",
+  "meta": {
+   "leaf_node": 51,
+   "train_samples": 48829,
+   "max_depth": 5,
+   "criterion": "entropy"
+  },
+  "translation": {
+   "header_protocol": "udp",
+   "protocol_source": "data",
+   "protocol_share": 1.0,
+   "extra_conditions": [
+    {
+     "feature": "protocol",
+     "op": ">",
+     "threshold": 16.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert udp",
+      "note": "udp header from the training flows"
+     }
+    },
+    {
+     "feature": "protocol",
+     "op": "<=",
+     "threshold": 17.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert udp",
+      "note": "udp header from the training flows"
+     }
+    }
+   ],
+   "direction": "to_server",
+   "lua_file": "COS-0020.lua",
+   "sid": 2000022,
+   "deployable": true
+  }
+ },
+ {
+  "rule_id": "COS-0021",
+  "method": "anomaly2sign",
+  "target_class": "UDP-lag",
+  "conditions": [
+   {
+    "feature": "avg_fwd_segment_size",
+    "op": ">",
+    "threshold": 295.6607208251953,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "empty dsize interval (flow with packets of different sizes)"
+    }
+   },
+   {
+    "feature": "average_packet_size",
+    "op": ">",
+    "threshold": 552.125,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "CICFlowMeter definition, running statistic"
+    }
+   },
+   {
+    "feature": "max_packet_length",
+    "op": ">",
+    "threshold": 1298.5,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "empty dsize interval (flow with packets of different sizes)"
+    }
+   },
+   {
+    "feature": "min_packet_length",
+    "op": ">",
+    "threshold": 181.5,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "empty dsize interval (flow with packets of different sizes)"
+    }
+   },
+   {
+    "feature": "min_packet_length",
+    "op": "<=",
+    "threshold": 874.5,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "empty dsize interval (flow with packets of different sizes)"
+    }
+   }
+  ],
+  "suricata": "alert udp any any <> any any (msg:\"RQ1 anomaly2sign UDP-lag COS-0021\"; lua:COS-0021.lua; flow:to_server; metadata:rq1_rule COS-0021, rq1_class UDP-lag, rq1_method anomaly2sign; sid:2000023; rev:1;)",
+  "meta": {
+   "leaf_node": 55,
+   "train_samples": 79,
+   "max_depth": 5,
+   "criterion": "entropy"
+  },
+  "translation": {
+   "header_protocol": "udp",
+   "protocol_source": "data",
+   "protocol_share": 1.0,
+   "extra_conditions": [
+    {
+     "feature": "protocol",
+     "op": ">",
+     "threshold": 16.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert udp",
+      "note": "udp header from the training flows"
+     }
+    },
+    {
+     "feature": "protocol",
+     "op": "<=",
+     "threshold": 17.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert udp",
+      "note": "udp header from the training flows"
+     }
+    }
+   ],
+   "direction": "to_server",
+   "lua_file": "COS-0021.lua",
+   "sid": 2000023,
+   "deployable": true
+  }
+ },
+ {
+  "rule_id": "COS-0022",
+  "method": "anomaly2sign",
+  "target_class": "UDP_Reflection_Attack",
+  "conditions": [
+   {
+    "feature": "avg_fwd_segment_size",
+    "op": ">",
+    "threshold": 295.6607208251953,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:>1298",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "average_packet_size",
+    "op": ">",
+    "threshold": 552.125,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "CICFlowMeter definition, running statistic"
+    }
+   },
+   {
+    "feature": "max_packet_length",
+    "op": ">",
+    "threshold": 1298.5,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:>1298",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "min_packet_length",
+    "op": ">",
+    "threshold": 874.5,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:>1298",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "flow_bytes/s",
+    "op": "<=",
+    "threshold": 1079466656.0,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "CICFlowMeter definition, running statistic"
+    }
+   }
+  ],
+  "suricata": "alert udp any any <> any any (msg:\"RQ1 anomaly2sign UDP_Reflection_Attack COS-0022\"; lua:COS-0022.lua; flow:to_server; dsize:>1298; metadata:rq1_rule COS-0022, rq1_class UDP_Reflection_Attack, rq1_method anomaly2sign; sid:2000024; rev:1;)",
+  "meta": {
+   "leaf_node": 57,
+   "train_samples": 37160,
+   "max_depth": 5,
+   "criterion": "entropy"
+  },
+  "translation": {
+   "header_protocol": "udp",
+   "protocol_source": "data",
+   "protocol_share": 1.0,
+   "extra_conditions": [
+    {
+     "feature": "protocol",
+     "op": ">",
+     "threshold": 16.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert udp",
+      "note": "udp header from the training flows"
+     }
+    },
+    {
+     "feature": "protocol",
+     "op": "<=",
+     "threshold": 17.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert udp",
+      "note": "udp header from the training flows"
+     }
+    }
+   ],
+   "direction": "to_server",
+   "lua_file": "COS-0022.lua",
+   "sid": 2000024,
+   "deployable": true
+  }
+ },
+ {
+  "rule_id": "COS-0023",
+  "method": "anomaly2sign",
+  "target_class": "UDP_Reflection_Attack",
+  "conditions": [
+   {
+    "feature": "avg_fwd_segment_size",
+    "op": ">",
+    "threshold": 295.6607208251953,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:>1298",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "average_packet_size",
+    "op": ">",
+    "threshold": 552.125,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "CICFlowMeter definition, running statistic"
+    }
+   },
+   {
+    "feature": "max_packet_length",
+    "op": ">",
+    "threshold": 1298.5,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:>1298",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "min_packet_length",
+    "op": ">",
+    "threshold": 874.5,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:>1298",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "flow_bytes/s",
+    "op": ">",
+    "threshold": 1079466656.0,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "CICFlowMeter definition, running statistic"
+    }
+   }
+  ],
+  "suricata": "alert udp any any <> any any (msg:\"RQ1 anomaly2sign UDP_Reflection_Attack COS-0023\"; lua:COS-0023.lua; flow:to_server; dsize:>1298; metadata:rq1_rule COS-0023, rq1_class UDP_Reflection_Attack, rq1_method anomaly2sign; sid:2000025; rev:1;)",
+  "meta": {
+   "leaf_node": 58,
+   "train_samples": 246156,
+   "max_depth": 5,
+   "criterion": "entropy"
+  },
+  "translation": {
+   "header_protocol": "udp",
+   "protocol_source": "data",
+   "protocol_share": 1.0,
+   "extra_conditions": [
+    {
+     "feature": "protocol",
+     "op": ">",
+     "threshold": 16.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert udp",
+      "note": "udp header from the training flows"
+     }
+    },
+    {
+     "feature": "protocol",
+     "op": "<=",
+     "threshold": 17.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert udp",
+      "note": "udp header from the training flows"
+     }
+    }
+   ],
+   "direction": "to_server",
+   "lua_file": "COS-0023.lua",
+   "sid": 2000025,
+   "deployable": true
+  }
+ }
+]

@@ -1,0 +1,168 @@
+# =============================================================================
+# Derived ground truth for the CIC-DDoS2019 PCAP files (capture day 01-12)
+# =============================================================================
+# Read by ground_truth.py (label_flows). This configuration was fixed (and hashed) before any Suricata
+# alert was produced and was not changed afterwards. The rules are NOT tuned with rule results or model
+# predictions; the source of every value is given in the comments. This released copy differs from the
+# hashed original only in its comments.
+#
+# Version 2 (changed once, before the full ground truth was built). Changes from version 1:
+#  - the active schedule is the official UNB attack schedule (`paper`); the earlier comparison schedule
+#    `csv_segments` was removed and replaced by `official_view` (official CSV labels through a flow -> CSV
+#    row join);
+#  - the rate of `udp_oneway_flood` is aggregated per (src, dst, protocol) per calendar minute (`aggregate`),
+#    with the same threshold of >= 10 packets/s; before, the rate was computed per flow;
+#  - a flow without the attacker endpoint is BENIGN whatever its behaviour; the behaviour is kept as a
+#    sub-tag (`non_attacker`). Before, it was BENIGN only when benign_like.
+# =============================================================================
+version: 2
+timezone: America/Halifax          # Atlantic, DST-aware; 1 December 2018 = AST (UTC-4)
+date: "2018-12-01"                 # from the file names (dd-mm-yyyy) and the PCAP epochs
+
+# Step 1 — re-extraction
+extractor:
+  name: CICFlowMeter (official binary release 4.0, classes compiled 1 Jun 2018; main cic.cs.unb.ca.ifm.Cmd)
+  jar_sha256: c0c553350ad61274a5201195143b4a1c097379189383331512a7bfc088b70320
+  jvm_timezone: UTC                # the 4.0 Timestamp column has one-second precision and follows the JVM zone -> pinned to UTC
+  # Compared with the official CSV files, 4.0 moves exactly one packet from the forward to the backward
+  # direction (PCAP file 0617 vs UDPLag.csv: 100% of UDP flows, 99.8% of TCP flows; total packets identical).
+  # The correction is only used for the two-direction counts (fwd_c, bwd_c) in the behaviour labels; other
+  # flow features are not changed.
+  direction_fix: {fwd: 1, bwd: -1}
+
+# Step 3 — taxonomy of 8 classes (DNS/LDAP/SNMP/SSDP/UDP -> UDP_Reflection_Attack)
+taxonomy:
+  classes: [BENIGN, DrDoS_MSSQL, DrDoS_NTP, DrDoS_NetBIOS, Syn, TFTP, UDP-lag, UDP_Reflection_Attack]
+  map:
+    DrDoS_DNS: UDP_Reflection_Attack
+    DrDoS_LDAP: UDP_Reflection_Attack
+    DrDoS_SNMP: UDP_Reflection_Attack
+    DrDoS_SSDP: UDP_Reflection_Attack
+    DrDoS_UDP: UDP_Reflection_Attack
+    DrDoS_MSSQL: DrDoS_MSSQL
+    DrDoS_NTP: DrDoS_NTP
+    DrDoS_NetBIOS: DrDoS_NetBIOS
+    Syn: Syn
+    TFTP: TFTP
+    UDP-lag: UDP-lag
+    WebDDoS: WebDDoS                 # outside the taxonomy (excluded from sampling) -> code webddos_window
+udplag_label: UDP-lag
+
+# Step 3 — schedule (local Atlantic wall-clock time; end exclusive)
+schedule:
+  active: paper                      # official UNB schedule
+  # Sharafaldin et al. (2019), Table III, first (training) day, checked against the official UNB page.
+  # Attacker flows outside the windows -> AMBIGUOUS.
+  paper:
+    - {label: DrDoS_NTP, start: "10:35", end: "10:45"}
+    - {label: DrDoS_DNS, start: "10:52", end: "11:05"}
+    - {label: DrDoS_LDAP, start: "11:22", end: "11:32"}
+    - {label: DrDoS_MSSQL, start: "11:36", end: "11:45"}
+    - {label: DrDoS_NetBIOS, start: "11:50", end: "12:00"}
+    - {label: DrDoS_SNMP, start: "12:12", end: "12:23"}
+    - {label: DrDoS_SSDP, start: "12:27", end: "12:37"}
+    - {label: DrDoS_UDP, start: "12:45", end: "13:09"}
+    - {label: UDP-lag, start: "13:11", end: "13:15"}
+    - {label: WebDDoS, start: "13:18", end: "13:29", out_of_taxonomy: true}
+    - {label: Syn, start: "13:29", end: "13:34"}
+    - {label: TFTP, start: "13:35", end: "17:15"}
+  # The comparison schedule `csv_segments` of version 1 is DISABLED: it copies the official labels and is
+  # therefore not independent of them.
+
+# Official-label view (sensitivity, not the ground truth): the official CSV label (after the taxonomy) of the
+# row joined to the flow (alignment.official_match). Flows without a join = `unjoined` = not scored in this view.
+official_view:
+  column: gt_label_official
+  unjoined: NOT_JOINED
+
+# Independence guard — endpoint roles. Paper: attacks from a third-party network to the victim network;
+# checked on the raw official CSV files: all 12 attack labels have src 172.16.0.5 (100%) -> dst 192.168.50.1
+# (100%); BENIGN = LAN hosts 192.168.50.6/.7/.8 to the internet.
+endpoints:
+  attacker: ["172.16.0.5"]
+  victim: ["192.168.50.1/32"]
+
+# Step 3 — protocol signature per class. Protocol from the attack definition (reflection/amplification, UDP
+# flood, UDP-lag, TFTP = UDP; SYN flood = TCP), cross-checked with the official CSV files: reflection 100% UDP,
+# Syn 100% TCP, TFTP 99% UDP, UDP-lag 13% UDP / 87% TCP (TCP flows in the UDP-lag window ->
+# protocol_mismatch_udplag_tcp, and UDP-lag in the sensitivity column). Ports are NOT used: the top port of
+# each attack label covers <= 16% of its rows (random ports), so there is no dominant port.
+signatures:
+  DrDoS_NTP: {proto: [17]}
+  DrDoS_DNS: {proto: [17]}
+  DrDoS_LDAP: {proto: [17]}
+  DrDoS_MSSQL: {proto: [17]}
+  DrDoS_NetBIOS: {proto: [17]}
+  DrDoS_SNMP: {proto: [17]}
+  DrDoS_SSDP: {proto: [17]}
+  DrDoS_UDP: {proto: [17]}
+  UDP-lag: {proto: [17]}
+  Syn: {proto: [6]}
+  TFTP: {proto: [17]}
+  WebDDoS: {proto: [6]}
+
+# Step 2 — behaviour label (in order; the first matching rule wins). Quantities from CICFlowMeter-4.0 that are
+# not affected by the direction shift (protocol, total packets/bytes, duration, rates) + the corrected bwd_c.
+# The 4.0 flag columns only hold the bits of the FIRST packet (0/1), so the connection state is approximated by
+# the SYN of the first packet + presence of payload + presence of return packets.
+behaviour:
+  default: indeterminate
+  rules:
+    - name: tcp_syn_no_payload       # SYN flood / half-open: first packet SYN and no application data
+      label: attack_like
+      proto: [6]
+      all:
+        - {field: first_syn, op: "==", value: true}
+        - {field: bytes, op: "==", value: 0}
+    - name: udp_oneway_flood         # UDP flood/reflection: one-way flow in a minute where the AGGREGATE rate of
+      label: attack_like             # the (src, dst, protocol) pair is >= 10 packets/s. Volumetric DDoS is defined
+      proto: [17]                    # on the aggregate towards the victim, not per flow (the TFTP attack = many
+      all:                           # slow flows). See `aggregate`.
+        - {field: bwd_c, op: "==", value: 0}
+        - {field: agg_pkt_rate_minute, op: ">=", value: 10}
+    - name: tcp_two_way_payload      # TCP connection with application data and return packets
+      label: benign_like
+      proto: [6]
+      all:
+        - {field: bwd_c, op: ">", value: 0}
+        - {field: bytes, op: ">", value: 0}
+    - name: udp_two_way              # UDP request/response (e.g. DNS, NTP client)
+      label: benign_like
+      proto: [17]
+      all:
+        - {field: bwd_c, op: ">", value: 0}
+    - name: lan_multicast_broadcast  # LAN service discovery (multicast/broadcast destination), not the victim host
+      label: benign_like
+      all:
+        - {field: dst_multicast_or_broadcast, op: "==", value: true}
+
+# Aggregate rate (implemented in ground_truth.minute_packets / attach_minute_rate). Computed across ALL PCAP
+# files in scope (one minute can span two files), before labelling:
+#  - directed packets (corrected with direction_fix): fwd_c to (src -> dst), bwd_c to (dst -> src), per protocol;
+#  - the packets of a flow are spread evenly over the calendar minutes it covers [start, end] (duration 0: its
+#    start minute);
+#  - minute rate = packets / 60 s (the edge minutes of the capture are also divided by 60);
+#  - a flow takes the rate of the minute in which it STARTS (consistent with assigning windows by flow start).
+# UTC calendar minutes = local calendar minutes (the AST offset is a whole hour).
+aggregate:
+  agg_pkt_rate_minute:
+    key: [src_ip, dst_ip, proto]
+    bin_seconds: 60
+    flow_minute: start
+
+# Flows without the attacker endpoint: BENIGN whatever their behaviour; the behaviour is recorded as a sub-tag
+# and reported. The attacker endpoint was checked on 100% of the official CSV rows.
+non_attacker:
+  label: BENIGN
+  subtag: {benign_like: benign_like, attack_like: benign_attack_like, indeterminate: benign_indeterminate}
+
+# Decision order (implemented in ground_truth.label_flows):
+#  without the attacker endpoint: BENIGN + behaviour sub-tag (non_attacker)
+#  with the attacker endpoint: crosses a window boundary -> cross_window; outside the windows + benign_like ->
+#   endpoint_conflict; outside the windows -> behaviour_schedule_conflict; WebDDoS window -> webddos_window;
+#   not attack_like -> behaviour_schedule_conflict; pair other than attacker<->victim -> endpoint_conflict;
+#   protocol mismatch -> protocol_mismatch (TCP in the UDP-lag window: protocol_mismatch_udplag_tcp);
+#   otherwise -> class of the window.
+# AMBIGUOUS flows are excluded from TP/FP; the share of each code is reported.
+alignment:
+  official_match: {key: "bidirectional 5-tuple", start_tolerance_s: 1}   # agreement check (descriptive)

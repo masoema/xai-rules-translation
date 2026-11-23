@@ -1,0 +1,11 @@
+# Internal working files (not part of the release)
+_not_released/
+
+# Python caches and outputs of the example commands
+__pycache__/
+*.pyc
+out/
+runs/
+agg/
+gt/
+scores_*.json

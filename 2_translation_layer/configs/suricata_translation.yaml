@@ -1,0 +1,57 @@
+# Suricata translation layer (RQ1). The same configuration is used for all three methods
+# (proposed, Anomaly2Sign, RF-Surrogate). Read by suricata_translate.load_config().
+
+# Target Suricata 7.x (the experiments used Suricata 7.0.10 with Lua).
+# Lua rules in Suricata >= 7.0.3 need `security.lua.allow-rules: yes` in suricata.yaml.
+suricata_version: "7"
+
+# Meaning of the CICFlowMeter flag-count columns. They were matched against the packets of the
+# CIC-DDoS2019 PCAP files (capture day 01-12): each column mostly reflects a TCP bit of the first
+# packet of the flow, under a shifted name. A column was mapped to a bit when, on the TCP flows
+# outside UDP-lag (1,239 flows), it had at least 30 positive flows and agreed with exactly one bit
+# with min(TPR, TNR) >= 99%:
+#   ack_flag_count -> S   (1.000; 619 positive flows)
+#   urg_flag_count -> A   (1.000; 617 positive flows)
+#   cwe_flag_count -> F   (1.000; 464 positive flows)
+#   rst_flag_count -> P   (1.000; 100 positive flows)
+#   syn_flag_count -> null (too few positive flows to assess)
+# All flag conditions are native approximations: the column describes the first packet, while
+# Suricata evaluates flags:X+ on each packet.
+flag_semantics_verified: true
+
+# A rule with an `ip` header whose condition differs between protocols (for example
+# urg_flag_count <= 0.5, true for all UDP flows and for TCP flows without the bit) is split into a
+# tcp and a udp variant; each variant keeps the conditions that hold for its protocol
+# (flags:!X in the tcp variant, implied in the udp variant).
+split_ip_rules: true
+flag_bits:
+  fin_flag_count: null
+  syn_flag_count: null
+  rst_flag_count: P
+  psh_flag_count: null
+  ack_flag_count: S
+  urg_flag_count: A
+  ece_flag_count: null
+  cwe_flag_count: F
+
+# Protocol header when the rule conditions do not fix it: the protocol is used when at least
+# protocol_purity of the training flows that trigger the rule share it; otherwise `ip`.
+protocol_purity: 0.99
+
+# Network variable for the `inbound` column (1 = towards the victim network).
+home_net: $HOME_NET
+
+# total_fwd_packets / total_backward_packets -> flow.pkts_toserver / flow.pkts_toclient.
+# These keywords do not exist in Suricata 7.0.10 (only from Suricata 8), so false = computed in Lua.
+native_flow_pkts: false
+
+# CICFlowMeter parameters reproduced in Lua (microseconds).
+activity_timeout_us: 5000000
+flow_timeout_us: 120000000
+
+# SID per method (sid = base + rule sequence number).
+sid_base:
+  proposed: 1000000
+  anomaly2sign: 2000000
+  rf_surrogate: 3000000
+msg_prefix: RQ1

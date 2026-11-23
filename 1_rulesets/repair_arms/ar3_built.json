@@ -1,0 +1,31 @@
+{
+ "created_at": "2026-11-06T00:58:14",
+ "config_sha256": "63caa17295262668d938c35e59e072770493fb16d40339ab8e3366b779b0ab51",
+ "max_train": 30,
+ "rulesets": {
+  "proposed_AR3": {
+   "n_lua": 57,
+   "n_changed": 16,
+   "rate_guard": [
+    "P3-0001",
+    "P3-0006",
+    "P3-0008",
+    "P3-0010",
+    "P3-0011",
+    "P7-0001",
+    "P7-0009",
+    "P7-0010",
+    "P7-0011"
+   ],
+   "n_direction": 7,
+   "identical_to_arm_A": false
+  },
+  "anomaly2sign_AR3": {
+   "n_lua": 23,
+   "n_changed": 4,
+   "rate_guard": [],
+   "n_direction": 4,
+   "identical_to_arm_A": true
+  }
+ }
+}

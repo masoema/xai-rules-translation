@@ -1,0 +1,26 @@
+cff-version: 1.2.0
+message: "If you use this software or these rulesets, please cite them as below."
+title: "XAI rules translation: rulesets, Suricata translation layer and deployment scoring for CIC-DDoS2019"
+type: software
+authors:
+  - family-names: Kusuma
+    given-names: Mandahadi
+license: MIT
+repository-code: "https://github.com/masoema/xai-rules-translation"
+date-released: 2026-11-23
+keywords:
+  - intrusion detection
+  - Suricata
+  - explainable artificial intelligence
+  - rule translation
+  - DDoS detection
+references:
+  - type: dataset
+    title: "Ground truth CIC-DDoS2019 Day 1"
+    authors:
+      - family-names: Kusuma
+        given-names: Mandahadi
+    publisher:
+      name: Zenodo
+    year: 2026
+    doi: 10.5281/zenodo.24335258

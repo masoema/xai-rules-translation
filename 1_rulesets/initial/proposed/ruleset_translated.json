@@ -1,0 +1,5489 @@
+[
+ {
+  "rule_id": "P1-0001",
+  "method": "proposed",
+  "target_class": "DrDoS_MSSQL",
+  "conditions": [
+   {
+    "feature": "average_packet_size",
+    "op": "<=",
+    "threshold": 597.25,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "CICFlowMeter definition, running statistic"
+    }
+   },
+   {
+    "feature": "flow_duration",
+    "op": "<=",
+    "threshold": 401997.0,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "CICFlowMeter definition, running statistic"
+    }
+   },
+   {
+    "feature": "fwd_packet_length_max",
+    "op": ">",
+    "threshold": 443.5,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:444",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "max_packet_length",
+    "op": "<=",
+    "threshold": 444.5,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:444",
+     "note": "merged payload size interval per packet"
+    }
+   }
+  ],
+  "suricata": "alert ip any any <> any any (msg:\"RQ1 proposed DrDoS_MSSQL P1-0001\"; lua:P1-0001.lua; flow:to_server; dsize:444; metadata:rq1_rule P1-0001, rq1_class DrDoS_MSSQL, rq1_method proposed; sid:1000001; rev:1;)",
+  "meta": {
+   "leaf_node": 6,
+   "train_samples": 2,
+   "k": 5,
+   "max_depth": 5,
+   "scheme": "ovr"
+  },
+  "translation": {
+   "header_protocol": "ip",
+   "protocol_source": "default",
+   "protocol_share": 0.5,
+   "extra_conditions": [],
+   "direction": "to_server",
+   "lua_file": "P1-0001.lua",
+   "sid": 1000001,
+   "deployable": true
+  }
+ },
+ {
+  "rule_id": "P1-0002",
+  "method": "proposed",
+  "target_class": "DrDoS_MSSQL",
+  "conditions": [
+   {
+    "feature": "average_packet_size",
+    "op": ">",
+    "threshold": 502.3611145019531,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "CICFlowMeter definition, running statistic"
+    }
+   },
+   {
+    "feature": "average_packet_size",
+    "op": "<=",
+    "threshold": 597.25,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "CICFlowMeter definition, running statistic"
+    }
+   },
+   {
+    "feature": "flow_duration",
+    "op": ">",
+    "threshold": 401997.0,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "CICFlowMeter definition, running statistic"
+    }
+   },
+   {
+    "feature": "max_packet_length",
+    "op": "<=",
+    "threshold": 494.0,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:<495",
+     "note": "merged payload size interval per packet"
+    }
+   }
+  ],
+  "suricata": "alert udp any any <> any any (msg:\"RQ1 proposed DrDoS_MSSQL P1-0002\"; lua:P1-0002.lua; dsize:<495; metadata:rq1_rule P1-0002, rq1_class DrDoS_MSSQL, rq1_method proposed; sid:1000002; rev:1;)",
+  "meta": {
+   "leaf_node": 13,
+   "train_samples": 55,
+   "k": 5,
+   "max_depth": 5,
+   "scheme": "ovr"
+  },
+  "translation": {
+   "header_protocol": "udp",
+   "protocol_source": "data",
+   "protocol_share": 1.0,
+   "extra_conditions": [
+    {
+     "feature": "protocol",
+     "op": ">",
+     "threshold": 16.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert udp",
+      "note": "udp header from the training flows"
+     }
+    },
+    {
+     "feature": "protocol",
+     "op": "<=",
+     "threshold": 17.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert udp",
+      "note": "udp header from the training flows"
+     }
+    }
+   ],
+   "direction": null,
+   "lua_file": "P1-0002.lua",
+   "sid": 1000002,
+   "deployable": true
+  }
+ },
+ {
+  "rule_id": "P1-0003",
+  "method": "proposed",
+  "target_class": "DrDoS_MSSQL",
+  "conditions": [
+   {
+    "feature": "average_packet_size",
+    "op": ">",
+    "threshold": 597.25,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "CICFlowMeter definition, running statistic"
+    }
+   },
+   {
+    "feature": "average_packet_size",
+    "op": "<=",
+    "threshold": 602.25,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "CICFlowMeter definition, running statistic"
+    }
+   },
+   {
+    "feature": "max_packet_length",
+    "op": ">",
+    "threshold": 399.5,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:400",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "max_packet_length",
+    "op": "<=",
+    "threshold": 400.5,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:400",
+     "note": "merged payload size interval per packet"
+    }
+   }
+  ],
+  "suricata": "alert udp any any <> any any (msg:\"RQ1 proposed DrDoS_MSSQL P1-0003\"; lua:P1-0003.lua; dsize:400; metadata:rq1_rule P1-0003, rq1_class DrDoS_MSSQL, rq1_method proposed; sid:1000003; rev:1;)",
+  "meta": {
+   "leaf_node": 18,
+   "train_samples": 315,
+   "k": 5,
+   "max_depth": 5,
+   "scheme": "ovr"
+  },
+  "translation": {
+   "header_protocol": "udp",
+   "protocol_source": "data",
+   "protocol_share": 1.0,
+   "extra_conditions": [
+    {
+     "feature": "protocol",
+     "op": ">",
+     "threshold": 16.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert udp",
+      "note": "udp header from the training flows"
+     }
+    },
+    {
+     "feature": "protocol",
+     "op": "<=",
+     "threshold": 17.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert udp",
+      "note": "udp header from the training flows"
+     }
+    }
+   ],
+   "direction": null,
+   "lua_file": "P1-0003.lua",
+   "sid": 1000003,
+   "deployable": true
+  }
+ },
+ {
+  "rule_id": "P1-0004",
+  "method": "proposed",
+  "target_class": "DrDoS_MSSQL",
+  "conditions": [
+   {
+    "feature": "average_packet_size",
+    "op": ">",
+    "threshold": 597.25,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "CICFlowMeter definition, running statistic"
+    }
+   },
+   {
+    "feature": "average_packet_size",
+    "op": "<=",
+    "threshold": 597.6209716796875,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "CICFlowMeter definition, running statistic"
+    }
+   },
+   {
+    "feature": "max_packet_length",
+    "op": ">",
+    "threshold": 400.5,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:>400",
+     "note": "merged payload size interval per packet"
+    }
+   }
+  ],
+  "suricata": "alert udp any any <> any any (msg:\"RQ1 proposed DrDoS_MSSQL P1-0004\"; lua:P1-0004.lua; dsize:>400; metadata:rq1_rule P1-0004, rq1_class DrDoS_MSSQL, rq1_method proposed; sid:1000004; rev:1;)",
+  "meta": {
+   "leaf_node": 20,
+   "train_samples": 1,
+   "k": 5,
+   "max_depth": 5,
+   "scheme": "ovr"
+  },
+  "translation": {
+   "header_protocol": "udp",
+   "protocol_source": "data",
+   "protocol_share": 1.0,
+   "extra_conditions": [
+    {
+     "feature": "protocol",
+     "op": ">",
+     "threshold": 16.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert udp",
+      "note": "udp header from the training flows"
+     }
+    },
+    {
+     "feature": "protocol",
+     "op": "<=",
+     "threshold": 17.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert udp",
+      "note": "udp header from the training flows"
+     }
+    }
+   ],
+   "direction": null,
+   "lua_file": "P1-0004.lua",
+   "sid": 1000004,
+   "deployable": true
+  }
+ },
+ {
+  "rule_id": "P1-0005",
+  "method": "proposed",
+  "target_class": "DrDoS_MSSQL",
+  "conditions": [
+   {
+    "feature": "average_packet_size",
+    "op": ">",
+    "threshold": 602.25,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "CICFlowMeter definition, running statistic"
+    }
+   },
+   {
+    "feature": "average_packet_size",
+    "op": "<=",
+    "threshold": 660.75,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "CICFlowMeter definition, running statistic"
+    }
+   },
+   {
+    "feature": "max_packet_length",
+    "op": "<=",
+    "threshold": 1339.5,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:<516",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "flow_duration",
+    "op": "<=",
+    "threshold": 1016591.5,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "CICFlowMeter definition, running statistic"
+    }
+   },
+   {
+    "feature": "fwd_packet_length_max",
+    "op": "<=",
+    "threshold": 515.5,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:<516",
+     "note": "merged payload size interval per packet"
+    }
+   }
+  ],
+  "suricata": "alert udp any any <> any any (msg:\"RQ1 proposed DrDoS_MSSQL P1-0005\"; lua:P1-0005.lua; flow:to_server; dsize:<516; metadata:rq1_rule P1-0005, rq1_class DrDoS_MSSQL, rq1_method proposed; sid:1000005; rev:1;)",
+  "meta": {
+   "leaf_node": 28,
+   "train_samples": 30534,
+   "k": 5,
+   "max_depth": 5,
+   "scheme": "ovr"
+  },
+  "translation": {
+   "header_protocol": "udp",
+   "protocol_source": "data",
+   "protocol_share": 1.0,
+   "extra_conditions": [
+    {
+     "feature": "protocol",
+     "op": ">",
+     "threshold": 16.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert udp",
+      "note": "udp header from the training flows"
+     }
+    },
+    {
+     "feature": "protocol",
+     "op": "<=",
+     "threshold": 17.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert udp",
+      "note": "udp header from the training flows"
+     }
+    }
+   ],
+   "direction": "to_server",
+   "lua_file": "P1-0005.lua",
+   "sid": 1000005,
+   "deployable": true
+  }
+ },
+ {
+  "rule_id": "P1-0006",
+  "method": "proposed",
+  "target_class": "DrDoS_MSSQL",
+  "conditions": [
+   {
+    "feature": "average_packet_size",
+    "op": ">",
+    "threshold": 660.75,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "CICFlowMeter definition, running statistic"
+    }
+   },
+   {
+    "feature": "max_packet_length",
+    "op": "<=",
+    "threshold": 1339.5,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:<516",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "flow_duration",
+    "op": "<=",
+    "threshold": 1016591.5,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "CICFlowMeter definition, running statistic"
+    }
+   },
+   {
+    "feature": "fwd_packet_length_max",
+    "op": "<=",
+    "threshold": 515.5,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:<516",
+     "note": "merged payload size interval per packet"
+    }
+   }
+  ],
+  "suricata": "alert udp any any <> any any (msg:\"RQ1 proposed DrDoS_MSSQL P1-0006\"; lua:P1-0006.lua; flow:to_server; dsize:<516; metadata:rq1_rule P1-0006, rq1_class DrDoS_MSSQL, rq1_method proposed; sid:1000006; rev:1;)",
+  "meta": {
+   "leaf_node": 29,
+   "train_samples": 31784,
+   "k": 5,
+   "max_depth": 5,
+   "scheme": "ovr"
+  },
+  "translation": {
+   "header_protocol": "udp",
+   "protocol_source": "data",
+   "protocol_share": 1.0,
+   "extra_conditions": [
+    {
+     "feature": "protocol",
+     "op": ">",
+     "threshold": 16.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert udp",
+      "note": "udp header from the training flows"
+     }
+    },
+    {
+     "feature": "protocol",
+     "op": "<=",
+     "threshold": 17.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert udp",
+      "note": "udp header from the training flows"
+     }
+    }
+   ],
+   "direction": "to_server",
+   "lua_file": "P1-0006.lua",
+   "sid": 1000006,
+   "deployable": true
+  }
+ },
+ {
+  "rule_id": "P1-0007",
+  "method": "proposed",
+  "target_class": "DrDoS_MSSQL",
+  "conditions": [
+   {
+    "feature": "average_packet_size",
+    "op": ">",
+    "threshold": 602.25,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "CICFlowMeter definition, running statistic"
+    }
+   },
+   {
+    "feature": "max_packet_length",
+    "op": "<=",
+    "threshold": 1339.5,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:515<>1340",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "flow_duration",
+    "op": "<=",
+    "threshold": 1016591.5,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "CICFlowMeter definition, running statistic"
+    }
+   },
+   {
+    "feature": "fwd_packet_length_max",
+    "op": ">",
+    "threshold": 515.5,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:515<>1340",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "total_length_of_fwd_packets",
+    "op": ">",
+    "threshold": 1033.0,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "CICFlowMeter definition, running statistic"
+    }
+   }
+  ],
+  "suricata": "alert udp any any <> any any (msg:\"RQ1 proposed DrDoS_MSSQL P1-0007\"; lua:P1-0007.lua; flow:to_server; dsize:515<>1340; metadata:rq1_rule P1-0007, rq1_class DrDoS_MSSQL, rq1_method proposed; sid:1000007; rev:1;)",
+  "meta": {
+   "leaf_node": 32,
+   "train_samples": 52055,
+   "k": 5,
+   "max_depth": 5,
+   "scheme": "ovr"
+  },
+  "translation": {
+   "header_protocol": "udp",
+   "protocol_source": "data",
+   "protocol_share": 0.9988,
+   "extra_conditions": [
+    {
+     "feature": "protocol",
+     "op": ">",
+     "threshold": 16.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert udp",
+      "note": "udp header from the training flows"
+     }
+    },
+    {
+     "feature": "protocol",
+     "op": "<=",
+     "threshold": 17.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert udp",
+      "note": "udp header from the training flows"
+     }
+    }
+   ],
+   "direction": "to_server",
+   "lua_file": "P1-0007.lua",
+   "sid": 1000007,
+   "deployable": true
+  }
+ },
+ {
+  "rule_id": "P1-0008",
+  "method": "proposed",
+  "target_class": "DrDoS_MSSQL",
+  "conditions": [
+   {
+    "feature": "average_packet_size",
+    "op": ">",
+    "threshold": 602.25,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "CICFlowMeter definition, running statistic"
+    }
+   },
+   {
+    "feature": "max_packet_length",
+    "op": "<=",
+    "threshold": 1339.5,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:<516",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "flow_duration",
+    "op": ">",
+    "threshold": 1016591.5,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "CICFlowMeter definition, running statistic"
+    }
+   },
+   {
+    "feature": "fwd_packet_length_max",
+    "op": "<=",
+    "threshold": 515.5,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:<516",
+     "note": "merged payload size interval per packet"
+    }
+   }
+  ],
+  "suricata": "alert udp any any <> any any (msg:\"RQ1 proposed DrDoS_MSSQL P1-0008\"; lua:P1-0008.lua; flow:to_server; dsize:<516; metadata:rq1_rule P1-0008, rq1_class DrDoS_MSSQL, rq1_method proposed; sid:1000008; rev:1;)",
+  "meta": {
+   "leaf_node": 35,
+   "train_samples": 9,
+   "k": 5,
+   "max_depth": 5,
+   "scheme": "ovr"
+  },
+  "translation": {
+   "header_protocol": "udp",
+   "protocol_source": "data",
+   "protocol_share": 1.0,
+   "extra_conditions": [
+    {
+     "feature": "protocol",
+     "op": ">",
+     "threshold": 16.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert udp",
+      "note": "udp header from the training flows"
+     }
+    },
+    {
+     "feature": "protocol",
+     "op": "<=",
+     "threshold": 17.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert udp",
+      "note": "udp header from the training flows"
+     }
+    }
+   ],
+   "direction": "to_server",
+   "lua_file": "P1-0008.lua",
+   "sid": 1000008,
+   "deployable": true
+  }
+ },
+ {
+  "rule_id": "P1-0009",
+  "method": "proposed",
+  "target_class": "DrDoS_MSSQL",
+  "conditions": [
+   {
+    "feature": "average_packet_size",
+    "op": ">",
+    "threshold": 602.25,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "CICFlowMeter definition, running statistic"
+    }
+   },
+   {
+    "feature": "max_packet_length",
+    "op": "<=",
+    "threshold": 1339.5,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:523<>1340",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "flow_duration",
+    "op": ">",
+    "threshold": 1016591.5,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "CICFlowMeter definition, running statistic"
+    }
+   },
+   {
+    "feature": "fwd_packet_length_max",
+    "op": ">",
+    "threshold": 523.0,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:523<>1340",
+     "note": "merged payload size interval per packet"
+    }
+   }
+  ],
+  "suricata": "alert udp any any <> any any (msg:\"RQ1 proposed DrDoS_MSSQL P1-0009\"; lua:P1-0009.lua; flow:to_server; dsize:523<>1340; metadata:rq1_rule P1-0009, rq1_class DrDoS_MSSQL, rq1_method proposed; sid:1000009; rev:1;)",
+  "meta": {
+   "leaf_node": 37,
+   "train_samples": 28,
+   "k": 5,
+   "max_depth": 5,
+   "scheme": "ovr"
+  },
+  "translation": {
+   "header_protocol": "udp",
+   "protocol_source": "data",
+   "protocol_share": 1.0,
+   "extra_conditions": [
+    {
+     "feature": "protocol",
+     "op": ">",
+     "threshold": 16.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert udp",
+      "note": "udp header from the training flows"
+     }
+    },
+    {
+     "feature": "protocol",
+     "op": "<=",
+     "threshold": 17.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert udp",
+      "note": "udp header from the training flows"
+     }
+    }
+   ],
+   "direction": "to_server",
+   "lua_file": "P1-0009.lua",
+   "sid": 1000009,
+   "deployable": true
+  }
+ },
+ {
+  "rule_id": "P1-0010",
+  "method": "proposed",
+  "target_class": "DrDoS_MSSQL",
+  "conditions": [
+   {
+    "feature": "average_packet_size",
+    "op": ">",
+    "threshold": 602.25,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "CICFlowMeter definition, running statistic"
+    }
+   },
+   {
+    "feature": "max_packet_length",
+    "op": ">",
+    "threshold": 1339.5,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:1339<>2153",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "max_packet_length",
+    "op": "<=",
+    "threshold": 2152.5,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:1339<>2153",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "flow_duration",
+    "op": ">",
+    "threshold": 975188.5,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "CICFlowMeter definition, running statistic"
+    }
+   },
+   {
+    "feature": "total_length_of_fwd_packets",
+    "op": "<=",
+    "threshold": 15667.0,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "CICFlowMeter definition, running statistic"
+    }
+   }
+  ],
+  "suricata": "alert udp any any <> any any (msg:\"RQ1 proposed DrDoS_MSSQL P1-0010\"; lua:P1-0010.lua; dsize:1339<>2153; metadata:rq1_rule P1-0010, rq1_class DrDoS_MSSQL, rq1_method proposed; sid:1000010; rev:1;)",
+  "meta": {
+   "leaf_node": 48,
+   "train_samples": 16,
+   "k": 5,
+   "max_depth": 5,
+   "scheme": "ovr"
+  },
+  "translation": {
+   "header_protocol": "udp",
+   "protocol_source": "data",
+   "protocol_share": 1.0,
+   "extra_conditions": [
+    {
+     "feature": "protocol",
+     "op": ">",
+     "threshold": 16.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert udp",
+      "note": "udp header from the training flows"
+     }
+    },
+    {
+     "feature": "protocol",
+     "op": "<=",
+     "threshold": 17.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert udp",
+      "note": "udp header from the training flows"
+     }
+    }
+   ],
+   "direction": null,
+   "lua_file": "P1-0010.lua",
+   "sid": 1000010,
+   "deployable": true
+  }
+ },
+ {
+  "rule_id": "P2-0001",
+  "method": "proposed",
+  "target_class": "DrDoS_NTP",
+  "conditions": [
+   {
+    "feature": "act_data_pkt_fwd",
+    "op": "<=",
+    "threshold": 2.5,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "CICFlowMeter definition, running statistic"
+    }
+   },
+   {
+    "feature": "fwd_packet_length_min",
+    "op": "<=",
+    "threshold": 439.5,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:<440",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "init_win_bytes_forward",
+    "op": ">",
+    "threshold": 65435.0,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "tcp.hdr; byte_test:2,>,65435,14",
+     "note": "packet window, direction to_server"
+    }
+   }
+  ],
+  "suricata": "alert tcp any any <> any any (msg:\"RQ1 proposed DrDoS_NTP P2-0001\"; lua:P2-0001.lua; flow:to_server; dsize:<440; tcp.hdr; byte_test:2,>,65435,14; metadata:rq1_rule P2-0001, rq1_class DrDoS_NTP, rq1_method proposed; sid:1000011; rev:1;)",
+  "meta": {
+   "leaf_node": 6,
+   "train_samples": 119,
+   "k": 5,
+   "max_depth": 5,
+   "scheme": "ovr"
+  },
+  "translation": {
+   "header_protocol": "tcp",
+   "protocol_source": "conditions",
+   "protocol_share": null,
+   "extra_conditions": [],
+   "direction": "to_server",
+   "lua_file": "P2-0001.lua",
+   "sid": 1000011,
+   "deployable": true
+  }
+ },
+ {
+  "rule_id": "P2-0002",
+  "method": "proposed",
+  "target_class": "DrDoS_NTP",
+  "conditions": [
+   {
+    "feature": "act_data_pkt_fwd",
+    "op": "<=",
+    "threshold": 2.5,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "CICFlowMeter definition, running statistic"
+    }
+   },
+   {
+    "feature": "fwd_packet_length_min",
+    "op": ">",
+    "threshold": 439.5,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:440",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "fwd_packet_length_min",
+    "op": "<=",
+    "threshold": 440.5,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:440",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "total_length_of_fwd_packets",
+    "op": "<=",
+    "threshold": 1100.0,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "CICFlowMeter definition, running statistic"
+    }
+   }
+  ],
+  "suricata": "alert udp any any <> any any (msg:\"RQ1 proposed DrDoS_NTP P2-0002\"; lua:P2-0002.lua; flow:to_server; dsize:440; metadata:rq1_rule P2-0002, rq1_class DrDoS_NTP, rq1_method proposed; sid:1000012; rev:1;)",
+  "meta": {
+   "leaf_node": 8,
+   "train_samples": 3908,
+   "k": 5,
+   "max_depth": 5,
+   "scheme": "ovr"
+  },
+  "translation": {
+   "header_protocol": "udp",
+   "protocol_source": "data",
+   "protocol_share": 1.0,
+   "extra_conditions": [
+    {
+     "feature": "protocol",
+     "op": ">",
+     "threshold": 16.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert udp",
+      "note": "udp header from the training flows"
+     }
+    },
+    {
+     "feature": "protocol",
+     "op": "<=",
+     "threshold": 17.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert udp",
+      "note": "udp header from the training flows"
+     }
+    }
+   ],
+   "direction": "to_server",
+   "lua_file": "P2-0002.lua",
+   "sid": 1000012,
+   "deployable": true
+  }
+ },
+ {
+  "rule_id": "P2-0003",
+  "method": "proposed",
+  "target_class": "DrDoS_NTP",
+  "conditions": [
+   {
+    "feature": "act_data_pkt_fwd",
+    "op": "<=",
+    "threshold": 2.5,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "CICFlowMeter definition, running statistic"
+    }
+   },
+   {
+    "feature": "fwd_packet_length_min",
+    "op": ">",
+    "threshold": 439.5,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:440",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "fwd_packet_length_min",
+    "op": "<=",
+    "threshold": 440.5,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:440",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "total_length_of_fwd_packets",
+    "op": ">",
+    "threshold": 1100.0,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "CICFlowMeter definition, running statistic"
+    }
+   }
+  ],
+  "suricata": "alert udp any any <> any any (msg:\"RQ1 proposed DrDoS_NTP P2-0003\"; lua:P2-0003.lua; flow:to_server; dsize:440; metadata:rq1_rule P2-0003, rq1_class DrDoS_NTP, rq1_method proposed; sid:1000013; rev:1;)",
+  "meta": {
+   "leaf_node": 9,
+   "train_samples": 4,
+   "k": 5,
+   "max_depth": 5,
+   "scheme": "ovr"
+  },
+  "translation": {
+   "header_protocol": "udp",
+   "protocol_source": "data",
+   "protocol_share": 1.0,
+   "extra_conditions": [
+    {
+     "feature": "protocol",
+     "op": ">",
+     "threshold": 16.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert udp",
+      "note": "udp header from the training flows"
+     }
+    },
+    {
+     "feature": "protocol",
+     "op": "<=",
+     "threshold": 17.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert udp",
+      "note": "udp header from the training flows"
+     }
+    }
+   ],
+   "direction": "to_server",
+   "lua_file": "P2-0003.lua",
+   "sid": 1000013,
+   "deployable": true
+  }
+ },
+ {
+  "rule_id": "P2-0004",
+  "method": "proposed",
+  "target_class": "DrDoS_NTP",
+  "conditions": [
+   {
+    "feature": "act_data_pkt_fwd",
+    "op": "<=",
+    "threshold": 2.5,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "CICFlowMeter definition, running statistic"
+    }
+   },
+   {
+    "feature": "fwd_packet_length_min",
+    "op": ">",
+    "threshold": 440.5,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:>440",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "init_win_bytes_forward",
+    "op": ">",
+    "threshold": 128.5,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "tcp.hdr; byte_test:2,>,128,14; byte_test:2,<,8171,14",
+     "note": "packet window, direction to_server"
+    }
+   },
+   {
+    "feature": "init_win_bytes_forward",
+    "op": "<=",
+    "threshold": 8170.0,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "tcp.hdr; byte_test:2,>,128,14; byte_test:2,<,8171,14",
+     "note": "packet window, direction to_server"
+    }
+   }
+  ],
+  "suricata": "alert tcp any any <> any any (msg:\"RQ1 proposed DrDoS_NTP P2-0004\"; lua:P2-0004.lua; flow:to_server; dsize:>440; tcp.hdr; byte_test:2,>,128,14; byte_test:2,<,8171,14; metadata:rq1_rule P2-0004, rq1_class DrDoS_NTP, rq1_method proposed; sid:1000014; rev:1;)",
+  "meta": {
+   "leaf_node": 13,
+   "train_samples": 1,
+   "k": 5,
+   "max_depth": 5,
+   "scheme": "ovr"
+  },
+  "translation": {
+   "header_protocol": "tcp",
+   "protocol_source": "conditions",
+   "protocol_share": null,
+   "extra_conditions": [],
+   "direction": "to_server",
+   "lua_file": "P2-0004.lua",
+   "sid": 1000014,
+   "deployable": true
+  }
+ },
+ {
+  "rule_id": "P2-0005",
+  "method": "proposed",
+  "target_class": "DrDoS_NTP",
+  "conditions": [
+   {
+    "feature": "act_data_pkt_fwd",
+    "op": ">",
+    "threshold": 2.5,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "CICFlowMeter definition, running statistic"
+    }
+   },
+   {
+    "feature": "act_data_pkt_fwd",
+    "op": "<=",
+    "threshold": 6.5,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "CICFlowMeter definition, running statistic"
+    }
+   },
+   {
+    "feature": "fwd_packet_length_max",
+    "op": "<=",
+    "threshold": 439.5,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:<440",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "init_win_bytes_forward",
+    "op": ">",
+    "threshold": 64887.5,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "tcp.hdr; byte_test:2,>,64887,14",
+     "note": "packet window, direction to_server"
+    }
+   },
+   {
+    "feature": "total_length_of_fwd_packets",
+    "op": ">",
+    "threshold": 994.0,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "CICFlowMeter definition, running statistic"
+    }
+   }
+  ],
+  "suricata": "alert tcp any any <> any any (msg:\"RQ1 proposed DrDoS_NTP P2-0005\"; lua:P2-0005.lua; flow:to_server; dsize:<440; tcp.hdr; byte_test:2,>,64887,14; metadata:rq1_rule P2-0005, rq1_class DrDoS_NTP, rq1_method proposed; sid:1000015; rev:1;)",
+  "meta": {
+   "leaf_node": 22,
+   "train_samples": 4,
+   "k": 5,
+   "max_depth": 5,
+   "scheme": "ovr"
+  },
+  "translation": {
+   "header_protocol": "tcp",
+   "protocol_source": "conditions",
+   "protocol_share": null,
+   "extra_conditions": [],
+   "direction": "to_server",
+   "lua_file": "P2-0005.lua",
+   "sid": 1000015,
+   "deployable": true
+  }
+ },
+ {
+  "rule_id": "P2-0006",
+  "method": "proposed",
+  "target_class": "DrDoS_NTP",
+  "conditions": [
+   {
+    "feature": "act_data_pkt_fwd",
+    "op": ">",
+    "threshold": 2.5,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "CICFlowMeter definition, running statistic"
+    }
+   },
+   {
+    "feature": "act_data_pkt_fwd",
+    "op": "<=",
+    "threshold": 6.5,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "CICFlowMeter definition, running statistic"
+    }
+   },
+   {
+    "feature": "fwd_packet_length_max",
+    "op": ">",
+    "threshold": 439.5,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:440",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "fwd_packet_length_max",
+    "op": "<=",
+    "threshold": 440.5,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:440",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "init_win_bytes_forward",
+    "op": "<=",
+    "threshold": 4095.5,
+    "translated": true,
+    "translation": {
+     "kind": "implied",
+     "keyword": "",
+     "note": "value -1 on UDP flows satisfies the condition"
+    }
+   }
+  ],
+  "suricata": "alert udp any any <> any any (msg:\"RQ1 proposed DrDoS_NTP P2-0006\"; lua:P2-0006.lua; flow:to_server; dsize:440; metadata:rq1_rule P2-0006, rq1_class DrDoS_NTP, rq1_method proposed; sid:1000016; rev:1;)",
+  "meta": {
+   "leaf_node": 25,
+   "train_samples": 8599,
+   "k": 5,
+   "max_depth": 5,
+   "scheme": "ovr"
+  },
+  "translation": {
+   "header_protocol": "udp",
+   "protocol_source": "data",
+   "protocol_share": 1.0,
+   "extra_conditions": [
+    {
+     "feature": "protocol",
+     "op": ">",
+     "threshold": 16.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert udp",
+      "note": "udp header from the training flows"
+     }
+    },
+    {
+     "feature": "protocol",
+     "op": "<=",
+     "threshold": 17.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert udp",
+      "note": "udp header from the training flows"
+     }
+    }
+   ],
+   "direction": "to_server",
+   "lua_file": "P2-0006.lua",
+   "sid": 1000016,
+   "deployable": true
+  }
+ },
+ {
+  "rule_id": "P2-0007",
+  "method": "proposed",
+  "target_class": "DrDoS_NTP",
+  "conditions": [
+   {
+    "feature": "act_data_pkt_fwd",
+    "op": ">",
+    "threshold": 2.5,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "CICFlowMeter definition, running statistic"
+    }
+   },
+   {
+    "feature": "act_data_pkt_fwd",
+    "op": "<=",
+    "threshold": 6.5,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "CICFlowMeter definition, running statistic"
+    }
+   },
+   {
+    "feature": "fwd_packet_length_max",
+    "op": ">",
+    "threshold": 440.5,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:>440",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "init_win_bytes_forward",
+    "op": ">",
+    "threshold": 64887.5,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "tcp.hdr; byte_test:2,>,64887,14",
+     "note": "packet window, direction to_server"
+    }
+   }
+  ],
+  "suricata": "alert tcp any any <> any any (msg:\"RQ1 proposed DrDoS_NTP P2-0007\"; lua:P2-0007.lua; flow:to_server; dsize:>440; tcp.hdr; byte_test:2,>,64887,14; metadata:rq1_rule P2-0007, rq1_class DrDoS_NTP, rq1_method proposed; sid:1000017; rev:1;)",
+  "meta": {
+   "leaf_node": 29,
+   "train_samples": 34,
+   "k": 5,
+   "max_depth": 5,
+   "scheme": "ovr"
+  },
+  "translation": {
+   "header_protocol": "tcp",
+   "protocol_source": "conditions",
+   "protocol_share": null,
+   "extra_conditions": [],
+   "direction": "to_server",
+   "lua_file": "P2-0007.lua",
+   "sid": 1000017,
+   "deployable": true
+  }
+ },
+ {
+  "rule_id": "P2-0008",
+  "method": "proposed",
+  "target_class": "DrDoS_NTP",
+  "conditions": [
+   {
+    "feature": "act_data_pkt_fwd",
+    "op": ">",
+    "threshold": 6.5,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "CICFlowMeter definition, running statistic"
+    }
+   },
+   {
+    "feature": "act_data_pkt_fwd",
+    "op": "<=",
+    "threshold": 148.5,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "CICFlowMeter definition, running statistic"
+    }
+   },
+   {
+    "feature": "fwd_packet_length_max",
+    "op": ">",
+    "threshold": 439.5,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:440",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "fwd_packet_length_max",
+    "op": "<=",
+    "threshold": 440.5,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:440",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "init_win_bytes_forward",
+    "op": "<=",
+    "threshold": 241.0,
+    "translated": true,
+    "translation": {
+     "kind": "implied",
+     "keyword": "",
+     "note": "value -1 on UDP flows satisfies the condition"
+    }
+   }
+  ],
+  "suricata": "alert udp any any <> any any (msg:\"RQ1 proposed DrDoS_NTP P2-0008\"; lua:P2-0008.lua; flow:to_server; dsize:440; metadata:rq1_rule P2-0008, rq1_class DrDoS_NTP, rq1_method proposed; sid:1000018; rev:1;)",
+  "meta": {
+   "leaf_node": 35,
+   "train_samples": 70965,
+   "k": 5,
+   "max_depth": 5,
+   "scheme": "ovr"
+  },
+  "translation": {
+   "header_protocol": "udp",
+   "protocol_source": "data",
+   "protocol_share": 1.0,
+   "extra_conditions": [
+    {
+     "feature": "protocol",
+     "op": ">",
+     "threshold": 16.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert udp",
+      "note": "udp header from the training flows"
+     }
+    },
+    {
+     "feature": "protocol",
+     "op": "<=",
+     "threshold": 17.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert udp",
+      "note": "udp header from the training flows"
+     }
+    }
+   ],
+   "direction": "to_server",
+   "lua_file": "P2-0008.lua",
+   "sid": 1000018,
+   "deployable": true
+  }
+ },
+ {
+  "rule_id": "P2-0009",
+  "method": "proposed",
+  "target_class": "DrDoS_NTP",
+  "conditions": [
+   {
+    "feature": "act_data_pkt_fwd",
+    "op": ">",
+    "threshold": 148.5,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "CICFlowMeter definition, running statistic"
+    }
+   },
+   {
+    "feature": "fwd_packet_length_max",
+    "op": ">",
+    "threshold": 439.5,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:440",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "fwd_packet_length_max",
+    "op": "<=",
+    "threshold": 440.5,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:440",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "init_win_bytes_forward",
+    "op": "<=",
+    "threshold": 241.0,
+    "translated": true,
+    "translation": {
+     "kind": "implied",
+     "keyword": "",
+     "note": "value -1 on UDP flows satisfies the condition"
+    }
+   }
+  ],
+  "suricata": "alert udp any any <> any any (msg:\"RQ1 proposed DrDoS_NTP P2-0009\"; lua:P2-0009.lua; flow:to_server; dsize:440; metadata:rq1_rule P2-0009, rq1_class DrDoS_NTP, rq1_method proposed; sid:1000019; rev:1;)",
+  "meta": {
+   "leaf_node": 36,
+   "train_samples": 15333,
+   "k": 5,
+   "max_depth": 5,
+   "scheme": "ovr"
+  },
+  "translation": {
+   "header_protocol": "udp",
+   "protocol_source": "data",
+   "protocol_share": 1.0,
+   "extra_conditions": [
+    {
+     "feature": "protocol",
+     "op": ">",
+     "threshold": 16.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert udp",
+      "note": "udp header from the training flows"
+     }
+    },
+    {
+     "feature": "protocol",
+     "op": "<=",
+     "threshold": 17.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert udp",
+      "note": "udp header from the training flows"
+     }
+    }
+   ],
+   "direction": "to_server",
+   "lua_file": "P2-0009.lua",
+   "sid": 1000019,
+   "deployable": true
+  }
+ },
+ {
+  "rule_id": "P2-0010",
+  "method": "proposed",
+  "target_class": "DrDoS_NTP",
+  "conditions": [
+   {
+    "feature": "act_data_pkt_fwd",
+    "op": ">",
+    "threshold": 6.5,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "CICFlowMeter definition, running statistic"
+    }
+   },
+   {
+    "feature": "fwd_packet_length_max",
+    "op": ">",
+    "threshold": 439.5,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:440",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "fwd_packet_length_max",
+    "op": "<=",
+    "threshold": 440.5,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:440",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "init_win_bytes_forward",
+    "op": ">",
+    "threshold": 11396.0,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "tcp.hdr; byte_test:2,>,11396,14",
+     "note": "packet window, direction to_server"
+    }
+   }
+  ],
+  "suricata": "alert tcp any any <> any any (msg:\"RQ1 proposed DrDoS_NTP P2-0010\"; lua:P2-0010.lua; flow:to_server; dsize:440; tcp.hdr; byte_test:2,>,11396,14; metadata:rq1_rule P2-0010, rq1_class DrDoS_NTP, rq1_method proposed; sid:1000020; rev:1;)",
+  "meta": {
+   "leaf_node": 39,
+   "train_samples": 43,
+   "k": 5,
+   "max_depth": 5,
+   "scheme": "ovr"
+  },
+  "translation": {
+   "header_protocol": "tcp",
+   "protocol_source": "conditions",
+   "protocol_share": null,
+   "extra_conditions": [],
+   "direction": "to_server",
+   "lua_file": "P2-0010.lua",
+   "sid": 1000020,
+   "deployable": true
+  }
+ },
+ {
+  "rule_id": "P2-0011",
+  "method": "proposed",
+  "target_class": "DrDoS_NTP",
+  "conditions": [
+   {
+    "feature": "act_data_pkt_fwd",
+    "op": ">",
+    "threshold": 6.5,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "CICFlowMeter definition, running statistic"
+    }
+   },
+   {
+    "feature": "fwd_packet_length_max",
+    "op": ">",
+    "threshold": 637.5,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:>637",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "init_win_bytes_forward",
+    "op": ">",
+    "threshold": 28041.5,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "tcp.hdr; byte_test:2,>,28041,14; byte_test:2,<,29609,14",
+     "note": "packet window, direction to_server"
+    }
+   },
+   {
+    "feature": "init_win_bytes_forward",
+    "op": "<=",
+    "threshold": 29608.0,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "tcp.hdr; byte_test:2,>,28041,14; byte_test:2,<,29609,14",
+     "note": "packet window, direction to_server"
+    }
+   }
+  ],
+  "suricata": "alert tcp any any <> any any (msg:\"RQ1 proposed DrDoS_NTP P2-0011\"; lua:P2-0011.lua; flow:to_server; dsize:>637; tcp.hdr; byte_test:2,>,28041,14; byte_test:2,<,29609,14; metadata:rq1_rule P2-0011, rq1_class DrDoS_NTP, rq1_method proposed; sid:1000021; rev:1;)",
+  "meta": {
+   "leaf_node": 45,
+   "train_samples": 24,
+   "k": 5,
+   "max_depth": 5,
+   "scheme": "ovr"
+  },
+  "translation": {
+   "header_protocol": "tcp",
+   "protocol_source": "conditions",
+   "protocol_share": null,
+   "extra_conditions": [],
+   "direction": "to_server",
+   "lua_file": "P2-0011.lua",
+   "sid": 1000021,
+   "deployable": true
+  }
+ },
+ {
+  "rule_id": "P3-0001",
+  "method": "proposed",
+  "target_class": "DrDoS_NetBIOS",
+  "conditions": [
+   {
+    "feature": "max_packet_length",
+    "op": "<=",
+    "threshold": 320.5,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:<112",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "fwd_packet_length_mean",
+    "op": "<=",
+    "threshold": 111.0,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:<112",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "init_win_bytes_forward",
+    "op": "<=",
+    "threshold": 65435.0,
+    "translated": true,
+    "translation": {
+     "kind": "implied",
+     "keyword": "",
+     "note": "value -1 on UDP flows satisfies the condition"
+    }
+   },
+   {
+    "feature": "flow_bytes/s",
+    "op": ">",
+    "threshold": 210000000.0,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "CICFlowMeter definition, running statistic"
+    }
+   }
+  ],
+  "suricata": "alert udp any any <> any any (msg:\"RQ1 proposed DrDoS_NetBIOS P3-0001\"; lua:P3-0001.lua; flow:to_server; dsize:<112; metadata:rq1_rule P3-0001, rq1_class DrDoS_NetBIOS, rq1_method proposed; sid:1000022; rev:1;)",
+  "meta": {
+   "leaf_node": 7,
+   "train_samples": 4,
+   "k": 5,
+   "max_depth": 5,
+   "scheme": "ovr"
+  },
+  "translation": {
+   "header_protocol": "udp",
+   "protocol_source": "data",
+   "protocol_share": 1.0,
+   "extra_conditions": [
+    {
+     "feature": "protocol",
+     "op": ">",
+     "threshold": 16.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert udp",
+      "note": "udp header from the training flows"
+     }
+    },
+    {
+     "feature": "protocol",
+     "op": "<=",
+     "threshold": 17.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert udp",
+      "note": "udp header from the training flows"
+     }
+    }
+   ],
+   "direction": "to_server",
+   "lua_file": "P3-0001.lua",
+   "sid": 1000022,
+   "deployable": true
+  }
+ },
+ {
+  "rule_id": "P3-0002",
+  "method": "proposed",
+  "target_class": "DrDoS_NetBIOS",
+  "conditions": [
+   {
+    "feature": "max_packet_length",
+    "op": "<=",
+    "threshold": 320.5,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:<15",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "fwd_packet_length_mean",
+    "op": "<=",
+    "threshold": 111.0,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:<15",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "init_win_bytes_forward",
+    "op": ">",
+    "threshold": 65435.0,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "tcp.hdr; byte_test:2,>,65435,14",
+     "note": "packet window, direction to_server"
+    }
+   },
+   {
+    "feature": "packet_length_mean",
+    "op": "<=",
+    "threshold": 14.88888931274414,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:<15",
+     "note": "merged payload size interval per packet"
+    }
+   }
+  ],
+  "suricata": "alert tcp any any -> any any (msg:\"RQ1 proposed DrDoS_NetBIOS P3-0002\"; flow:to_server; dsize:<15; tcp.hdr; byte_test:2,>,65435,14; metadata:rq1_rule P3-0002, rq1_class DrDoS_NetBIOS, rq1_method proposed; sid:1000023; rev:1;)",
+  "meta": {
+   "leaf_node": 9,
+   "train_samples": 32,
+   "k": 5,
+   "max_depth": 5,
+   "scheme": "ovr"
+  },
+  "translation": {
+   "header_protocol": "tcp",
+   "protocol_source": "conditions",
+   "protocol_share": null,
+   "extra_conditions": [],
+   "direction": "to_server",
+   "lua_file": null,
+   "sid": 1000023,
+   "deployable": true
+  }
+ },
+ {
+  "rule_id": "P3-0003",
+  "method": "proposed",
+  "target_class": "DrDoS_NetBIOS",
+  "conditions": [
+   {
+    "feature": "max_packet_length",
+    "op": "<=",
+    "threshold": 151.5,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:111<>152",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "fwd_packet_length_mean",
+    "op": ">",
+    "threshold": 111.0,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:111<>152",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "packet_length_mean",
+    "op": "<=",
+    "threshold": 174.5,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:111<>152",
+     "note": "merged payload size interval per packet"
+    }
+   }
+  ],
+  "suricata": "alert udp any any -> any any (msg:\"RQ1 proposed DrDoS_NetBIOS P3-0003\"; flow:to_server; dsize:111<>152; metadata:rq1_rule P3-0003, rq1_class DrDoS_NetBIOS, rq1_method proposed; sid:1000024; rev:1;)",
+  "meta": {
+   "leaf_node": 16,
+   "train_samples": 139,
+   "k": 5,
+   "max_depth": 5,
+   "scheme": "ovr"
+  },
+  "translation": {
+   "header_protocol": "udp",
+   "protocol_source": "data",
+   "protocol_share": 1.0,
+   "extra_conditions": [
+    {
+     "feature": "protocol",
+     "op": ">",
+     "threshold": 16.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert udp",
+      "note": "udp header from the training flows"
+     }
+    },
+    {
+     "feature": "protocol",
+     "op": "<=",
+     "threshold": 17.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert udp",
+      "note": "udp header from the training flows"
+     }
+    }
+   ],
+   "direction": "to_server",
+   "lua_file": null,
+   "sid": 1000024,
+   "deployable": true
+  }
+ },
+ {
+  "rule_id": "P3-0004",
+  "method": "proposed",
+  "target_class": "DrDoS_NetBIOS",
+  "conditions": [
+   {
+    "feature": "max_packet_length",
+    "op": "<=",
+    "threshold": 267.5,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:174<>268",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "fwd_packet_length_mean",
+    "op": ">",
+    "threshold": 111.0,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:174<>268",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "packet_length_mean",
+    "op": ">",
+    "threshold": 174.5,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:174<>268",
+     "note": "merged payload size interval per packet"
+    }
+   }
+  ],
+  "suricata": "alert udp any any -> any any (msg:\"RQ1 proposed DrDoS_NetBIOS P3-0004\"; flow:to_server; dsize:174<>268; metadata:rq1_rule P3-0004, rq1_class DrDoS_NetBIOS, rq1_method proposed; sid:1000025; rev:1;)",
+  "meta": {
+   "leaf_node": 19,
+   "train_samples": 100006,
+   "k": 5,
+   "max_depth": 5,
+   "scheme": "ovr"
+  },
+  "translation": {
+   "header_protocol": "udp",
+   "protocol_source": "data",
+   "protocol_share": 1.0,
+   "extra_conditions": [
+    {
+     "feature": "protocol",
+     "op": ">",
+     "threshold": 16.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert udp",
+      "note": "udp header from the training flows"
+     }
+    },
+    {
+     "feature": "protocol",
+     "op": "<=",
+     "threshold": 17.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert udp",
+      "note": "udp header from the training flows"
+     }
+    }
+   ],
+   "direction": "to_server",
+   "lua_file": null,
+   "sid": 1000025,
+   "deployable": true
+  }
+ },
+ {
+  "rule_id": "P3-0005",
+  "method": "proposed",
+  "target_class": "DrDoS_NetBIOS",
+  "conditions": [
+   {
+    "feature": "max_packet_length",
+    "op": ">",
+    "threshold": 267.5,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:267<>287",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "max_packet_length",
+    "op": "<=",
+    "threshold": 286.5,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:267<>287",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "fwd_packet_length_mean",
+    "op": ">",
+    "threshold": 111.0,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:267<>287",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "packet_length_mean",
+    "op": ">",
+    "threshold": 174.5,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:267<>287",
+     "note": "merged payload size interval per packet"
+    }
+   }
+  ],
+  "suricata": "alert udp any any -> any any (msg:\"RQ1 proposed DrDoS_NetBIOS P3-0005\"; flow:to_server; dsize:267<>287; metadata:rq1_rule P3-0005, rq1_class DrDoS_NetBIOS, rq1_method proposed; sid:1000026; rev:1;)",
+  "meta": {
+   "leaf_node": 20,
+   "train_samples": 579,
+   "k": 5,
+   "max_depth": 5,
+   "scheme": "ovr"
+  },
+  "translation": {
+   "header_protocol": "udp",
+   "protocol_source": "data",
+   "protocol_share": 0.9948,
+   "extra_conditions": [
+    {
+     "feature": "protocol",
+     "op": ">",
+     "threshold": 16.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert udp",
+      "note": "udp header from the training flows"
+     }
+    },
+    {
+     "feature": "protocol",
+     "op": "<=",
+     "threshold": 17.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert udp",
+      "note": "udp header from the training flows"
+     }
+    }
+   ],
+   "direction": "to_server",
+   "lua_file": null,
+   "sid": 1000026,
+   "deployable": true
+  }
+ },
+ {
+  "rule_id": "P3-0006",
+  "method": "proposed",
+  "target_class": "DrDoS_NetBIOS",
+  "conditions": [
+   {
+    "feature": "max_packet_length",
+    "op": ">",
+    "threshold": 286.5,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:318<>321",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "max_packet_length",
+    "op": "<=",
+    "threshold": 320.5,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:318<>321",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "fwd_packet_length_mean",
+    "op": ">",
+    "threshold": 318.5,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:318<>321",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "flow_bytes/s",
+    "op": "<=",
+    "threshold": 318500000.0,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "CICFlowMeter definition, running statistic"
+    }
+   }
+  ],
+  "suricata": "alert udp any any <> any any (msg:\"RQ1 proposed DrDoS_NetBIOS P3-0006\"; lua:P3-0006.lua; flow:to_server; dsize:318<>321; metadata:rq1_rule P3-0006, rq1_class DrDoS_NetBIOS, rq1_method proposed; sid:1000027; rev:1;)",
+  "meta": {
+   "leaf_node": 24,
+   "train_samples": 4,
+   "k": 5,
+   "max_depth": 5,
+   "scheme": "ovr"
+  },
+  "translation": {
+   "header_protocol": "udp",
+   "protocol_source": "data",
+   "protocol_share": 1.0,
+   "extra_conditions": [
+    {
+     "feature": "protocol",
+     "op": ">",
+     "threshold": 16.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert udp",
+      "note": "udp header from the training flows"
+     }
+    },
+    {
+     "feature": "protocol",
+     "op": "<=",
+     "threshold": 17.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert udp",
+      "note": "udp header from the training flows"
+     }
+    }
+   ],
+   "direction": "to_server",
+   "lua_file": "P3-0006.lua",
+   "sid": 1000027,
+   "deployable": true
+  }
+ },
+ {
+  "rule_id": "P3-0007",
+  "method": "proposed",
+  "target_class": "DrDoS_NetBIOS",
+  "conditions": [
+   {
+    "feature": "max_packet_length",
+    "op": ">",
+    "threshold": 296.5,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:296<>321",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "max_packet_length",
+    "op": "<=",
+    "threshold": 320.5,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:296<>321",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "fwd_packet_length_mean",
+    "op": ">",
+    "threshold": 111.0,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:296<>321",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "flow_bytes/s",
+    "op": ">",
+    "threshold": 318500000.0,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "CICFlowMeter definition, running statistic"
+    }
+   }
+  ],
+  "suricata": "alert udp any any <> any any (msg:\"RQ1 proposed DrDoS_NetBIOS P3-0007\"; lua:P3-0007.lua; flow:to_server; dsize:296<>321; metadata:rq1_rule P3-0007, rq1_class DrDoS_NetBIOS, rq1_method proposed; sid:1000028; rev:1;)",
+  "meta": {
+   "leaf_node": 27,
+   "train_samples": 332,
+   "k": 5,
+   "max_depth": 5,
+   "scheme": "ovr"
+  },
+  "translation": {
+   "header_protocol": "udp",
+   "protocol_source": "data",
+   "protocol_share": 1.0,
+   "extra_conditions": [
+    {
+     "feature": "protocol",
+     "op": ">",
+     "threshold": 16.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert udp",
+      "note": "udp header from the training flows"
+     }
+    },
+    {
+     "feature": "protocol",
+     "op": "<=",
+     "threshold": 17.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert udp",
+      "note": "udp header from the training flows"
+     }
+    }
+   ],
+   "direction": "to_server",
+   "lua_file": "P3-0007.lua",
+   "sid": 1000028,
+   "deployable": true
+  }
+ },
+ {
+  "rule_id": "P3-0008",
+  "method": "proposed",
+  "target_class": "DrDoS_NetBIOS",
+  "conditions": [
+   {
+    "feature": "max_packet_length",
+    "op": ">",
+    "threshold": 320.5,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:320<>343",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "max_packet_length",
+    "op": "<=",
+    "threshold": 342.5,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:320<>343",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "flow_bytes/s",
+    "op": "<=",
+    "threshold": 26.763280868530273,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "CICFlowMeter definition, running statistic"
+    }
+   },
+   {
+    "feature": "init_win_bytes_forward",
+    "op": "<=",
+    "threshold": 126.0,
+    "translated": true,
+    "translation": {
+     "kind": "implied",
+     "keyword": "",
+     "note": "value -1 on UDP flows satisfies the condition"
+    }
+   }
+  ],
+  "suricata": "alert udp any any <> any any (msg:\"RQ1 proposed DrDoS_NetBIOS P3-0008\"; lua:P3-0008.lua; dsize:320<>343; metadata:rq1_rule P3-0008, rq1_class DrDoS_NetBIOS, rq1_method proposed; sid:1000029; rev:1;)",
+  "meta": {
+   "leaf_node": 32,
+   "train_samples": 1,
+   "k": 5,
+   "max_depth": 5,
+   "scheme": "ovr"
+  },
+  "translation": {
+   "header_protocol": "udp",
+   "protocol_source": "data",
+   "protocol_share": 1.0,
+   "extra_conditions": [
+    {
+     "feature": "protocol",
+     "op": ">",
+     "threshold": 16.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert udp",
+      "note": "udp header from the training flows"
+     }
+    },
+    {
+     "feature": "protocol",
+     "op": "<=",
+     "threshold": 17.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert udp",
+      "note": "udp header from the training flows"
+     }
+    }
+   ],
+   "direction": null,
+   "lua_file": "P3-0008.lua",
+   "sid": 1000029,
+   "deployable": true
+  }
+ },
+ {
+  "rule_id": "P3-0009",
+  "method": "proposed",
+  "target_class": "DrDoS_NetBIOS",
+  "conditions": [
+   {
+    "feature": "max_packet_length",
+    "op": ">",
+    "threshold": 320.5,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:320<>339",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "max_packet_length",
+    "op": "<=",
+    "threshold": 342.5,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:320<>339",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "flow_bytes/s",
+    "op": ">",
+    "threshold": 673000000.0,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "CICFlowMeter definition, running statistic"
+    }
+   },
+   {
+    "feature": "fwd_packet_length_mean",
+    "op": "<=",
+    "threshold": 341.25,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:320<>339",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "packet_length_mean",
+    "op": "<=",
+    "threshold": 338.5,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:320<>339",
+     "note": "merged payload size interval per packet"
+    }
+   }
+  ],
+  "suricata": "alert udp any any <> any any (msg:\"RQ1 proposed DrDoS_NetBIOS P3-0009\"; lua:P3-0009.lua; flow:to_server; dsize:320<>339; metadata:rq1_rule P3-0009, rq1_class DrDoS_NetBIOS, rq1_method proposed; sid:1000030; rev:1;)",
+  "meta": {
+   "leaf_node": 39,
+   "train_samples": 36,
+   "k": 5,
+   "max_depth": 5,
+   "scheme": "ovr"
+  },
+  "translation": {
+   "header_protocol": "udp",
+   "protocol_source": "data",
+   "protocol_share": 1.0,
+   "extra_conditions": [
+    {
+     "feature": "protocol",
+     "op": ">",
+     "threshold": 16.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert udp",
+      "note": "udp header from the training flows"
+     }
+    },
+    {
+     "feature": "protocol",
+     "op": "<=",
+     "threshold": 17.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert udp",
+      "note": "udp header from the training flows"
+     }
+    }
+   ],
+   "direction": "to_server",
+   "lua_file": "P3-0009.lua",
+   "sid": 1000030,
+   "deployable": true
+  }
+ },
+ {
+  "rule_id": "P3-0010",
+  "method": "proposed",
+  "target_class": "DrDoS_NetBIOS",
+  "conditions": [
+   {
+    "feature": "max_packet_length",
+    "op": ">",
+    "threshold": 320.5,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:338<>342",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "max_packet_length",
+    "op": "<=",
+    "threshold": 342.5,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:338<>342",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "flow_bytes/s",
+    "op": ">",
+    "threshold": 673000000.0,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "CICFlowMeter definition, running statistic"
+    }
+   },
+   {
+    "feature": "fwd_packet_length_mean",
+    "op": "<=",
+    "threshold": 341.25,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:338<>342",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "packet_length_mean",
+    "op": ">",
+    "threshold": 338.5,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:338<>342",
+     "note": "merged payload size interval per packet"
+    }
+   }
+  ],
+  "suricata": "alert udp any any <> any any (msg:\"RQ1 proposed DrDoS_NetBIOS P3-0010\"; lua:P3-0010.lua; flow:to_server; dsize:338<>342; metadata:rq1_rule P3-0010, rq1_class DrDoS_NetBIOS, rq1_method proposed; sid:1000031; rev:1;)",
+  "meta": {
+   "leaf_node": 40,
+   "train_samples": 16,
+   "k": 5,
+   "max_depth": 5,
+   "scheme": "ovr"
+  },
+  "translation": {
+   "header_protocol": "udp",
+   "protocol_source": "data",
+   "protocol_share": 1.0,
+   "extra_conditions": [
+    {
+     "feature": "protocol",
+     "op": ">",
+     "threshold": 16.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert udp",
+      "note": "udp header from the training flows"
+     }
+    },
+    {
+     "feature": "protocol",
+     "op": "<=",
+     "threshold": 17.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert udp",
+      "note": "udp header from the training flows"
+     }
+    }
+   ],
+   "direction": "to_server",
+   "lua_file": "P3-0010.lua",
+   "sid": 1000031,
+   "deployable": true
+  }
+ },
+ {
+  "rule_id": "P3-0011",
+  "method": "proposed",
+  "target_class": "DrDoS_NetBIOS",
+  "conditions": [
+   {
+    "feature": "max_packet_length",
+    "op": ">",
+    "threshold": 320.5,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:342",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "max_packet_length",
+    "op": "<=",
+    "threshold": 342.5,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:342",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "flow_bytes/s",
+    "op": ">",
+    "threshold": 673000000.0,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "CICFlowMeter definition, running statistic"
+    }
+   },
+   {
+    "feature": "fwd_packet_length_mean",
+    "op": ">",
+    "threshold": 341.25,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:342",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "packet_length_mean",
+    "op": ">",
+    "threshold": 341.8000030517578,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:342",
+     "note": "merged payload size interval per packet"
+    }
+   }
+  ],
+  "suricata": "alert udp any any <> any any (msg:\"RQ1 proposed DrDoS_NetBIOS P3-0011\"; lua:P3-0011.lua; flow:to_server; dsize:342; metadata:rq1_rule P3-0011, rq1_class DrDoS_NetBIOS, rq1_method proposed; sid:1000032; rev:1;)",
+  "meta": {
+   "leaf_node": 43,
+   "train_samples": 1,
+   "k": 5,
+   "max_depth": 5,
+   "scheme": "ovr"
+  },
+  "translation": {
+   "header_protocol": "udp",
+   "protocol_source": "data",
+   "protocol_share": 1.0,
+   "extra_conditions": [
+    {
+     "feature": "protocol",
+     "op": ">",
+     "threshold": 16.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert udp",
+      "note": "udp header from the training flows"
+     }
+    },
+    {
+     "feature": "protocol",
+     "op": "<=",
+     "threshold": 17.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert udp",
+      "note": "udp header from the training flows"
+     }
+    }
+   ],
+   "direction": "to_server",
+   "lua_file": "P3-0011.lua",
+   "sid": 1000032,
+   "deployable": true
+  }
+ },
+ {
+  "rule_id": "P3-0012",
+  "method": "proposed",
+  "target_class": "DrDoS_NetBIOS",
+  "conditions": [
+   {
+    "feature": "max_packet_length",
+    "op": ">",
+    "threshold": 342.5,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:342<>374",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "max_packet_length",
+    "op": "<=",
+    "threshold": 373.5,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:342<>374",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "flow_bytes/s",
+    "op": ">",
+    "threshold": 745000000.0,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "CICFlowMeter definition, running statistic"
+    }
+   }
+  ],
+  "suricata": "alert udp any any <> any any (msg:\"RQ1 proposed DrDoS_NetBIOS P3-0012\"; lua:P3-0012.lua; dsize:342<>374; metadata:rq1_rule P3-0012, rq1_class DrDoS_NetBIOS, rq1_method proposed; sid:1000033; rev:1;)",
+  "meta": {
+   "leaf_node": 49,
+   "train_samples": 49,
+   "k": 5,
+   "max_depth": 5,
+   "scheme": "ovr"
+  },
+  "translation": {
+   "header_protocol": "udp",
+   "protocol_source": "data",
+   "protocol_share": 1.0,
+   "extra_conditions": [
+    {
+     "feature": "protocol",
+     "op": ">",
+     "threshold": 16.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert udp",
+      "note": "udp header from the training flows"
+     }
+    },
+    {
+     "feature": "protocol",
+     "op": "<=",
+     "threshold": 17.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert udp",
+      "note": "udp header from the training flows"
+     }
+    }
+   ],
+   "direction": null,
+   "lua_file": "P3-0012.lua",
+   "sid": 1000033,
+   "deployable": true
+  }
+ },
+ {
+  "rule_id": "P4-0001",
+  "method": "proposed",
+  "target_class": "Syn",
+  "conditions": [
+   {
+    "feature": "ack_flag_count",
+    "op": "<=",
+    "threshold": 0.5,
+    "translated": true,
+    "translation": {
+     "kind": "implied",
+     "keyword": "",
+     "note": "flag is always 0 on UDP flows"
+    }
+   },
+   {
+    "feature": "max_packet_length",
+    "op": ">",
+    "threshold": 39.5,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:40",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "max_packet_length",
+    "op": "<=",
+    "threshold": 40.5,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:40",
+     "note": "merged payload size interval per packet"
+    }
+   }
+  ],
+  "suricata": "alert udp any any -> any any (msg:\"RQ1 proposed Syn P4-0001\"; dsize:40; metadata:rq1_rule P4-0001, rq1_class Syn, rq1_method proposed; sid:1000034; rev:1;)",
+  "meta": {
+   "leaf_node": 8,
+   "train_samples": 28,
+   "k": 5,
+   "max_depth": 5,
+   "scheme": "ovr"
+  },
+  "translation": {
+   "header_protocol": "udp",
+   "protocol_source": "data",
+   "protocol_share": 1.0,
+   "extra_conditions": [
+    {
+     "feature": "protocol",
+     "op": ">",
+     "threshold": 16.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert udp",
+      "note": "udp header from the training flows"
+     }
+    },
+    {
+     "feature": "protocol",
+     "op": "<=",
+     "threshold": 17.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert udp",
+      "note": "udp header from the training flows"
+     }
+    }
+   ],
+   "direction": null,
+   "lua_file": null,
+   "sid": 1000034,
+   "deployable": true
+  }
+ },
+ {
+  "rule_id": "P4-0002",
+  "method": "proposed",
+  "target_class": "Syn",
+  "conditions": [
+   {
+    "feature": "ack_flag_count",
+    "op": ">",
+    "threshold": 0.5,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "flags:S+",
+     "note": "bit S set in the packet"
+    }
+   },
+   {
+    "feature": "init_win_bytes_forward",
+    "op": ">",
+    "threshold": 5824.0,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "tcp.hdr; byte_test:2,>,5824,14; byte_test:2,<,7017,14",
+     "note": "packet window, direction to_server"
+    }
+   },
+   {
+    "feature": "init_win_bytes_forward",
+    "op": "<=",
+    "threshold": 7016.0,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "tcp.hdr; byte_test:2,>,5824,14; byte_test:2,<,7017,14",
+     "note": "packet window, direction to_server"
+    }
+   },
+   {
+    "feature": "flow_duration",
+    "op": "<=",
+    "threshold": 4004692.0,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "CICFlowMeter definition, running statistic"
+    }
+   }
+  ],
+  "suricata": "alert tcp any any <> any any (msg:\"RQ1 proposed Syn P4-0002\"; lua:P4-0002.lua; flow:to_server; flags:S+; tcp.hdr; byte_test:2,>,5824,14; byte_test:2,<,7017,14; metadata:rq1_rule P4-0002, rq1_class Syn, rq1_method proposed; sid:1000035; rev:1;)",
+  "meta": {
+   "leaf_node": 17,
+   "train_samples": 138729,
+   "k": 5,
+   "max_depth": 5,
+   "scheme": "ovr"
+  },
+  "translation": {
+   "header_protocol": "tcp",
+   "protocol_source": "conditions",
+   "protocol_share": null,
+   "extra_conditions": [],
+   "direction": "to_server",
+   "lua_file": "P4-0002.lua",
+   "sid": 1000035,
+   "deployable": true
+  }
+ },
+ {
+  "rule_id": "P4-0003",
+  "method": "proposed",
+  "target_class": "Syn",
+  "conditions": [
+   {
+    "feature": "ack_flag_count",
+    "op": ">",
+    "threshold": 0.5,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "flags:S+",
+     "note": "bit S set in the packet"
+    }
+   },
+   {
+    "feature": "init_win_bytes_forward",
+    "op": ">",
+    "threshold": 5824.0,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "tcp.hdr; byte_test:2,>,5824,14; byte_test:2,<,7017,14",
+     "note": "packet window, direction to_server"
+    }
+   },
+   {
+    "feature": "init_win_bytes_forward",
+    "op": "<=",
+    "threshold": 7016.0,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "tcp.hdr; byte_test:2,>,5824,14; byte_test:2,<,7017,14",
+     "note": "packet window, direction to_server"
+    }
+   },
+   {
+    "feature": "flow_duration",
+    "op": ">",
+    "threshold": 4004692.0,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "CICFlowMeter definition, running statistic"
+    }
+   },
+   {
+    "feature": "flow_duration",
+    "op": "<=",
+    "threshold": 8034020.0,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "CICFlowMeter definition, running statistic"
+    }
+   }
+  ],
+  "suricata": "alert tcp any any <> any any (msg:\"RQ1 proposed Syn P4-0003\"; lua:P4-0003.lua; flow:to_server; flags:S+; tcp.hdr; byte_test:2,>,5824,14; byte_test:2,<,7017,14; metadata:rq1_rule P4-0003, rq1_class Syn, rq1_method proposed; sid:1000036; rev:1;)",
+  "meta": {
+   "leaf_node": 18,
+   "train_samples": 621,
+   "k": 5,
+   "max_depth": 5,
+   "scheme": "ovr"
+  },
+  "translation": {
+   "header_protocol": "tcp",
+   "protocol_source": "conditions",
+   "protocol_share": null,
+   "extra_conditions": [],
+   "direction": "to_server",
+   "lua_file": "P4-0003.lua",
+   "sid": 1000036,
+   "deployable": true
+  }
+ },
+ {
+  "rule_id": "P4-0004",
+  "method": "proposed",
+  "target_class": "Syn",
+  "conditions": [
+   {
+    "feature": "ack_flag_count",
+    "op": ">",
+    "threshold": 0.5,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "flags:S+",
+     "note": "bit S set in the packet"
+    }
+   },
+   {
+    "feature": "init_win_bytes_forward",
+    "op": "<=",
+    "threshold": 7016.0,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "tcp.hdr; byte_test:2,<,7017,14",
+     "note": "packet window, direction to_server"
+    }
+   },
+   {
+    "feature": "flow_duration",
+    "op": ">",
+    "threshold": 8034020.0,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "CICFlowMeter definition, running statistic"
+    }
+   },
+   {
+    "feature": "flow_duration",
+    "op": "<=",
+    "threshold": 9069896.0,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "CICFlowMeter definition, running statistic"
+    }
+   }
+  ],
+  "suricata": "alert tcp any any <> any any (msg:\"RQ1 proposed Syn P4-0004\"; lua:P4-0004.lua; flow:to_server; flags:S+; tcp.hdr; byte_test:2,<,7017,14; metadata:rq1_rule P4-0004, rq1_class Syn, rq1_method proposed; sid:1000037; rev:1;)",
+  "meta": {
+   "leaf_node": 21,
+   "train_samples": 75,
+   "k": 5,
+   "max_depth": 5,
+   "scheme": "ovr"
+  },
+  "translation": {
+   "header_protocol": "tcp",
+   "protocol_source": "conditions",
+   "protocol_share": null,
+   "extra_conditions": [],
+   "direction": "to_server",
+   "lua_file": "P4-0004.lua",
+   "sid": 1000037,
+   "deployable": true
+  }
+ },
+ {
+  "rule_id": "P4-0005",
+  "method": "proposed",
+  "target_class": "Syn",
+  "conditions": [
+   {
+    "feature": "ack_flag_count",
+    "op": ">",
+    "threshold": 0.5,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "flags:S+",
+     "note": "bit S set in the packet"
+    }
+   },
+   {
+    "feature": "init_win_bytes_forward",
+    "op": "<=",
+    "threshold": 7016.0,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "tcp.hdr; byte_test:2,<,7017,14",
+     "note": "packet window, direction to_server"
+    }
+   },
+   {
+    "feature": "flow_duration",
+    "op": ">",
+    "threshold": 47831064.0,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "CICFlowMeter definition, running statistic"
+    }
+   },
+   {
+    "feature": "flow_duration",
+    "op": "<=",
+    "threshold": 47953380.0,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "CICFlowMeter definition, running statistic"
+    }
+   }
+  ],
+  "suricata": "alert tcp any any <> any any (msg:\"RQ1 proposed Syn P4-0005\"; lua:P4-0005.lua; flow:to_server; flags:S+; tcp.hdr; byte_test:2,<,7017,14; metadata:rq1_rule P4-0005, rq1_class Syn, rq1_method proposed; sid:1000038; rev:1;)",
+  "meta": {
+   "leaf_node": 24,
+   "train_samples": 7,
+   "k": 5,
+   "max_depth": 5,
+   "scheme": "ovr"
+  },
+  "translation": {
+   "header_protocol": "tcp",
+   "protocol_source": "conditions",
+   "protocol_share": null,
+   "extra_conditions": [],
+   "direction": "to_server",
+   "lua_file": "P4-0005.lua",
+   "sid": 1000038,
+   "deployable": true
+  }
+ },
+ {
+  "rule_id": "P4-0006",
+  "method": "proposed",
+  "target_class": "Syn",
+  "conditions": [
+   {
+    "feature": "ack_flag_count",
+    "op": ">",
+    "threshold": 0.5,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "flags:S+",
+     "note": "bit S set in the packet"
+    }
+   },
+   {
+    "feature": "init_win_bytes_forward",
+    "op": "<=",
+    "threshold": 7016.0,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "tcp.hdr; byte_test:2,<,7017,14",
+     "note": "packet window, direction to_server"
+    }
+   },
+   {
+    "feature": "flow_duration",
+    "op": ">",
+    "threshold": 47953380.0,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "CICFlowMeter definition, running statistic"
+    }
+   }
+  ],
+  "suricata": "alert tcp any any <> any any (msg:\"RQ1 proposed Syn P4-0006\"; lua:P4-0006.lua; flow:to_server; flags:S+; tcp.hdr; byte_test:2,<,7017,14; metadata:rq1_rule P4-0006, rq1_class Syn, rq1_method proposed; sid:1000039; rev:1;)",
+  "meta": {
+   "leaf_node": 25,
+   "train_samples": 8373,
+   "k": 5,
+   "max_depth": 5,
+   "scheme": "ovr"
+  },
+  "translation": {
+   "header_protocol": "tcp",
+   "protocol_source": "conditions",
+   "protocol_share": null,
+   "extra_conditions": [],
+   "direction": "to_server",
+   "lua_file": "P4-0006.lua",
+   "sid": 1000039,
+   "deployable": true
+  }
+ },
+ {
+  "rule_id": "P5-0001",
+  "method": "proposed",
+  "target_class": "TFTP",
+  "conditions": [
+   {
+    "feature": "min_packet_length",
+    "op": "<=",
+    "threshold": 515.5,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:10<>24",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "max_packet_length",
+    "op": "<=",
+    "threshold": 23.0,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:10<>24",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "fwd_packet_length_max",
+    "op": ">",
+    "threshold": 10.0,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:10<>24",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "total_length_of_fwd_packets",
+    "op": "<=",
+    "threshold": 52.0,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "CICFlowMeter definition, running statistic"
+    }
+   }
+  ],
+  "suricata": "alert udp any any <> any any (msg:\"RQ1 proposed TFTP P5-0001\"; lua:P5-0001.lua; flow:to_server; dsize:10<>24; metadata:rq1_rule P5-0001, rq1_class TFTP, rq1_method proposed; sid:1000040; rev:1;)",
+  "meta": {
+   "leaf_node": 8,
+   "train_samples": 11,
+   "k": 5,
+   "max_depth": 5,
+   "scheme": "ovr"
+  },
+  "translation": {
+   "header_protocol": "udp",
+   "protocol_source": "data",
+   "protocol_share": 1.0,
+   "extra_conditions": [
+    {
+     "feature": "protocol",
+     "op": ">",
+     "threshold": 16.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert udp",
+      "note": "udp header from the training flows"
+     }
+    },
+    {
+     "feature": "protocol",
+     "op": "<=",
+     "threshold": 17.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert udp",
+      "note": "udp header from the training flows"
+     }
+    }
+   ],
+   "direction": "to_server",
+   "lua_file": "P5-0001.lua",
+   "sid": 1000040,
+   "deployable": true
+  }
+ },
+ {
+  "rule_id": "P5-0002",
+  "method": "proposed",
+  "target_class": "TFTP",
+  "conditions": [
+   {
+    "feature": "min_packet_length",
+    "op": "<=",
+    "threshold": 242.5,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "empty dsize interval (flow with packets of different sizes)"
+    }
+   },
+   {
+    "feature": "max_packet_length",
+    "op": ">",
+    "threshold": 515.5,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "empty dsize interval (flow with packets of different sizes)"
+    }
+   },
+   {
+    "feature": "max_packet_length",
+    "op": "<=",
+    "threshold": 516.5,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "empty dsize interval (flow with packets of different sizes)"
+    }
+   }
+  ],
+  "suricata": "alert udp any any <> any any (msg:\"RQ1 proposed TFTP P5-0002\"; lua:P5-0002.lua; metadata:rq1_rule P5-0002, rq1_class TFTP, rq1_method proposed; sid:1000041; rev:1;)",
+  "meta": {
+   "leaf_node": 15,
+   "train_samples": 7,
+   "k": 5,
+   "max_depth": 5,
+   "scheme": "ovr"
+  },
+  "translation": {
+   "header_protocol": "udp",
+   "protocol_source": "data",
+   "protocol_share": 1.0,
+   "extra_conditions": [
+    {
+     "feature": "protocol",
+     "op": ">",
+     "threshold": 16.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert udp",
+      "note": "udp header from the training flows"
+     }
+    },
+    {
+     "feature": "protocol",
+     "op": "<=",
+     "threshold": 17.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert udp",
+      "note": "udp header from the training flows"
+     }
+    }
+   ],
+   "direction": null,
+   "lua_file": "P5-0002.lua",
+   "sid": 1000041,
+   "deployable": true
+  }
+ },
+ {
+  "rule_id": "P5-0003",
+  "method": "proposed",
+  "target_class": "TFTP",
+  "conditions": [
+   {
+    "feature": "min_packet_length",
+    "op": ">",
+    "threshold": 515.5,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:516",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "fwd_packet_length_max",
+    "op": "<=",
+    "threshold": 516.5,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:516",
+     "note": "merged payload size interval per packet"
+    }
+   }
+  ],
+  "suricata": "alert udp any any -> any any (msg:\"RQ1 proposed TFTP P5-0003\"; flow:to_server; dsize:516; metadata:rq1_rule P5-0003, rq1_class TFTP, rq1_method proposed; sid:1000042; rev:1;)",
+  "meta": {
+   "leaf_node": 23,
+   "train_samples": 96621,
+   "k": 5,
+   "max_depth": 5,
+   "scheme": "ovr"
+  },
+  "translation": {
+   "header_protocol": "udp",
+   "protocol_source": "data",
+   "protocol_share": 1.0,
+   "extra_conditions": [
+    {
+     "feature": "protocol",
+     "op": ">",
+     "threshold": 16.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert udp",
+      "note": "udp header from the training flows"
+     }
+    },
+    {
+     "feature": "protocol",
+     "op": "<=",
+     "threshold": 17.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert udp",
+      "note": "udp header from the training flows"
+     }
+    }
+   ],
+   "direction": "to_server",
+   "lua_file": null,
+   "sid": 1000042,
+   "deployable": true
+  }
+ },
+ {
+  "rule_id": "P6-0001",
+  "method": "proposed",
+  "target_class": "UDP-lag",
+  "conditions": [
+   {
+    "feature": "idle_max",
+    "op": "<=",
+    "threshold": 2500007.0,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "CICFlowMeter definition, running statistic"
+    }
+   },
+   {
+    "feature": "fwd_packet_length_mean",
+    "op": "<=",
+    "threshold": 345.5,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:<346",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "ack_flag_count",
+    "op": ">",
+    "threshold": 0.5,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "flags:S+",
+     "note": "bit S set in the packet"
+    }
+   },
+   {
+    "feature": "init_win_bytes_forward",
+    "op": "<=",
+    "threshold": 3078.0,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "tcp.hdr; byte_test:2,<,3079,14",
+     "note": "packet window, direction to_server"
+    }
+   }
+  ],
+  "suricata": "alert tcp any any <> any any (msg:\"RQ1 proposed UDP-lag P6-0001\"; lua:P6-0001.lua; flow:to_server; dsize:<346; flags:S+; tcp.hdr; byte_test:2,<,3079,14; metadata:rq1_rule P6-0001, rq1_class UDP-lag, rq1_method proposed; sid:1000043; rev:1;)",
+  "meta": {
+   "leaf_node": 8,
+   "train_samples": 26,
+   "k": 5,
+   "max_depth": 5,
+   "scheme": "ovr"
+  },
+  "translation": {
+   "header_protocol": "tcp",
+   "protocol_source": "conditions",
+   "protocol_share": null,
+   "extra_conditions": [],
+   "direction": "to_server",
+   "lua_file": "P6-0001.lua",
+   "sid": 1000043,
+   "deployable": true
+  }
+ },
+ {
+  "rule_id": "P6-0002",
+  "method": "proposed",
+  "target_class": "UDP-lag",
+  "conditions": [
+   {
+    "feature": "idle_max",
+    "op": "<=",
+    "threshold": 2500007.0,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "CICFlowMeter definition, running statistic"
+    }
+   },
+   {
+    "feature": "fwd_packet_length_mean",
+    "op": ">",
+    "threshold": 349.47222900390625,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:349<>375",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "fwd_packet_length_mean",
+    "op": "<=",
+    "threshold": 374.75,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:349<>375",
+     "note": "merged payload size interval per packet"
+    }
+   }
+  ],
+  "suricata": "alert udp any any <> any any (msg:\"RQ1 proposed UDP-lag P6-0002\"; lua:P6-0002.lua; flow:to_server; dsize:349<>375; metadata:rq1_rule P6-0002, rq1_class UDP-lag, rq1_method proposed; sid:1000044; rev:1;)",
+  "meta": {
+   "leaf_node": 13,
+   "train_samples": 71328,
+   "k": 5,
+   "max_depth": 5,
+   "scheme": "ovr"
+  },
+  "translation": {
+   "header_protocol": "udp",
+   "protocol_source": "data",
+   "protocol_share": 0.9994,
+   "extra_conditions": [
+    {
+     "feature": "protocol",
+     "op": ">",
+     "threshold": 16.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert udp",
+      "note": "udp header from the training flows"
+     }
+    },
+    {
+     "feature": "protocol",
+     "op": "<=",
+     "threshold": 17.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert udp",
+      "note": "udp header from the training flows"
+     }
+    }
+   ],
+   "direction": "to_server",
+   "lua_file": "P6-0002.lua",
+   "sid": 1000044,
+   "deployable": true
+  }
+ },
+ {
+  "rule_id": "P6-0003",
+  "method": "proposed",
+  "target_class": "UDP-lag",
+  "conditions": [
+   {
+    "feature": "idle_max",
+    "op": "<=",
+    "threshold": 2500007.0,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "CICFlowMeter definition, running statistic"
+    }
+   },
+   {
+    "feature": "fwd_packet_length_mean",
+    "op": ">",
+    "threshold": 374.75,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:374<>402",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "fwd_packet_length_mean",
+    "op": "<=",
+    "threshold": 401.5,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:374<>402",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "inbound",
+    "op": "<=",
+    "threshold": 0.5,
+    "translated": true,
+    "translation": {
+     "kind": "header",
+     "keyword": "-> !$HOME_NET",
+     "note": "column meaning checked against the PCAP files"
+    }
+   }
+  ],
+  "suricata": "alert ip any any <> !$HOME_NET any (msg:\"RQ1 proposed UDP-lag P6-0003\"; lua:P6-0003.lua; flow:to_server; dsize:374<>402; metadata:rq1_rule P6-0003, rq1_class UDP-lag, rq1_method proposed; sid:1000045; rev:1;)",
+  "meta": {
+   "leaf_node": 15,
+   "train_samples": 101,
+   "k": 5,
+   "max_depth": 5,
+   "scheme": "ovr"
+  },
+  "translation": {
+   "header_protocol": "ip",
+   "protocol_source": "default",
+   "protocol_share": 0.6139,
+   "extra_conditions": [],
+   "direction": "to_server",
+   "lua_file": "P6-0003.lua",
+   "sid": 1000045,
+   "deployable": true
+  }
+ },
+ {
+  "rule_id": "P6-0004",
+  "method": "proposed",
+  "target_class": "UDP-lag",
+  "conditions": [
+   {
+    "feature": "idle_max",
+    "op": "<=",
+    "threshold": 2500007.0,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "CICFlowMeter definition, running statistic"
+    }
+   },
+   {
+    "feature": "fwd_packet_length_mean",
+    "op": ">",
+    "threshold": 518.0,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:>518",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "inbound",
+    "op": "<=",
+    "threshold": 0.5,
+    "translated": true,
+    "translation": {
+     "kind": "header",
+     "keyword": "-> !$HOME_NET",
+     "note": "column meaning checked against the PCAP files"
+    }
+   },
+   {
+    "feature": "init_win_bytes_forward",
+    "op": "<=",
+    "threshold": 125.0,
+    "translated": true,
+    "translation": {
+     "kind": "implied",
+     "keyword": "",
+     "note": "value -1 on UDP flows satisfies the condition"
+    }
+   }
+  ],
+  "suricata": "alert udp any any <> !$HOME_NET any (msg:\"RQ1 proposed UDP-lag P6-0004\"; lua:P6-0004.lua; flow:to_server; dsize:>518; metadata:rq1_rule P6-0004, rq1_class UDP-lag, rq1_method proposed; sid:1000046; rev:1;)",
+  "meta": {
+   "leaf_node": 21,
+   "train_samples": 203,
+   "k": 5,
+   "max_depth": 5,
+   "scheme": "ovr"
+  },
+  "translation": {
+   "header_protocol": "udp",
+   "protocol_source": "data",
+   "protocol_share": 1.0,
+   "extra_conditions": [
+    {
+     "feature": "protocol",
+     "op": ">",
+     "threshold": 16.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert udp",
+      "note": "udp header from the training flows"
+     }
+    },
+    {
+     "feature": "protocol",
+     "op": "<=",
+     "threshold": 17.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert udp",
+      "note": "udp header from the training flows"
+     }
+    }
+   ],
+   "direction": "to_server",
+   "lua_file": "P6-0004.lua",
+   "sid": 1000046,
+   "deployable": true
+  }
+ },
+ {
+  "rule_id": "P6-0005",
+  "method": "proposed",
+  "target_class": "UDP-lag",
+  "conditions": [
+   {
+    "feature": "idle_max",
+    "op": "<=",
+    "threshold": 2500007.0,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "CICFlowMeter definition, running statistic"
+    }
+   },
+   {
+    "feature": "fwd_packet_length_mean",
+    "op": ">",
+    "threshold": 1431.5,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:1431<>1448",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "fwd_packet_length_mean",
+    "op": "<=",
+    "threshold": 1447.5,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:1431<>1448",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "inbound",
+    "op": ">",
+    "threshold": 0.5,
+    "translated": true,
+    "translation": {
+     "kind": "header",
+     "keyword": "-> $HOME_NET",
+     "note": "column meaning checked against the PCAP files"
+    }
+   }
+  ],
+  "suricata": "alert udp any any <> $HOME_NET any (msg:\"RQ1 proposed UDP-lag P6-0005\"; lua:P6-0005.lua; flow:to_server; dsize:1431<>1448; metadata:rq1_rule P6-0005, rq1_class UDP-lag, rq1_method proposed; sid:1000047; rev:1;)",
+  "meta": {
+   "leaf_node": 28,
+   "train_samples": 3027,
+   "k": 5,
+   "max_depth": 5,
+   "scheme": "ovr"
+  },
+  "translation": {
+   "header_protocol": "udp",
+   "protocol_source": "data",
+   "protocol_share": 1.0,
+   "extra_conditions": [
+    {
+     "feature": "protocol",
+     "op": ">",
+     "threshold": 16.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert udp",
+      "note": "udp header from the training flows"
+     }
+    },
+    {
+     "feature": "protocol",
+     "op": "<=",
+     "threshold": 17.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert udp",
+      "note": "udp header from the training flows"
+     }
+    }
+   ],
+   "direction": "to_server",
+   "lua_file": "P6-0005.lua",
+   "sid": 1000047,
+   "deployable": true
+  }
+ },
+ {
+  "rule_id": "P6-0006",
+  "method": "proposed",
+  "target_class": "UDP-lag",
+  "conditions": [
+   {
+    "feature": "idle_max",
+    "op": ">",
+    "threshold": 2500007.0,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "CICFlowMeter definition, running statistic"
+    }
+   },
+   {
+    "feature": "inbound",
+    "op": "<=",
+    "threshold": 0.5,
+    "translated": true,
+    "translation": {
+     "kind": "header",
+     "keyword": "-> !$HOME_NET",
+     "note": "column meaning checked against the PCAP files"
+    }
+   },
+   {
+    "feature": "fwd_packet_length_mean",
+    "op": ">",
+    "threshold": 517.9347839355469,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:>517",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "init_win_bytes_forward",
+    "op": "<=",
+    "threshold": 125.0,
+    "translated": true,
+    "translation": {
+     "kind": "implied",
+     "keyword": "",
+     "note": "value -1 on UDP flows satisfies the condition"
+    }
+   }
+  ],
+  "suricata": "alert udp any any <> !$HOME_NET any (msg:\"RQ1 proposed UDP-lag P6-0006\"; lua:P6-0006.lua; flow:to_server; dsize:>517; metadata:rq1_rule P6-0006, rq1_class UDP-lag, rq1_method proposed; sid:1000048; rev:1;)",
+  "meta": {
+   "leaf_node": 34,
+   "train_samples": 1,
+   "k": 5,
+   "max_depth": 5,
+   "scheme": "ovr"
+  },
+  "translation": {
+   "header_protocol": "udp",
+   "protocol_source": "data",
+   "protocol_share": 1.0,
+   "extra_conditions": [
+    {
+     "feature": "protocol",
+     "op": ">",
+     "threshold": 16.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert udp",
+      "note": "udp header from the training flows"
+     }
+    },
+    {
+     "feature": "protocol",
+     "op": "<=",
+     "threshold": 17.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert udp",
+      "note": "udp header from the training flows"
+     }
+    }
+   ],
+   "direction": "to_server",
+   "lua_file": "P6-0006.lua",
+   "sid": 1000048,
+   "deployable": true
+  }
+ },
+ {
+  "rule_id": "P6-0007",
+  "method": "proposed",
+  "target_class": "UDP-lag",
+  "conditions": [
+   {
+    "feature": "idle_max",
+    "op": ">",
+    "threshold": 2500007.0,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "CICFlowMeter definition, running statistic"
+    }
+   },
+   {
+    "feature": "idle_max",
+    "op": "<=",
+    "threshold": 46539182.0,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "CICFlowMeter definition, running statistic"
+    }
+   },
+   {
+    "feature": "inbound",
+    "op": ">",
+    "threshold": 0.5,
+    "translated": true,
+    "translation": {
+     "kind": "header",
+     "keyword": "-> $HOME_NET",
+     "note": "column meaning checked against the PCAP files"
+    }
+   },
+   {
+    "feature": "init_win_bytes_forward",
+    "op": "<=",
+    "threshold": 7016.0,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "tcp.hdr; byte_test:2,<,7017,14",
+     "note": "packet window, direction to_server"
+    }
+   },
+   {
+    "feature": "fwd_packet_length_mean",
+    "op": "<=",
+    "threshold": 10.549999952316284,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:<11",
+     "note": "merged payload size interval per packet"
+    }
+   }
+  ],
+  "suricata": "alert tcp any any <> $HOME_NET any (msg:\"RQ1 proposed UDP-lag P6-0007\"; lua:P6-0007.lua; flow:to_server; dsize:<11; tcp.hdr; byte_test:2,<,7017,14; metadata:rq1_rule P6-0007, rq1_class UDP-lag, rq1_method proposed; sid:1000049; rev:1;)",
+  "meta": {
+   "leaf_node": 39,
+   "train_samples": 25291,
+   "k": 5,
+   "max_depth": 5,
+   "scheme": "ovr"
+  },
+  "translation": {
+   "header_protocol": "tcp",
+   "protocol_source": "data",
+   "protocol_share": 0.9998,
+   "extra_conditions": [
+    {
+     "feature": "protocol",
+     "op": ">",
+     "threshold": 5.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert tcp",
+      "note": "tcp header from the training flows"
+     }
+    },
+    {
+     "feature": "protocol",
+     "op": "<=",
+     "threshold": 6.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert tcp",
+      "note": "tcp header from the training flows"
+     }
+    }
+   ],
+   "direction": "to_server",
+   "lua_file": "P6-0007.lua",
+   "sid": 1000049,
+   "deployable": true
+  }
+ },
+ {
+  "rule_id": "P6-0008",
+  "method": "proposed",
+  "target_class": "UDP-lag",
+  "conditions": [
+   {
+    "feature": "idle_max",
+    "op": ">",
+    "threshold": 2500007.0,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "CICFlowMeter definition, running statistic"
+    }
+   },
+   {
+    "feature": "idle_max",
+    "op": "<=",
+    "threshold": 46539182.0,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "CICFlowMeter definition, running statistic"
+    }
+   },
+   {
+    "feature": "inbound",
+    "op": ">",
+    "threshold": 0.5,
+    "translated": true,
+    "translation": {
+     "kind": "header",
+     "keyword": "-> $HOME_NET",
+     "note": "column meaning checked against the PCAP files"
+    }
+   },
+   {
+    "feature": "init_win_bytes_forward",
+    "op": ">",
+    "threshold": 7016.0,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "tcp.hdr; byte_test:2,>,7016,14",
+     "note": "packet window, direction to_server"
+    }
+   },
+   {
+    "feature": "fwd_packet_length_mean",
+    "op": ">",
+    "threshold": 46.37143015861511,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:>46",
+     "note": "merged payload size interval per packet"
+    }
+   }
+  ],
+  "suricata": "alert tcp any any <> $HOME_NET any (msg:\"RQ1 proposed UDP-lag P6-0008\"; lua:P6-0008.lua; flow:to_server; dsize:>46; tcp.hdr; byte_test:2,>,7016,14; metadata:rq1_rule P6-0008, rq1_class UDP-lag, rq1_method proposed; sid:1000050; rev:1;)",
+  "meta": {
+   "leaf_node": 43,
+   "train_samples": 2,
+   "k": 5,
+   "max_depth": 5,
+   "scheme": "ovr"
+  },
+  "translation": {
+   "header_protocol": "tcp",
+   "protocol_source": "conditions",
+   "protocol_share": null,
+   "extra_conditions": [],
+   "direction": "to_server",
+   "lua_file": "P6-0008.lua",
+   "sid": 1000050,
+   "deployable": true
+  }
+ },
+ {
+  "rule_id": "P6-0009",
+  "method": "proposed",
+  "target_class": "UDP-lag",
+  "conditions": [
+   {
+    "feature": "idle_max",
+    "op": ">",
+    "threshold": 51606002.0,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "CICFlowMeter definition, running statistic"
+    }
+   },
+   {
+    "feature": "idle_max",
+    "op": "<=",
+    "threshold": 51627292.0,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "CICFlowMeter definition, running statistic"
+    }
+   },
+   {
+    "feature": "inbound",
+    "op": ">",
+    "threshold": 0.5,
+    "translated": true,
+    "translation": {
+     "kind": "header",
+     "keyword": "-> $HOME_NET",
+     "note": "column meaning checked against the PCAP files"
+    }
+   }
+  ],
+  "suricata": "alert tcp any any <> $HOME_NET any (msg:\"RQ1 proposed UDP-lag P6-0009\"; lua:P6-0009.lua; metadata:rq1_rule P6-0009, rq1_class UDP-lag, rq1_method proposed; sid:1000051; rev:1;)",
+  "meta": {
+   "leaf_node": 47,
+   "train_samples": 1,
+   "k": 5,
+   "max_depth": 5,
+   "scheme": "ovr"
+  },
+  "translation": {
+   "header_protocol": "tcp",
+   "protocol_source": "data",
+   "protocol_share": 1.0,
+   "extra_conditions": [
+    {
+     "feature": "protocol",
+     "op": ">",
+     "threshold": 5.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert tcp",
+      "note": "tcp header from the training flows"
+     }
+    },
+    {
+     "feature": "protocol",
+     "op": "<=",
+     "threshold": 6.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert tcp",
+      "note": "tcp header from the training flows"
+     }
+    }
+   ],
+   "direction": null,
+   "lua_file": "P6-0009.lua",
+   "sid": 1000051,
+   "deployable": true
+  }
+ },
+ {
+  "rule_id": "P7-0001",
+  "method": "proposed",
+  "target_class": "UDP_Reflection_Attack",
+  "conditions": [
+   {
+    "feature": "min_packet_length",
+    "op": ">",
+    "threshold": 234.5,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:234<>268",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "min_packet_length",
+    "op": "<=",
+    "threshold": 267.5,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:234<>268",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "flow_bytes/s",
+    "op": "<=",
+    "threshold": 19704.8095703125,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "CICFlowMeter definition, running statistic"
+    }
+   }
+  ],
+  "suricata": "alert udp any any <> any any (msg:\"RQ1 proposed UDP_Reflection_Attack P7-0001\"; lua:P7-0001.lua; dsize:234<>268; metadata:rq1_rule P7-0001, rq1_class UDP_Reflection_Attack, rq1_method proposed; sid:1000052; rev:1;)",
+  "meta": {
+   "leaf_node": 6,
+   "train_samples": 5,
+   "k": 5,
+   "max_depth": 5,
+   "scheme": "ovr"
+  },
+  "translation": {
+   "header_protocol": "udp",
+   "protocol_source": "data",
+   "protocol_share": 1.0,
+   "extra_conditions": [
+    {
+     "feature": "protocol",
+     "op": ">",
+     "threshold": 16.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert udp",
+      "note": "udp header from the training flows"
+     }
+    },
+    {
+     "feature": "protocol",
+     "op": "<=",
+     "threshold": 17.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert udp",
+      "note": "udp header from the training flows"
+     }
+    }
+   ],
+   "direction": null,
+   "lua_file": "P7-0001.lua",
+   "sid": 1000052,
+   "deployable": true
+  }
+ },
+ {
+  "rule_id": "P7-0002",
+  "method": "proposed",
+  "target_class": "UDP_Reflection_Attack",
+  "conditions": [
+   {
+    "feature": "min_packet_length",
+    "op": ">",
+    "threshold": 267.5,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:267<>283",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "min_packet_length",
+    "op": "<=",
+    "threshold": 282.5,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:267<>283",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "flow_bytes/s",
+    "op": ">",
+    "threshold": 2051.8501987457275,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "CICFlowMeter definition, running statistic"
+    }
+   }
+  ],
+  "suricata": "alert udp any any <> any any (msg:\"RQ1 proposed UDP_Reflection_Attack P7-0002\"; lua:P7-0002.lua; dsize:267<>283; metadata:rq1_rule P7-0002, rq1_class UDP_Reflection_Attack, rq1_method proposed; sid:1000053; rev:1;)",
+  "meta": {
+   "leaf_node": 13,
+   "train_samples": 1339,
+   "k": 5,
+   "max_depth": 5,
+   "scheme": "ovr"
+  },
+  "translation": {
+   "header_protocol": "udp",
+   "protocol_source": "data",
+   "protocol_share": 0.9985,
+   "extra_conditions": [
+    {
+     "feature": "protocol",
+     "op": ">",
+     "threshold": 16.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert udp",
+      "note": "udp header from the training flows"
+     }
+    },
+    {
+     "feature": "protocol",
+     "op": "<=",
+     "threshold": 17.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert udp",
+      "note": "udp header from the training flows"
+     }
+    }
+   ],
+   "direction": null,
+   "lua_file": "P7-0002.lua",
+   "sid": 1000053,
+   "deployable": true
+  }
+ },
+ {
+  "rule_id": "P7-0003",
+  "method": "proposed",
+  "target_class": "UDP_Reflection_Attack",
+  "conditions": [
+   {
+    "feature": "min_packet_length",
+    "op": ">",
+    "threshold": 300.5,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:300<>402",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "min_packet_length",
+    "op": "<=",
+    "threshold": 1305.5,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:300<>402",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "packet_length_mean",
+    "op": "<=",
+    "threshold": 401.7142791748047,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:300<>402",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "flow_bytes/s",
+    "op": "<=",
+    "threshold": 31048077.0,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "CICFlowMeter definition, running statistic"
+    }
+   }
+  ],
+  "suricata": "alert udp any any <> any any (msg:\"RQ1 proposed UDP_Reflection_Attack P7-0003\"; lua:P7-0003.lua; dsize:300<>402; metadata:rq1_rule P7-0003, rq1_class UDP_Reflection_Attack, rq1_method proposed; sid:1000054; rev:1;)",
+  "meta": {
+   "leaf_node": 20,
+   "train_samples": 112879,
+   "k": 5,
+   "max_depth": 5,
+   "scheme": "ovr"
+  },
+  "translation": {
+   "header_protocol": "udp",
+   "protocol_source": "data",
+   "protocol_share": 1.0,
+   "extra_conditions": [
+    {
+     "feature": "protocol",
+     "op": ">",
+     "threshold": 16.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert udp",
+      "note": "udp header from the training flows"
+     }
+    },
+    {
+     "feature": "protocol",
+     "op": "<=",
+     "threshold": 17.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert udp",
+      "note": "udp header from the training flows"
+     }
+    }
+   ],
+   "direction": null,
+   "lua_file": "P7-0003.lua",
+   "sid": 1000054,
+   "deployable": true
+  }
+ },
+ {
+  "rule_id": "P7-0004",
+  "method": "proposed",
+  "target_class": "UDP_Reflection_Attack",
+  "conditions": [
+   {
+    "feature": "min_packet_length",
+    "op": ">",
+    "threshold": 300.5,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:300<>402",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "min_packet_length",
+    "op": "<=",
+    "threshold": 1305.5,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:300<>402",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "packet_length_mean",
+    "op": "<=",
+    "threshold": 401.7142791748047,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:300<>402",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "flow_bytes/s",
+    "op": ">",
+    "threshold": 31048077.0,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "CICFlowMeter definition, running statistic"
+    }
+   },
+   {
+    "feature": "flow_bytes/s",
+    "op": "<=",
+    "threshold": 747000000.0,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "CICFlowMeter definition, running statistic"
+    }
+   }
+  ],
+  "suricata": "alert udp any any <> any any (msg:\"RQ1 proposed UDP_Reflection_Attack P7-0004\"; lua:P7-0004.lua; dsize:300<>402; metadata:rq1_rule P7-0004, rq1_class UDP_Reflection_Attack, rq1_method proposed; sid:1000055; rev:1;)",
+  "meta": {
+   "leaf_node": 21,
+   "train_samples": 15941,
+   "k": 5,
+   "max_depth": 5,
+   "scheme": "ovr"
+  },
+  "translation": {
+   "header_protocol": "udp",
+   "protocol_source": "data",
+   "protocol_share": 1.0,
+   "extra_conditions": [
+    {
+     "feature": "protocol",
+     "op": ">",
+     "threshold": 16.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert udp",
+      "note": "udp header from the training flows"
+     }
+    },
+    {
+     "feature": "protocol",
+     "op": "<=",
+     "threshold": 17.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert udp",
+      "note": "udp header from the training flows"
+     }
+    }
+   ],
+   "direction": null,
+   "lua_file": "P7-0004.lua",
+   "sid": 1000055,
+   "deployable": true
+  }
+ },
+ {
+  "rule_id": "P7-0005",
+  "method": "proposed",
+  "target_class": "UDP_Reflection_Attack",
+  "conditions": [
+   {
+    "feature": "min_packet_length",
+    "op": ">",
+    "threshold": 300.5,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:300<>402",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "min_packet_length",
+    "op": "<=",
+    "threshold": 1305.5,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:300<>402",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "packet_length_mean",
+    "op": "<=",
+    "threshold": 401.7142791748047,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:300<>402",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "flow_bytes/s",
+    "op": ">",
+    "threshold": 747000000.0,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "CICFlowMeter definition, running statistic"
+    }
+   },
+   {
+    "feature": "flow_bytes/s",
+    "op": "<=",
+    "threshold": 785000000.0,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "CICFlowMeter definition, running statistic"
+    }
+   }
+  ],
+  "suricata": "alert udp any any <> any any (msg:\"RQ1 proposed UDP_Reflection_Attack P7-0005\"; lua:P7-0005.lua; dsize:300<>402; metadata:rq1_rule P7-0005, rq1_class UDP_Reflection_Attack, rq1_method proposed; sid:1000056; rev:1;)",
+  "meta": {
+   "leaf_node": 23,
+   "train_samples": 48778,
+   "k": 5,
+   "max_depth": 5,
+   "scheme": "ovr"
+  },
+  "translation": {
+   "header_protocol": "udp",
+   "protocol_source": "data",
+   "protocol_share": 1.0,
+   "extra_conditions": [
+    {
+     "feature": "protocol",
+     "op": ">",
+     "threshold": 16.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert udp",
+      "note": "udp header from the training flows"
+     }
+    },
+    {
+     "feature": "protocol",
+     "op": "<=",
+     "threshold": 17.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert udp",
+      "note": "udp header from the training flows"
+     }
+    }
+   ],
+   "direction": null,
+   "lua_file": "P7-0005.lua",
+   "sid": 1000056,
+   "deployable": true
+  }
+ },
+ {
+  "rule_id": "P7-0006",
+  "method": "proposed",
+  "target_class": "UDP_Reflection_Attack",
+  "conditions": [
+   {
+    "feature": "min_packet_length",
+    "op": ">",
+    "threshold": 300.5,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:300<>402",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "min_packet_length",
+    "op": "<=",
+    "threshold": 1305.5,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:300<>402",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "packet_length_mean",
+    "op": "<=",
+    "threshold": 401.7142791748047,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:300<>402",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "flow_bytes/s",
+    "op": ">",
+    "threshold": 785000000.0,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "CICFlowMeter definition, running statistic"
+    }
+   }
+  ],
+  "suricata": "alert udp any any <> any any (msg:\"RQ1 proposed UDP_Reflection_Attack P7-0006\"; lua:P7-0006.lua; dsize:300<>402; metadata:rq1_rule P7-0006, rq1_class UDP_Reflection_Attack, rq1_method proposed; sid:1000057; rev:1;)",
+  "meta": {
+   "leaf_node": 24,
+   "train_samples": 24062,
+   "k": 5,
+   "max_depth": 5,
+   "scheme": "ovr"
+  },
+  "translation": {
+   "header_protocol": "udp",
+   "protocol_source": "data",
+   "protocol_share": 1.0,
+   "extra_conditions": [
+    {
+     "feature": "protocol",
+     "op": ">",
+     "threshold": 16.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert udp",
+      "note": "udp header from the training flows"
+     }
+    },
+    {
+     "feature": "protocol",
+     "op": "<=",
+     "threshold": 17.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert udp",
+      "note": "udp header from the training flows"
+     }
+    }
+   ],
+   "direction": null,
+   "lua_file": "P7-0006.lua",
+   "sid": 1000057,
+   "deployable": true
+  }
+ },
+ {
+  "rule_id": "P7-0007",
+  "method": "proposed",
+  "target_class": "UDP_Reflection_Attack",
+  "conditions": [
+   {
+    "feature": "min_packet_length",
+    "op": ">",
+    "threshold": 1221.5,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:1221<>1279",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "min_packet_length",
+    "op": "<=",
+    "threshold": 1278.5,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:1221<>1279",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "packet_length_mean",
+    "op": ">",
+    "threshold": 401.7142791748047,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:1221<>1279",
+     "note": "merged payload size interval per packet"
+    }
+   }
+  ],
+  "suricata": "alert udp any any -> any any (msg:\"RQ1 proposed UDP_Reflection_Attack P7-0007\"; dsize:1221<>1279; metadata:rq1_rule P7-0007, rq1_class UDP_Reflection_Attack, rq1_method proposed; sid:1000058; rev:1;)",
+  "meta": {
+   "leaf_node": 30,
+   "train_samples": 3606,
+   "k": 5,
+   "max_depth": 5,
+   "scheme": "ovr"
+  },
+  "translation": {
+   "header_protocol": "udp",
+   "protocol_source": "data",
+   "protocol_share": 1.0,
+   "extra_conditions": [
+    {
+     "feature": "protocol",
+     "op": ">",
+     "threshold": 16.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert udp",
+      "note": "udp header from the training flows"
+     }
+    },
+    {
+     "feature": "protocol",
+     "op": "<=",
+     "threshold": 17.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert udp",
+      "note": "udp header from the training flows"
+     }
+    }
+   ],
+   "direction": null,
+   "lua_file": null,
+   "sid": 1000058,
+   "deployable": true
+  }
+ },
+ {
+  "rule_id": "P7-0008",
+  "method": "proposed",
+  "target_class": "UDP_Reflection_Attack",
+  "conditions": [
+   {
+    "feature": "min_packet_length",
+    "op": ">",
+    "threshold": 1305.5,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:1305<>1340",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "min_packet_length",
+    "op": "<=",
+    "threshold": 1339.5,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:1305<>1340",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "average_packet_size",
+    "op": "<=",
+    "threshold": 2001.75,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "CICFlowMeter definition, running statistic"
+    }
+   }
+  ],
+  "suricata": "alert udp any any <> any any (msg:\"RQ1 proposed UDP_Reflection_Attack P7-0008\"; lua:P7-0008.lua; dsize:1305<>1340; metadata:rq1_rule P7-0008, rq1_class UDP_Reflection_Attack, rq1_method proposed; sid:1000059; rev:1;)",
+  "meta": {
+   "leaf_node": 34,
+   "train_samples": 2436,
+   "k": 5,
+   "max_depth": 5,
+   "scheme": "ovr"
+  },
+  "translation": {
+   "header_protocol": "udp",
+   "protocol_source": "data",
+   "protocol_share": 1.0,
+   "extra_conditions": [
+    {
+     "feature": "protocol",
+     "op": ">",
+     "threshold": 16.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert udp",
+      "note": "udp header from the training flows"
+     }
+    },
+    {
+     "feature": "protocol",
+     "op": "<=",
+     "threshold": 17.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert udp",
+      "note": "udp header from the training flows"
+     }
+    }
+   ],
+   "direction": null,
+   "lua_file": "P7-0008.lua",
+   "sid": 1000059,
+   "deployable": true
+  }
+ },
+ {
+  "rule_id": "P7-0009",
+  "method": "proposed",
+  "target_class": "UDP_Reflection_Attack",
+  "conditions": [
+   {
+    "feature": "min_packet_length",
+    "op": ">",
+    "threshold": 1305.5,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:1305<>1340",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "min_packet_length",
+    "op": "<=",
+    "threshold": 1339.5,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:1305<>1340",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "average_packet_size",
+    "op": ">",
+    "threshold": 2001.75,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "CICFlowMeter definition, running statistic"
+    }
+   },
+   {
+    "feature": "flow_bytes/s",
+    "op": "<=",
+    "threshold": 1112833376.0,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "CICFlowMeter definition, running statistic"
+    }
+   }
+  ],
+  "suricata": "alert udp any any <> any any (msg:\"RQ1 proposed UDP_Reflection_Attack P7-0009\"; lua:P7-0009.lua; dsize:1305<>1340; metadata:rq1_rule P7-0009, rq1_class UDP_Reflection_Attack, rq1_method proposed; sid:1000060; rev:1;)",
+  "meta": {
+   "leaf_node": 36,
+   "train_samples": 13,
+   "k": 5,
+   "max_depth": 5,
+   "scheme": "ovr"
+  },
+  "translation": {
+   "header_protocol": "udp",
+   "protocol_source": "data",
+   "protocol_share": 1.0,
+   "extra_conditions": [
+    {
+     "feature": "protocol",
+     "op": ">",
+     "threshold": 16.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert udp",
+      "note": "udp header from the training flows"
+     }
+    },
+    {
+     "feature": "protocol",
+     "op": "<=",
+     "threshold": 17.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert udp",
+      "note": "udp header from the training flows"
+     }
+    }
+   ],
+   "direction": null,
+   "lua_file": "P7-0009.lua",
+   "sid": 1000060,
+   "deployable": true
+  }
+ },
+ {
+  "rule_id": "P7-0010",
+  "method": "proposed",
+  "target_class": "UDP_Reflection_Attack",
+  "conditions": [
+   {
+    "feature": "min_packet_length",
+    "op": ">",
+    "threshold": 1339.5,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:1339<>1419",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "min_packet_length",
+    "op": "<=",
+    "threshold": 1418.0,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:1339<>1419",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "flow_bytes/s",
+    "op": "<=",
+    "threshold": 3708.1746826171875,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "CICFlowMeter definition, running statistic"
+    }
+   },
+   {
+    "feature": "average_packet_size",
+    "op": "<=",
+    "threshold": 1709.2083129882812,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "CICFlowMeter definition, running statistic"
+    }
+   }
+  ],
+  "suricata": "alert udp any any <> any any (msg:\"RQ1 proposed UDP_Reflection_Attack P7-0010\"; lua:P7-0010.lua; dsize:1339<>1419; metadata:rq1_rule P7-0010, rq1_class UDP_Reflection_Attack, rq1_method proposed; sid:1000061; rev:1;)",
+  "meta": {
+   "leaf_node": 43,
+   "train_samples": 2,
+   "k": 5,
+   "max_depth": 5,
+   "scheme": "ovr"
+  },
+  "translation": {
+   "header_protocol": "udp",
+   "protocol_source": "data",
+   "protocol_share": 1.0,
+   "extra_conditions": [
+    {
+     "feature": "protocol",
+     "op": ">",
+     "threshold": 16.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert udp",
+      "note": "udp header from the training flows"
+     }
+    },
+    {
+     "feature": "protocol",
+     "op": "<=",
+     "threshold": 17.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert udp",
+      "note": "udp header from the training flows"
+     }
+    }
+   ],
+   "direction": null,
+   "lua_file": "P7-0010.lua",
+   "sid": 1000061,
+   "deployable": true
+  }
+ },
+ {
+  "rule_id": "P7-0011",
+  "method": "proposed",
+  "target_class": "UDP_Reflection_Attack",
+  "conditions": [
+   {
+    "feature": "min_packet_length",
+    "op": ">",
+    "threshold": 1418.0,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:>1418",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "flow_bytes/s",
+    "op": "<=",
+    "threshold": 3708.1746826171875,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "CICFlowMeter definition, running statistic"
+    }
+   },
+   {
+    "feature": "average_packet_size",
+    "op": "<=",
+    "threshold": 1709.2083129882812,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "CICFlowMeter definition, running statistic"
+    }
+   }
+  ],
+  "suricata": "alert udp any any <> any any (msg:\"RQ1 proposed UDP_Reflection_Attack P7-0011\"; lua:P7-0011.lua; dsize:>1418; metadata:rq1_rule P7-0011, rq1_class UDP_Reflection_Attack, rq1_method proposed; sid:1000062; rev:1;)",
+  "meta": {
+   "leaf_node": 44,
+   "train_samples": 4,
+   "k": 5,
+   "max_depth": 5,
+   "scheme": "ovr"
+  },
+  "translation": {
+   "header_protocol": "udp",
+   "protocol_source": "data",
+   "protocol_share": 1.0,
+   "extra_conditions": [
+    {
+     "feature": "protocol",
+     "op": ">",
+     "threshold": 16.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert udp",
+      "note": "udp header from the training flows"
+     }
+    },
+    {
+     "feature": "protocol",
+     "op": "<=",
+     "threshold": 17.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert udp",
+      "note": "udp header from the training flows"
+     }
+    }
+   ],
+   "direction": null,
+   "lua_file": "P7-0011.lua",
+   "sid": 1000062,
+   "deployable": true
+  }
+ },
+ {
+  "rule_id": "P7-0012",
+  "method": "proposed",
+  "target_class": "UDP_Reflection_Attack",
+  "conditions": [
+   {
+    "feature": "min_packet_length",
+    "op": ">",
+    "threshold": 1339.5,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:>1339",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "flow_bytes/s",
+    "op": ">",
+    "threshold": 3708.1746826171875,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "CICFlowMeter definition, running statistic"
+    }
+   },
+   {
+    "feature": "init_win_bytes_forward",
+    "op": "<=",
+    "threshold": 125.5,
+    "translated": true,
+    "translation": {
+     "kind": "implied",
+     "keyword": "",
+     "note": "value -1 on UDP flows satisfies the condition"
+    }
+   },
+   {
+    "feature": "average_packet_size",
+    "op": "<=",
+    "threshold": 2171.25,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "CICFlowMeter definition, running statistic"
+    }
+   }
+  ],
+  "suricata": "alert udp any any <> any any (msg:\"RQ1 proposed UDP_Reflection_Attack P7-0012\"; lua:P7-0012.lua; dsize:>1339; metadata:rq1_rule P7-0012, rq1_class UDP_Reflection_Attack, rq1_method proposed; sid:1000063; rev:1;)",
+  "meta": {
+   "leaf_node": 48,
+   "train_samples": 26560,
+   "k": 5,
+   "max_depth": 5,
+   "scheme": "ovr"
+  },
+  "translation": {
+   "header_protocol": "udp",
+   "protocol_source": "data",
+   "protocol_share": 1.0,
+   "extra_conditions": [
+    {
+     "feature": "protocol",
+     "op": ">",
+     "threshold": 16.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert udp",
+      "note": "udp header from the training flows"
+     }
+    },
+    {
+     "feature": "protocol",
+     "op": "<=",
+     "threshold": 17.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert udp",
+      "note": "udp header from the training flows"
+     }
+    }
+   ],
+   "direction": null,
+   "lua_file": "P7-0012.lua",
+   "sid": 1000063,
+   "deployable": true
+  }
+ },
+ {
+  "rule_id": "P7-0013",
+  "method": "proposed",
+  "target_class": "UDP_Reflection_Attack",
+  "conditions": [
+   {
+    "feature": "min_packet_length",
+    "op": ">",
+    "threshold": 1339.5,
+    "translated": true,
+    "translation": {
+     "kind": "native_approx",
+     "keyword": "dsize:>1339",
+     "note": "merged payload size interval per packet"
+    }
+   },
+   {
+    "feature": "flow_bytes/s",
+    "op": ">",
+    "threshold": 3708.1746826171875,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "CICFlowMeter definition, running statistic"
+    }
+   },
+   {
+    "feature": "init_win_bytes_forward",
+    "op": "<=",
+    "threshold": 125.5,
+    "translated": true,
+    "translation": {
+     "kind": "implied",
+     "keyword": "",
+     "note": "value -1 on UDP flows satisfies the condition"
+    }
+   },
+   {
+    "feature": "average_packet_size",
+    "op": ">",
+    "threshold": 2171.25,
+    "translated": true,
+    "translation": {
+     "kind": "lua",
+     "keyword": "lua",
+     "note": "CICFlowMeter definition, running statistic"
+    }
+   }
+  ],
+  "suricata": "alert udp any any <> any any (msg:\"RQ1 proposed UDP_Reflection_Attack P7-0013\"; lua:P7-0013.lua; dsize:>1339; metadata:rq1_rule P7-0013, rq1_class UDP_Reflection_Attack, rq1_method proposed; sid:1000064; rev:1;)",
+  "meta": {
+   "leaf_node": 49,
+   "train_samples": 253572,
+   "k": 5,
+   "max_depth": 5,
+   "scheme": "ovr"
+  },
+  "translation": {
+   "header_protocol": "udp",
+   "protocol_source": "data",
+   "protocol_share": 1.0,
+   "extra_conditions": [
+    {
+     "feature": "protocol",
+     "op": ">",
+     "threshold": 16.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert udp",
+      "note": "udp header from the training flows"
+     }
+    },
+    {
+     "feature": "protocol",
+     "op": "<=",
+     "threshold": 17.5,
+     "translated": true,
+     "translation": {
+      "kind": "header_inferred",
+      "keyword": "alert udp",
+      "note": "udp header from the training flows"
+     }
+    }
+   ],
+   "direction": null,
+   "lua_file": "P7-0013.lua",
+   "sid": 1000064,
+   "deployable": true
+  }
+ }
+]

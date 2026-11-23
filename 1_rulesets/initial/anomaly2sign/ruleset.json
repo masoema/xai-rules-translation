@@ -1,0 +1,990 @@
+[
+ {
+  "rule_id": "COS-0001",
+  "method": "anomaly2sign",
+  "target_class": "DrDoS_NTP",
+  "conditions": [
+   {
+    "feature": "avg_fwd_segment_size",
+    "op": "<=",
+    "threshold": 295.6607208251953,
+    "translated": null
+   },
+   {
+    "feature": "ack_flag_count",
+    "op": "<=",
+    "threshold": 0.5,
+    "translated": null
+   },
+   {
+    "feature": "min_packet_length",
+    "op": "<=",
+    "threshold": 153.0,
+    "translated": null
+   },
+   {
+    "feature": "flow_bytes/s",
+    "op": "<=",
+    "threshold": 31071429.0,
+    "translated": null
+   },
+   {
+    "feature": "fwd_packet_length_mean",
+    "op": ">",
+    "threshold": 259.75,
+    "translated": null
+   }
+  ],
+  "suricata": null,
+  "meta": {
+   "leaf_node": 6,
+   "train_samples": 254,
+   "max_depth": 5,
+   "criterion": "entropy"
+  }
+ },
+ {
+  "rule_id": "COS-0002",
+  "method": "anomaly2sign",
+  "target_class": "DrDoS_NTP",
+  "conditions": [
+   {
+    "feature": "avg_fwd_segment_size",
+    "op": "<=",
+    "threshold": 295.6607208251953,
+    "translated": null
+   },
+   {
+    "feature": "ack_flag_count",
+    "op": "<=",
+    "threshold": 0.5,
+    "translated": null
+   },
+   {
+    "feature": "min_packet_length",
+    "op": "<=",
+    "threshold": 153.0,
+    "translated": null
+   },
+   {
+    "feature": "flow_bytes/s",
+    "op": ">",
+    "threshold": 31071429.0,
+    "translated": null
+   },
+   {
+    "feature": "fwd_packet_length_min",
+    "op": ">",
+    "threshold": 79.5,
+    "translated": null
+   }
+  ],
+  "suricata": null,
+  "meta": {
+   "leaf_node": 9,
+   "train_samples": 881,
+   "max_depth": 5,
+   "criterion": "entropy"
+  }
+ },
+ {
+  "rule_id": "COS-0003",
+  "method": "anomaly2sign",
+  "target_class": "DrDoS_NetBIOS",
+  "conditions": [
+   {
+    "feature": "avg_fwd_segment_size",
+    "op": "<=",
+    "threshold": 295.6607208251953,
+    "translated": null
+   },
+   {
+    "feature": "ack_flag_count",
+    "op": "<=",
+    "threshold": 0.5,
+    "translated": null
+   },
+   {
+    "feature": "min_packet_length",
+    "op": ">",
+    "threshold": 153.0,
+    "translated": null
+   },
+   {
+    "feature": "average_packet_size",
+    "op": "<=",
+    "threshold": 285.875,
+    "translated": null
+   },
+   {
+    "feature": "destination_port",
+    "op": ">",
+    "threshold": 146.0,
+    "translated": null
+   }
+  ],
+  "suricata": null,
+  "meta": {
+   "leaf_node": 13,
+   "train_samples": 786,
+   "max_depth": 5,
+   "criterion": "entropy"
+  }
+ },
+ {
+  "rule_id": "COS-0004",
+  "method": "anomaly2sign",
+  "target_class": "DrDoS_NetBIOS",
+  "conditions": [
+   {
+    "feature": "avg_fwd_segment_size",
+    "op": "<=",
+    "threshold": 295.6607208251953,
+    "translated": null
+   },
+   {
+    "feature": "ack_flag_count",
+    "op": "<=",
+    "threshold": 0.5,
+    "translated": null
+   },
+   {
+    "feature": "min_packet_length",
+    "op": ">",
+    "threshold": 153.0,
+    "translated": null
+   },
+   {
+    "feature": "average_packet_size",
+    "op": ">",
+    "threshold": 285.875,
+    "translated": null
+   },
+   {
+    "feature": "max_packet_length",
+    "op": "<=",
+    "threshold": 283.5,
+    "translated": null
+   }
+  ],
+  "suricata": null,
+  "meta": {
+   "leaf_node": 15,
+   "train_samples": 100155,
+   "max_depth": 5,
+   "criterion": "entropy"
+  }
+ },
+ {
+  "rule_id": "COS-0005",
+  "method": "anomaly2sign",
+  "target_class": "UDP_Reflection_Attack",
+  "conditions": [
+   {
+    "feature": "avg_fwd_segment_size",
+    "op": "<=",
+    "threshold": 295.6607208251953,
+    "translated": null
+   },
+   {
+    "feature": "ack_flag_count",
+    "op": "<=",
+    "threshold": 0.5,
+    "translated": null
+   },
+   {
+    "feature": "min_packet_length",
+    "op": ">",
+    "threshold": 153.0,
+    "translated": null
+   },
+   {
+    "feature": "average_packet_size",
+    "op": ">",
+    "threshold": 285.875,
+    "translated": null
+   },
+   {
+    "feature": "max_packet_length",
+    "op": ">",
+    "threshold": 283.5,
+    "translated": null
+   }
+  ],
+  "suricata": null,
+  "meta": {
+   "leaf_node": 16,
+   "train_samples": 194,
+   "max_depth": 5,
+   "criterion": "entropy"
+  }
+ },
+ {
+  "rule_id": "COS-0006",
+  "method": "anomaly2sign",
+  "target_class": "UDP-lag",
+  "conditions": [
+   {
+    "feature": "avg_fwd_segment_size",
+    "op": "<=",
+    "threshold": 295.6607208251953,
+    "translated": null
+   },
+   {
+    "feature": "ack_flag_count",
+    "op": ">",
+    "threshold": 0.5,
+    "translated": null
+   },
+   {
+    "feature": "inbound",
+    "op": "<=",
+    "threshold": 0.5,
+    "translated": null
+   },
+   {
+    "feature": "destination_port",
+    "op": ">",
+    "threshold": 8766.5,
+    "translated": null
+   }
+  ],
+  "suricata": null,
+  "meta": {
+   "leaf_node": 20,
+   "train_samples": 1,
+   "max_depth": 5,
+   "criterion": "entropy"
+  }
+ },
+ {
+  "rule_id": "COS-0007",
+  "method": "anomaly2sign",
+  "target_class": "UDP-lag",
+  "conditions": [
+   {
+    "feature": "avg_fwd_segment_size",
+    "op": "<=",
+    "threshold": 295.6607208251953,
+    "translated": null
+   },
+   {
+    "feature": "ack_flag_count",
+    "op": ">",
+    "threshold": 0.5,
+    "translated": null
+   },
+   {
+    "feature": "inbound",
+    "op": ">",
+    "threshold": 0.5,
+    "translated": null
+   },
+   {
+    "feature": "total_fwd_packets",
+    "op": "<=",
+    "threshold": 11.0,
+    "translated": null
+   },
+   {
+    "feature": "fwd_packets/s",
+    "op": "<=",
+    "threshold": 0.6711791455745697,
+    "translated": null
+   }
+  ],
+  "suricata": null,
+  "meta": {
+   "leaf_node": 23,
+   "train_samples": 18691,
+   "max_depth": 5,
+   "criterion": "entropy"
+  }
+ },
+ {
+  "rule_id": "COS-0008",
+  "method": "anomaly2sign",
+  "target_class": "Syn",
+  "conditions": [
+   {
+    "feature": "avg_fwd_segment_size",
+    "op": "<=",
+    "threshold": 295.6607208251953,
+    "translated": null
+   },
+   {
+    "feature": "ack_flag_count",
+    "op": ">",
+    "threshold": 0.5,
+    "translated": null
+   },
+   {
+    "feature": "inbound",
+    "op": ">",
+    "threshold": 0.5,
+    "translated": null
+   },
+   {
+    "feature": "total_fwd_packets",
+    "op": "<=",
+    "threshold": 11.0,
+    "translated": null
+   },
+   {
+    "feature": "fwd_packets/s",
+    "op": ">",
+    "threshold": 0.6711791455745697,
+    "translated": null
+   }
+  ],
+  "suricata": null,
+  "meta": {
+   "leaf_node": 24,
+   "train_samples": 139449,
+   "max_depth": 5,
+   "criterion": "entropy"
+  }
+ },
+ {
+  "rule_id": "COS-0009",
+  "method": "anomaly2sign",
+  "target_class": "Syn",
+  "conditions": [
+   {
+    "feature": "avg_fwd_segment_size",
+    "op": "<=",
+    "threshold": 295.6607208251953,
+    "translated": null
+   },
+   {
+    "feature": "ack_flag_count",
+    "op": ">",
+    "threshold": 0.5,
+    "translated": null
+   },
+   {
+    "feature": "inbound",
+    "op": ">",
+    "threshold": 0.5,
+    "translated": null
+   },
+   {
+    "feature": "total_fwd_packets",
+    "op": ">",
+    "threshold": 11.0,
+    "translated": null
+   },
+   {
+    "feature": "fwd_packets/s",
+    "op": "<=",
+    "threshold": 0.23637515306472778,
+    "translated": null
+   }
+  ],
+  "suricata": null,
+  "meta": {
+   "leaf_node": 26,
+   "train_samples": 6982,
+   "max_depth": 5,
+   "criterion": "entropy"
+  }
+ },
+ {
+  "rule_id": "COS-0010",
+  "method": "anomaly2sign",
+  "target_class": "DrDoS_NTP",
+  "conditions": [
+   {
+    "feature": "avg_fwd_segment_size",
+    "op": "<=",
+    "threshold": 295.6607208251953,
+    "translated": null
+   },
+   {
+    "feature": "ack_flag_count",
+    "op": ">",
+    "threshold": 0.5,
+    "translated": null
+   },
+   {
+    "feature": "inbound",
+    "op": ">",
+    "threshold": 0.5,
+    "translated": null
+   },
+   {
+    "feature": "total_fwd_packets",
+    "op": ">",
+    "threshold": 11.0,
+    "translated": null
+   },
+   {
+    "feature": "fwd_packets/s",
+    "op": ">",
+    "threshold": 0.23637515306472778,
+    "translated": null
+   }
+  ],
+  "suricata": null,
+  "meta": {
+   "leaf_node": 27,
+   "train_samples": 96,
+   "max_depth": 5,
+   "criterion": "entropy"
+  }
+ },
+ {
+  "rule_id": "COS-0011",
+  "method": "anomaly2sign",
+  "target_class": "DrDoS_NetBIOS",
+  "conditions": [
+   {
+    "feature": "avg_fwd_segment_size",
+    "op": ">",
+    "threshold": 295.6607208251953,
+    "translated": null
+   },
+   {
+    "feature": "average_packet_size",
+    "op": "<=",
+    "threshold": 552.125,
+    "translated": null
+   },
+   {
+    "feature": "max_packet_length",
+    "op": "<=",
+    "threshold": 439.5,
+    "translated": null
+   },
+   {
+    "feature": "fwd_packet_length_max",
+    "op": "<=",
+    "threshold": 319.5,
+    "translated": null
+   },
+   {
+    "feature": "flow_bytes/s",
+    "op": ">",
+    "threshold": 319778.609375,
+    "translated": null
+   }
+  ],
+  "suricata": null,
+  "meta": {
+   "leaf_node": 33,
+   "train_samples": 698,
+   "max_depth": 5,
+   "criterion": "entropy"
+  }
+ },
+ {
+  "rule_id": "COS-0012",
+  "method": "anomaly2sign",
+  "target_class": "UDP_Reflection_Attack",
+  "conditions": [
+   {
+    "feature": "avg_fwd_segment_size",
+    "op": ">",
+    "threshold": 295.6607208251953,
+    "translated": null
+   },
+   {
+    "feature": "average_packet_size",
+    "op": "<=",
+    "threshold": 501.5,
+    "translated": null
+   },
+   {
+    "feature": "max_packet_length",
+    "op": "<=",
+    "threshold": 439.5,
+    "translated": null
+   },
+   {
+    "feature": "fwd_packet_length_max",
+    "op": ">",
+    "threshold": 319.5,
+    "translated": null
+   }
+  ],
+  "suricata": null,
+  "meta": {
+   "leaf_node": 35,
+   "train_samples": 103692,
+   "max_depth": 5,
+   "criterion": "entropy"
+  }
+ },
+ {
+  "rule_id": "COS-0013",
+  "method": "anomaly2sign",
+  "target_class": "UDP_Reflection_Attack",
+  "conditions": [
+   {
+    "feature": "avg_fwd_segment_size",
+    "op": ">",
+    "threshold": 295.6607208251953,
+    "translated": null
+   },
+   {
+    "feature": "average_packet_size",
+    "op": ">",
+    "threshold": 501.5,
+    "translated": null
+   },
+   {
+    "feature": "average_packet_size",
+    "op": "<=",
+    "threshold": 552.125,
+    "translated": null
+   },
+   {
+    "feature": "max_packet_length",
+    "op": "<=",
+    "threshold": 439.5,
+    "translated": null
+   },
+   {
+    "feature": "fwd_packet_length_max",
+    "op": ">",
+    "threshold": 319.5,
+    "translated": null
+   }
+  ],
+  "suricata": null,
+  "meta": {
+   "leaf_node": 36,
+   "train_samples": 1203,
+   "max_depth": 5,
+   "criterion": "entropy"
+  }
+ },
+ {
+  "rule_id": "COS-0014",
+  "method": "anomaly2sign",
+  "target_class": "DrDoS_NTP",
+  "conditions": [
+   {
+    "feature": "avg_fwd_segment_size",
+    "op": ">",
+    "threshold": 295.6607208251953,
+    "translated": null
+   },
+   {
+    "feature": "average_packet_size",
+    "op": "<=",
+    "threshold": 552.125,
+    "translated": null
+   },
+   {
+    "feature": "max_packet_length",
+    "op": ">",
+    "threshold": 439.5,
+    "translated": null
+   },
+   {
+    "feature": "max_packet_length",
+    "op": "<=",
+    "threshold": 441.0,
+    "translated": null
+   },
+   {
+    "feature": "total_fwd_packets",
+    "op": "<=",
+    "threshold": 147.5,
+    "translated": null
+   }
+  ],
+  "suricata": null,
+  "meta": {
+   "leaf_node": 39,
+   "train_samples": 78985,
+   "max_depth": 5,
+   "criterion": "entropy"
+  }
+ },
+ {
+  "rule_id": "COS-0015",
+  "method": "anomaly2sign",
+  "target_class": "DrDoS_NTP",
+  "conditions": [
+   {
+    "feature": "avg_fwd_segment_size",
+    "op": ">",
+    "threshold": 295.6607208251953,
+    "translated": null
+   },
+   {
+    "feature": "average_packet_size",
+    "op": "<=",
+    "threshold": 552.125,
+    "translated": null
+   },
+   {
+    "feature": "max_packet_length",
+    "op": ">",
+    "threshold": 439.5,
+    "translated": null
+   },
+   {
+    "feature": "max_packet_length",
+    "op": "<=",
+    "threshold": 441.0,
+    "translated": null
+   },
+   {
+    "feature": "total_fwd_packets",
+    "op": ">",
+    "threshold": 147.5,
+    "translated": null
+   }
+  ],
+  "suricata": null,
+  "meta": {
+   "leaf_node": 40,
+   "train_samples": 15512,
+   "max_depth": 5,
+   "criterion": "entropy"
+  }
+ },
+ {
+  "rule_id": "COS-0016",
+  "method": "anomaly2sign",
+  "target_class": "TFTP",
+  "conditions": [
+   {
+    "feature": "avg_fwd_segment_size",
+    "op": ">",
+    "threshold": 295.6607208251953,
+    "translated": null
+   },
+   {
+    "feature": "average_packet_size",
+    "op": "<=",
+    "threshold": 552.125,
+    "translated": null
+   },
+   {
+    "feature": "max_packet_length",
+    "op": ">",
+    "threshold": 441.0,
+    "translated": null
+   },
+   {
+    "feature": "min_packet_length",
+    "op": ">",
+    "threshold": 7.5,
+    "translated": null
+   }
+  ],
+  "suricata": null,
+  "meta": {
+   "leaf_node": 43,
+   "train_samples": 1861,
+   "max_depth": 5,
+   "criterion": "entropy"
+  }
+ },
+ {
+  "rule_id": "COS-0017",
+  "method": "anomaly2sign",
+  "target_class": "UDP_Reflection_Attack",
+  "conditions": [
+   {
+    "feature": "avg_fwd_segment_size",
+    "op": ">",
+    "threshold": 295.6607208251953,
+    "translated": null
+   },
+   {
+    "feature": "average_packet_size",
+    "op": ">",
+    "threshold": 552.125,
+    "translated": null
+   },
+   {
+    "feature": "average_packet_size",
+    "op": "<=",
+    "threshold": 602.25,
+    "translated": null
+   },
+   {
+    "feature": "max_packet_length",
+    "op": "<=",
+    "threshold": 1298.5,
+    "translated": null
+   },
+   {
+    "feature": "min_packet_length",
+    "op": "<=",
+    "threshold": 515.5,
+    "translated": null
+   }
+  ],
+  "suricata": null,
+  "meta": {
+   "leaf_node": 47,
+   "train_samples": 98270,
+   "max_depth": 5,
+   "criterion": "entropy"
+  }
+ },
+ {
+  "rule_id": "COS-0018",
+  "method": "anomaly2sign",
+  "target_class": "DrDoS_MSSQL",
+  "conditions": [
+   {
+    "feature": "avg_fwd_segment_size",
+    "op": ">",
+    "threshold": 295.6607208251953,
+    "translated": null
+   },
+   {
+    "feature": "average_packet_size",
+    "op": ">",
+    "threshold": 602.25,
+    "translated": null
+   },
+   {
+    "feature": "max_packet_length",
+    "op": "<=",
+    "threshold": 1298.5,
+    "translated": null
+   },
+   {
+    "feature": "min_packet_length",
+    "op": "<=",
+    "threshold": 515.5,
+    "translated": null
+   }
+  ],
+  "suricata": null,
+  "meta": {
+   "leaf_node": 48,
+   "train_samples": 62459,
+   "max_depth": 5,
+   "criterion": "entropy"
+  }
+ },
+ {
+  "rule_id": "COS-0019",
+  "method": "anomaly2sign",
+  "target_class": "TFTP",
+  "conditions": [
+   {
+    "feature": "avg_fwd_segment_size",
+    "op": ">",
+    "threshold": 295.6607208251953,
+    "translated": null
+   },
+   {
+    "feature": "average_packet_size",
+    "op": ">",
+    "threshold": 552.125,
+    "translated": null
+   },
+   {
+    "feature": "max_packet_length",
+    "op": "<=",
+    "threshold": 1298.5,
+    "translated": null
+   },
+   {
+    "feature": "min_packet_length",
+    "op": ">",
+    "threshold": 515.5,
+    "translated": null
+   },
+   {
+    "feature": "packet_length_mean",
+    "op": "<=",
+    "threshold": 516.5,
+    "translated": null
+   }
+  ],
+  "suricata": null,
+  "meta": {
+   "leaf_node": 50,
+   "train_samples": 96225,
+   "max_depth": 5,
+   "criterion": "entropy"
+  }
+ },
+ {
+  "rule_id": "COS-0020",
+  "method": "anomaly2sign",
+  "target_class": "DrDoS_MSSQL",
+  "conditions": [
+   {
+    "feature": "avg_fwd_segment_size",
+    "op": ">",
+    "threshold": 295.6607208251953,
+    "translated": null
+   },
+   {
+    "feature": "average_packet_size",
+    "op": ">",
+    "threshold": 552.125,
+    "translated": null
+   },
+   {
+    "feature": "max_packet_length",
+    "op": "<=",
+    "threshold": 1298.5,
+    "translated": null
+   },
+   {
+    "feature": "min_packet_length",
+    "op": ">",
+    "threshold": 515.5,
+    "translated": null
+   },
+   {
+    "feature": "packet_length_mean",
+    "op": ">",
+    "threshold": 516.5,
+    "translated": null
+   }
+  ],
+  "suricata": null,
+  "meta": {
+   "leaf_node": 51,
+   "train_samples": 48829,
+   "max_depth": 5,
+   "criterion": "entropy"
+  }
+ },
+ {
+  "rule_id": "COS-0021",
+  "method": "anomaly2sign",
+  "target_class": "UDP-lag",
+  "conditions": [
+   {
+    "feature": "avg_fwd_segment_size",
+    "op": ">",
+    "threshold": 295.6607208251953,
+    "translated": null
+   },
+   {
+    "feature": "average_packet_size",
+    "op": ">",
+    "threshold": 552.125,
+    "translated": null
+   },
+   {
+    "feature": "max_packet_length",
+    "op": ">",
+    "threshold": 1298.5,
+    "translated": null
+   },
+   {
+    "feature": "min_packet_length",
+    "op": ">",
+    "threshold": 181.5,
+    "translated": null
+   },
+   {
+    "feature": "min_packet_length",
+    "op": "<=",
+    "threshold": 874.5,
+    "translated": null
+   }
+  ],
+  "suricata": null,
+  "meta": {
+   "leaf_node": 55,
+   "train_samples": 79,
+   "max_depth": 5,
+   "criterion": "entropy"
+  }
+ },
+ {
+  "rule_id": "COS-0022",
+  "method": "anomaly2sign",
+  "target_class": "UDP_Reflection_Attack",
+  "conditions": [
+   {
+    "feature": "avg_fwd_segment_size",
+    "op": ">",
+    "threshold": 295.6607208251953,
+    "translated": null
+   },
+   {
+    "feature": "average_packet_size",
+    "op": ">",
+    "threshold": 552.125,
+    "translated": null
+   },
+   {
+    "feature": "max_packet_length",
+    "op": ">",
+    "threshold": 1298.5,
+    "translated": null
+   },
+   {
+    "feature": "min_packet_length",
+    "op": ">",
+    "threshold": 874.5,
+    "translated": null
+   },
+   {
+    "feature": "flow_bytes/s",
+    "op": "<=",
+    "threshold": 1079466656.0,
+    "translated": null
+   }
+  ],
+  "suricata": null,
+  "meta": {
+   "leaf_node": 57,
+   "train_samples": 37160,
+   "max_depth": 5,
+   "criterion": "entropy"
+  }
+ },
+ {
+  "rule_id": "COS-0023",
+  "method": "anomaly2sign",
+  "target_class": "UDP_Reflection_Attack",
+  "conditions": [
+   {
+    "feature": "avg_fwd_segment_size",
+    "op": ">",
+    "threshold": 295.6607208251953,
+    "translated": null
+   },
+   {
+    "feature": "average_packet_size",
+    "op": ">",
+    "threshold": 552.125,
+    "translated": null
+   },
+   {
+    "feature": "max_packet_length",
+    "op": ">",
+    "threshold": 1298.5,
+    "translated": null
+   },
+   {
+    "feature": "min_packet_length",
+    "op": ">",
+    "threshold": 874.5,
+    "translated": null
+   },
+   {
+    "feature": "flow_bytes/s",
+    "op": ">",
+    "threshold": 1079466656.0,
+    "translated": null
+   }
+  ],
+  "suricata": null,
+  "meta": {
+   "leaf_node": 58,
+   "train_samples": 246156,
+   "max_depth": 5,
+   "criterion": "entropy"
+  }
+ }
+]
