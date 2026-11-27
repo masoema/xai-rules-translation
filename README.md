@@ -19,6 +19,8 @@ global surrogate tree (Saied and Guirguis, 2025). Rule IDs are those used in the
   repaired/<method>/       repaired ruleset, direction check A + removal of rules learned from fewer than
                            30 training flows (Section 4.7); ad30_removed_rules.json lists the removed rules
   repair_arms/             the stage-1 arms tested on 25 PCAP files (C0, R, A, RA) and arm AR3 (Fig. 4)
+  et_open/                 reference ruleset: ET Open emerging-dos.rules (suricata-7.0.3, retrieved April 2026,
+                           114 active rules), kept because later ET updates disabled part of these rules
 2_translation_layer/
   code/suricata_translate.py         translation layer (Algorithm 1 of the paper)
   code/suricata_translate_repair.py  repairs R (rate at zero duration) and A (flow direction), and AD
@@ -109,4 +111,6 @@ removed rules simply never fire.
 The code and rulesets in this repository are released under the MIT licence (see `LICENSE`): they may be
 used, changed and redistributed freely, provided the copyright notice is kept. If you use them in research,
 please cite this repository (see `CITATION.cff`, or "Cite this repository" on GitHub) and the paper. The
-ground truth on Zenodo is released under CC BY 4.0.
+ground truth on Zenodo is released under CC BY 4.0. `1_rulesets/et_open/emerging-dos.rules` is not covered
+by the MIT licence; it is redistributed unchanged under the licences stated in its header (GPLv2 and BSD,
+Emerging Threats).
